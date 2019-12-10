@@ -20,7 +20,7 @@
 					:key="i"
 				>
 					<mk-emoji v-if="emoji.char != null" :emoji="emoji.char"/>
-					<img v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
+					<v-lazy-image v-else :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
 				</button>
 			</div>
 		</template>
@@ -46,7 +46,7 @@
 						@click="chosen(emoji)"
 						:key="emoji.name"
 					>
-						<img :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
+						<v-lazy-image :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url"/>
 					</button>
 				</div>
 			</div>

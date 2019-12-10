@@ -2,7 +2,6 @@
 <div class="nqfhvmnl">
 	<template v-if="page == null || page == 'profile'">
 		<x-profile/>
-		<x-integration/>
 	</template>
 
 	<template v-if="tick >= 1 && page == null || page == 'appearance'">
@@ -211,7 +210,6 @@ import i18n from '../../../../i18n';
 import XApps from './apps.vue';
 import XSignins from './signins.vue';
 import XTags from './tags.vue';
-import XIntegration from './integration.vue';
 import XTheme from './theme.vue';
 import XDrive from './drive.vue';
 import XMuteAndBlock from './mute-and-block.vue';
@@ -233,7 +231,6 @@ export default Vue.extend({
 		XApps,
 		XSignins,
 		XTags,
-		XIntegration,
 		XTheme,
 		XDrive,
 		XMuteAndBlock,

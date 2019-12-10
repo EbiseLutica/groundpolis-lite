@@ -215,69 +215,6 @@ export const meta = {
 			}
 		},
 
-		enableTwitterIntegration: {
-			validator: $.optional.bool,
-			desc: {
-				'ja-JP': 'Twitter連携機能を有効にするか否か'
-			}
-		},
-
-		twitterConsumerKey: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'TwitterアプリのConsumer key'
-			}
-		},
-
-		twitterConsumerSecret: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'TwitterアプリのConsumer secret'
-			}
-		},
-
-		enableGithubIntegration: {
-			validator: $.optional.bool,
-			desc: {
-				'ja-JP': 'GitHub連携機能を有効にするか否か'
-			}
-		},
-
-		githubClientId: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'GitHubアプリのClient ID'
-			}
-		},
-
-		githubClientSecret: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'GitHubアプリのClient Secret'
-			}
-		},
-
-		enableDiscordIntegration: {
-			validator: $.optional.bool,
-			desc: {
-				'ja-JP': 'Discord連携機能を有効にするか否か'
-			}
-		},
-
-		discordClientId: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'DiscordアプリのClient ID'
-			}
-		},
-
-		discordClientSecret: {
-			validator: $.optional.nullable.str,
-			desc: {
-				'ja-JP': 'DiscordアプリのClient Secret'
-			}
-		},
-
 		enableEmail: {
 			validator: $.optional.bool,
 			desc: {
@@ -527,42 +464,6 @@ export default define(meta, async (ps, me) => {
 
 	if (ps.summalyProxy !== undefined) {
 		set.summalyProxy = ps.summalyProxy;
-	}
-
-	if (ps.enableTwitterIntegration !== undefined) {
-		set.enableTwitterIntegration = ps.enableTwitterIntegration;
-	}
-
-	if (ps.twitterConsumerKey !== undefined) {
-		set.twitterConsumerKey = ps.twitterConsumerKey;
-	}
-
-	if (ps.twitterConsumerSecret !== undefined) {
-		set.twitterConsumerSecret = ps.twitterConsumerSecret;
-	}
-
-	if (ps.enableGithubIntegration !== undefined) {
-		set.enableGithubIntegration = ps.enableGithubIntegration;
-	}
-
-	if (ps.githubClientId !== undefined) {
-		set.githubClientId = ps.githubClientId;
-	}
-
-	if (ps.githubClientSecret !== undefined) {
-		set.githubClientSecret = ps.githubClientSecret;
-	}
-
-	if (ps.enableDiscordIntegration !== undefined) {
-		set.enableDiscordIntegration = ps.enableDiscordIntegration;
-	}
-
-	if (ps.discordClientId !== undefined) {
-		set.discordClientId = ps.discordClientId;
-	}
-
-	if (ps.discordClientSecret !== undefined) {
-		set.discordClientSecret = ps.discordClientSecret;
 	}
 
 	if (ps.enableEmail !== undefined) {

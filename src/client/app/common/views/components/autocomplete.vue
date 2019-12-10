@@ -2,7 +2,7 @@
 <div class="mk-autocomplete" @contextmenu.prevent="() => {}">
 	<ol class="users" ref="suggests" v-if="users.length > 0">
 		<li v-for="user in users" :key="user.id" @click="complete(type, user)" @keydown="onKeydown" tabindex="-1">
-			<img class="avatar" :src="user.avatarUrl" alt=""/>
+			<v-lazy-image class="avatar" :src="user.avatarUrl" alt=""/>
 			<span class="name">
 				<mk-user-name :user="user" :key="user.id"/>
 			</span>
@@ -16,8 +16,8 @@
 	</ol>
 	<ol class="emojis" ref="suggests" v-if="emojis.length > 0">
 		<li v-for="emoji in emojis" :key="emoji.id" @click="complete(type, emoji.emoji)" @keydown="onKeydown" tabindex="-1">
-			<span class="emoji" v-if="emoji.isCustomEmoji"><img :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" :alt="emoji.emoji"/></span>
-			<span class="emoji" v-else-if="!useOsDefaultEmojis"><img :src="emoji.url" :alt="emoji.emoji"/></span>
+			<span class="emoji" v-if="emoji.isCustomEmoji"><v-lazy-image :src="$store.state.device.disableShowingAnimatedImages ? getStaticImageUrl(emoji.url) : emoji.url" :alt="emoji.emoji"/></span>
+			<span class="emoji" v-else-if="!useOsDefaultEmojis"><v-lazy-image :src="emoji.url" :alt="emoji.emoji"/></span>
 			<span class="emoji" v-else>{{ emoji.emoji }}</span>
 			<span class="name" v-html="emoji.name.replace(q, `<b>${q}</b>`)"></span>
 			<span class="alias" v-if="emoji.aliasOf">({{ emoji.aliasOf }})</span>

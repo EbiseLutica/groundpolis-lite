@@ -8,7 +8,7 @@ import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
 import VModal from 'vue-js-modal';
 import VueI18n from 'vue-i18n';
-import VLazyImage from 'v-lazy-image';
+import { VLazyImagePlugin } from 'v-lazy-image';
 import SequentialEntrance from 'vue-sequential-entrance';
 
 import VueHotkey from './common/hotkey';
@@ -216,11 +216,6 @@ import {
 	faHeart as farHeart,
 } from '@fortawesome/free-regular-svg-icons';
 
-import {
-	faTwitter as fabTwitter,
-	faGithub as fabGithub,
-	faDiscord as fabDiscord
-} from '@fortawesome/free-brands-svg-icons';
 import i18n from './i18n';
 
 library.add(
@@ -421,7 +416,7 @@ Vue.use(VueHotkey);
 Vue.use(VueSize);
 Vue.use(VueI18n);
 Vue.use(SequentialEntrance);
-Vue.use(VLazyImage);
+Vue.use(VLazyImagePlugin);
 
 Vue.component('fa', FontAwesomeIcon);
 Vue.component('fa-layer', FontAwesomeLayers);

@@ -178,46 +178,6 @@
 		</section>
 	</ui-card>
 
-	<ui-card>
-		<template #title><fa icon="shield-alt"/> {{ $t('external-service-integration-config') }}</template>
-		<section>
-			<header><fa :icon="['fab', 'twitter']"/> {{ $t('twitter-integration-config') }}</header>
-			<ui-switch v-model="enableTwitterIntegration">{{ $t('enable-twitter-integration') }}</ui-switch>
-			<template v-if="enableTwitterIntegration">
-				<ui-horizon-group>
-					<ui-input v-model="twitterConsumerKey" :disabled="!enableTwitterIntegration"><template #icon><fa icon="key"/></template>{{ $t('twitter-integration-consumer-key') }}</ui-input>
-					<ui-input v-model="twitterConsumerSecret" :disabled="!enableTwitterIntegration"><template #icon><fa icon="key"/></template>{{ $t('twitter-integration-consumer-secret') }}</ui-input>
-				</ui-horizon-group>
-				<ui-info>{{ $t('twitter-integration-info', { url: `${url}/api/tw/cb` }) }}</ui-info>
-			</template>
-		</section>
-		<section>
-			<header><fa :icon="['fab', 'github']"/> {{ $t('github-integration-config') }}</header>
-			<ui-switch v-model="enableGithubIntegration">{{ $t('enable-github-integration') }}</ui-switch>
-			<template v-if="enableGithubIntegration">
-				<ui-horizon-group>
-					<ui-input v-model="githubClientId" :disabled="!enableGithubIntegration"><template #icon><fa icon="key"/></template>{{ $t('github-integration-client-id') }}</ui-input>
-					<ui-input v-model="githubClientSecret" :disabled="!enableGithubIntegration"><template #icon><fa icon="key"/></template>{{ $t('github-integration-client-secret') }}</ui-input>
-				</ui-horizon-group>
-				<ui-info>{{ $t('github-integration-info', { url: `${url}/api/gh/cb` }) }}</ui-info>
-			</template>
-		</section>
-		<section>
-			<header><fa :icon="['fab', 'discord']"/> {{ $t('discord-integration-config') }}</header>
-			<ui-switch v-model="enableDiscordIntegration">{{ $t('enable-discord-integration') }}</ui-switch>
-			<template v-if="enableDiscordIntegration">
-				<ui-horizon-group>
-					<ui-input v-model="discordClientId" :disabled="!enableDiscordIntegration"><template #icon><fa icon="key"/></template>{{ $t('discord-integration-client-id') }}</ui-input>
-					<ui-input v-model="discordClientSecret" :disabled="!enableDiscordIntegration"><template #icon><fa icon="key"/></template>{{ $t('discord-integration-client-secret') }}</ui-input>
-				</ui-horizon-group>
-				<ui-info>{{ $t('discord-integration-info', { url: `${url}/api/dc/cb` }) }}</ui-info>
-			</template>
-		</section>
-		<section>
-			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
-		</section>
-	</ui-card>
-
 	<details>
 		<summary style="color:var(--text);">{{ $t('advanced-config') }}</summary>
 
@@ -282,15 +242,6 @@ export default Vue.extend({
 			enableRecaptcha: false,
 			recaptchaSiteKey: null,
 			recaptchaSecretKey: null,
-			enableTwitterIntegration: false,
-			twitterConsumerKey: null,
-			twitterConsumerSecret: null,
-			enableGithubIntegration: false,
-			githubClientId: null,
-			githubClientSecret: null,
-			enableDiscordIntegration: false,
-			discordClientId: null,
-			discordClientSecret: null,
 			proxyAccount: null,
 			summalyProxy: null,
 			enableEmail: false,
@@ -349,15 +300,6 @@ export default Vue.extend({
 			this.recaptchaSiteKey = meta.recaptchaSiteKey;
 			this.recaptchaSecretKey = meta.recaptchaSecretKey;
 			this.proxyAccount = meta.proxyAccount;
-			this.enableTwitterIntegration = meta.enableTwitterIntegration;
-			this.twitterConsumerKey = meta.twitterConsumerKey;
-			this.twitterConsumerSecret = meta.twitterConsumerSecret;
-			this.enableGithubIntegration = meta.enableGithubIntegration;
-			this.githubClientId = meta.githubClientId;
-			this.githubClientSecret = meta.githubClientSecret;
-			this.enableDiscordIntegration = meta.enableDiscordIntegration;
-			this.discordClientId = meta.discordClientId;
-			this.discordClientSecret = meta.discordClientSecret;
 			this.summalyProxy = meta.summalyProxy;
 			this.enableEmail = meta.enableEmail;
 			this.email = meta.email;
@@ -474,15 +416,6 @@ export default Vue.extend({
 				recaptchaSiteKey: this.recaptchaSiteKey,
 				recaptchaSecretKey: this.recaptchaSecretKey,
 				proxyAccount: this.proxyAccount,
-				enableTwitterIntegration: this.enableTwitterIntegration,
-				twitterConsumerKey: this.twitterConsumerKey,
-				twitterConsumerSecret: this.twitterConsumerSecret,
-				enableGithubIntegration: this.enableGithubIntegration,
-				githubClientId: this.githubClientId,
-				githubClientSecret: this.githubClientSecret,
-				enableDiscordIntegration: this.enableDiscordIntegration,
-				discordClientId: this.discordClientId,
-				discordClientSecret: this.discordClientSecret,
 				summalyProxy: this.summalyProxy,
 				enableEmail: this.enableEmail,
 				email: this.email,

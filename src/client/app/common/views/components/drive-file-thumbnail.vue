@@ -1,6 +1,6 @@
 <template>
 <div class="zdjebgpv" :class="{ detail }" ref="thumbnail" :style="`background-color: ${ background }`">
-	<img
+	<v-lazy-image
 		:src="file.url"
 		:alt="file.name"
 		:title="file.name"
@@ -12,7 +12,7 @@
 		preload="metadata"
 		controls
 		v-else-if="detail && is === 'video'"/>
-	<img :src="file.thumbnailUrl" alt="" @load="onThumbnailLoaded" :style="`object-fit: ${ fit }`" v-else-if="isThumbnailAvailable"/>
+	<v-lazy-image :src="file.thumbnailUrl" alt="" @load="onThumbnailLoaded" :style="`object-fit: ${ fit }`" v-else-if="isThumbnailAvailable"/>
 	<fa icon="file-image" class="icon" v-else-if="is === 'image'"/>
 	<fa icon="file-video" class="icon" v-else-if="is === 'video'"/>
 

@@ -168,10 +168,6 @@ export default define(meta, async (ps, me) => {
 		})),
 		enableEmail: instance.enableEmail,
 
-		enableTwitterIntegration: instance.enableTwitterIntegration,
-		enableGithubIntegration: instance.enableGithubIntegration,
-		enableDiscordIntegration: instance.enableDiscordIntegration,
-
 		enableServiceWorker: instance.enableServiceWorker,
 
 		hideServerInformation: hide,
@@ -185,9 +181,6 @@ export default define(meta, async (ps, me) => {
 			elasticsearch: config.elasticsearch ? true : false,
 			recaptcha: instance.enableRecaptcha,
 			objectStorage: instance.useObjectStorage,
-			twitter: instance.enableTwitterIntegration,
-			github: instance.enableGithubIntegration,
-			discord: instance.enableDiscordIntegration,
 			serviceWorker: instance.enableServiceWorker,
 		};
 	}

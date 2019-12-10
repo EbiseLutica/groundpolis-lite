@@ -12,7 +12,7 @@
 			<div class="nav">
 				<div class="me" v-if="$store.getters.isSignedIn">
 					<router-link class="user-panel" :to="`/@${$store.state.i.username}`" @click.native="$parent.isDrawerOpening = false">
-						<img class="avatar" :src="$store.state.i.avatarUrl" alt="avatar"/>
+						<v-lazy-image class="avatar" :src="$store.state.i.avatarUrl" alt="avatar"/>
 						<div class="name-acct">
 							<p class="name"><mk-user-name :user="$store.state.i"/></p>
 							<p class="acct"><mk-acct :user="$store.state.i"/></p>
@@ -47,7 +47,7 @@
 						<article v-for="announcement in announcements" :key="announcement.id">
 							<span v-html="announcement.title" class="title"></span>
 							<div><mfm :text="announcement.text"/></div>
-							<img v-if="announcement.image" :src="announcement.image" alt="" style="display: block; max-height: 120px; max-width: 100%;"/>
+							<v-lazy-image v-if="announcement.image" :src="announcement.image" alt="" style="display: block; max-height: 120px; max-width: 100%;"/>
 						</article>
 					</div>
 					<p class="version">ver {{ version }} ({{ codename }})</p>

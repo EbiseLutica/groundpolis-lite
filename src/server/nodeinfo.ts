@@ -68,9 +68,6 @@ const nodeinfo2 = async () => {
 			disableGlobalTimeline: meta.disableGlobalTimeline,
 			enableRecaptcha: meta.enableRecaptcha,
 			maxNoteTextLength: meta.maxNoteTextLength,
-			enableTwitterIntegration: meta.enableTwitterIntegration,
-			enableGithubIntegration: meta.enableGithubIntegration,
-			enableDiscordIntegration: meta.enableDiscordIntegration,
 			enableEmail: meta.enableEmail,
 			enableServiceWorker: meta.enableServiceWorker
 		}
