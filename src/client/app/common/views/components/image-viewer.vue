@@ -1,6 +1,6 @@
 <template>
 <ui-modal ref="modal" v-hotkey.global="keymap">
-	<v-lazy-image :src="image.url" :alt="image.name" :title="image.name" @click="close" />
+	<img :src="image.url" :alt="image.name" :title="image.name" @click="close" />
 </ui-modal>
 </template>
 

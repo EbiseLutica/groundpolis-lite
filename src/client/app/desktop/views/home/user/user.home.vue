@@ -18,7 +18,6 @@ export default Vue.extend({
 	components: {
 		XTimeline,
 		XPhotos,
-		XPage,
 	},
 	props: {
 		user: {

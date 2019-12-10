@@ -6,12 +6,6 @@
 		<div class="meter"><div :style="meterStyle"></div></div>
 		<p>{{ $t('max') }}: <b>{{ capacity | bytes }}</b> {{ $t('in-use') }}: <b>{{ usage | bytes }}</b></p>
 	</section>
-
-	<section>
-		<header>{{ $t('default-upload-folder') }}</header>
-		<ui-input v-model="uploadFolderName" readonly>{{ $t('default-upload-folder-name') }}</ui-input>
-		<ui-button @click="chooseUploadFolder()">{{ $t('change-default-upload-folder') }}</ui-button>
-	</section>
 </ui-card>
 </template>
 

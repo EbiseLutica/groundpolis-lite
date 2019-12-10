@@ -76,10 +76,10 @@ export default Vue.extend({
 	created() {
 		this.$root.getMeta().then((meta: Record<string, any>) => {
 			if (!(
-				this.enableGlobalTimeline = !meta.disableGlobalTimeline || this.$store.state.i.isModerator || this.$store.state.i.isAdmin
+				this.enableGlobalTimeline = !meta.disableGlobalTimeline
 			) && this.src === 'global') this.src = 'local';
 			if (!(
-				this.enableLocalTimeline = !meta.disableLocalTimeline || this.$store.state.i.isModerator || this.$store.state.i.isAdmin
+				this.enableLocalTimeline = !meta.disableLocalTimeline
 			) && ['local', 'hybrid'].includes(this.src)) this.src = 'home';
 		});
 
@@ -208,13 +208,14 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 .pwbzawku
 	> .form
+		position sticky
+		top 32px
 		margin-bottom 16px
-
+		z-index 700
+		box-shadow 0 0px 16px rgba(0, 0, 0, 0.8)
+		
 		&.round
 			border-radius 6px
-
-		&.shadow
-			box-shadow 0 3px 8px rgba(0, 0, 0, 0.2)
 
 	header.zahtxcqi
 		display flex

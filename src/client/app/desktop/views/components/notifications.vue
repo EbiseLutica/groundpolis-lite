@@ -260,7 +260,7 @@ export default Vue.extend({
 				margin 0
 				padding 16px
 				overflow-wrap break-word
-				font-size 12px
+				font-size 16px
 				border-bottom solid var(--lineWidth) var(--faceDivider)
 
 				&:last-child
@@ -277,13 +277,13 @@ export default Vue.extend({
 					position -webkit-sticky
 					position sticky
 					top 16px
-					width 36px
-					height 36px
+					width 48px
+					height 48px
 					border-radius 6px
 
 				> .text
 					float right
-					width calc(100% - 36px)
+					width calc(100% - 48px)
 					padding-left 8px
 
 					> header

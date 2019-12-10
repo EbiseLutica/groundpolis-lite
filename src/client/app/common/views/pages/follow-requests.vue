@@ -1,10 +1,13 @@
 <template>
 <div>
-	<ui-container :body-togglable="true">
-		<template #header>{{ $t('received-follow-requests') }}</template>
+	<ui-container>
+		<template #header>
+			<fa icon="user-check" />
+			{{ $t('received-follow-requests') }}
+		</template>
 		<div v-if="!fetching">
 			<sequential-entrance animation="entranceFromTop" delay="25" tag="div">
-				<div v-for="req in requests" class="mcbzkkaw">
+				<div v-for="req in requests" :key="req.id" class="mcbzkkaw">
 					<router-link :key="req.id" :to="req.follower | userPage">
 						<mk-user-name :user="req.follower"/>
 					</router-link>
@@ -12,6 +15,9 @@
 						<a @click="accept(req.follower)">{{ $t('accept') }}</a> | <a @click="reject(req.follower)">{{ $t('reject') }}</a>
 					</span>
 				</div>
+				<ui-info v-if="requests.length === 0">
+					{{ $t('nobody') }}
+				</ui-info>
 			</sequential-entrance>
 		</div>
 	</ui-container>

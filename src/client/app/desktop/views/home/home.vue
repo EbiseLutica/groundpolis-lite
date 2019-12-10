@@ -1,83 +1,93 @@
 <template>
-<component :is="customize ? 'mk-dummy' : 'mk-ui'" v-hotkey.global="keymap" v-if="$store.getters.isSignedIn || $route.name != 'index'">
-	<div class="wqsofvpm" :data-customize="customize">
-		<div class="customize" v-if="customize">
-			<a @click="done()"><fa icon="check"/>{{ $t('done') }}</a>
-			<div>
-				<div class="adder">
-					<p>{{ $t('add-widget') }}</p>
-					<select v-model="widgetAdderSelected">
-						<option value="profile">{{ $t('@.widgets.profile') }}</option>
-						<option value="calendar">{{ $t('@.widgets.calendar') }}</option>
-						<option value="timemachine">{{ $t('@.widgets.timemachine') }}</option>
-						<option value="activity">{{ $t('@.widgets.activity') }}</option>
-						<option value="rss">{{ $t('@.widgets.rss') }}</option>
-						<option value="html">{{ $t('@.widgets.html') }}</option>
-						<option value="trends">{{ $t('@.widgets.trends') }}</option>
-						<option value="photo-stream">{{ $t('@.widgets.photo-stream') }}</option>
-						<option value="slideshow">{{ $t('@.widgets.slideshow') }}</option>
-						<option value="version">{{ $t('@.widgets.version') }}</option>
-						<option value="broadcast">{{ $t('@.widgets.broadcast') }}</option>
-						<option value="notifications">{{ $t('@.widgets.notifications') }}</option>
-						<option value="users">{{ $t('@.widgets.users') }}</option>
-						<option value="polls">{{ $t('@.widgets.polls') }}</option>
-						<option value="post-form">{{ $t('@.widgets.post-form') }}</option>
-						<option value="memo">{{ $t('@.widgets.memo') }}</option>
-						<option value="hashtags">{{ $t('@.widgets.hashtags') }}</option>
-						<option value="posts-monitor">{{ $t('@.widgets.posts-monitor') }}</option>
-						<option value="server">{{ $t('@.widgets.server') }}</option>
-						<option value="queue">{{ $t('@.widgets.queue') }}</option>
-						<option value="nav">{{ $t('@.widgets.nav') }}</option>
-						<option value="tips">{{ $t('@.widgets.tips') }}</option>
-					</select>
-					<button @click="addWidget">{{ $t('add') }}</button>
+<mk-ui v-hotkey.global="keymap" v-if="$store.getters.isSignedIn || $route.name != 'index'">
+	<div class="wqsofvpm">
+		<div class="main" :class="{ side: widgets.left.length == 0 || widgets.right.length == 0 }">
+			<div class="left">
+				<div class="icon" @click="goToTop">
+					<img svg-inline src="../../assets/header-icon.svg"/>
 				</div>
-				<div class="trash">
-					<x-draggable v-model="trash" group="x" @add="onTrash"></x-draggable>
-					<p>{{ $t('@.trash') }}</p>
-				</div>
+				<ul>
+					<li>
+						<router-link to="/" :class="{ active: $route.name == 'index' }">
+							<fa :icon="$store.state.i ? 'home' : 'arrow-left'" fixed-width/>
+							<span>{{ $store.state.i ? "タイムライン" : "トップに戻る" }}</span>
+						</router-link>
+					</li>
+					<li>
+						<router-link to="/explore" :class="{ active: $route.name == 'explore' }">
+							<fa icon="hashtag" fixed-width/>
+							<span>見つける</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i">
+						<router-link to="/notifications" :class="{ active: $route.name == 'notifications' }">
+							<fa :icon="['far', 'bell']" fixed-width/>
+							<span>通知</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i">
+						<router-link to="/i/favorites" :class="{ active: $route.name == 'favorites' }">
+							<fa icon="star" fixed-width/>
+							<span>お気に入り</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i">
+						<router-link to="/i/lists" :class="{ active: $route.name == 'lists' }">
+							<fa icon="list" fixed-width/>
+							<span>リスト</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i">
+						<router-link to="/i/drive" :class="{ active: $route.name == 'drive' }">
+							<fa icon="cloud" fixed-width/>
+							<span>ドライブ</span>
+						</router-link>
+					</li>
+					<li v-if="($store.state.i && ($store.state.i.isLocked || $store.state.i.carefulBot))">
+						<router-link to="/i/follow-requests" :class="{ active: $route.name == 'follow-requests' }">
+							<fa icon="user-check" fixed-width/>
+							<span>フォロー申請</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i">
+						<router-link :to="`/@${ $store.state.i.username }`" :class="{ active: $route.name == 'user' }">
+							<mk-avatar class="avatar" :user="$store.state.i"/>
+							<span>プロフィール</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i">
+						<router-link to="/i/settings" :class="{ active: $route.name == 'settings' }">
+							<fa icon="cog" fixed-width/>
+							<span>設定</span>
+						</router-link>
+					</li>
+					<li v-if="$store.state.i && ($store.state.i.isAdmin || $store.state.i.isModerator)">
+						<a href="/admin">
+							<fa icon="terminal" fixed-width/>
+							<span>管理</span>
+						</a>
+					</li>
+				</ul>
+				<ui-button primary class="post-button" v-if="$store.state.i && !$store.state.settings.showPostFormOnTopOfTl">
+					<fa icon="pencil-alt" />
+					<span>投稿</span>
+				</ui-button>
+			</div>
+			<div class="right">
+				<component v-for="widget in widgets['right']" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="desktop"/>
+			</div>
+			<div class="main">
+				<router-view ref="content"></router-view>
 			</div>
 		</div>
-		<div class="main" :class="{ side: widgets.left.length == 0 || widgets.right.length == 0 }">
-			<template v-if="customize">
-				<x-draggable v-for="place in ['left', 'right']"
-					:list="widgets[place]"
-					:class="place"
-					:data-place="place"
-					group="x"
-					animation="150"
-					@sort="onWidgetSort"
-					:key="place"
-				>
-					<div v-for="widget in widgets[place]" class="customize-container" :key="widget.id" @contextmenu.stop.prevent="onWidgetContextmenu(widget.id)">
-						<component :is="`mkw-${widget.name}`" :widget="widget" :ref="widget.id" :is-customize-mode="true" platform="desktop"/>
-					</div>
-				</x-draggable>
-				<div class="main">
-					<a @click="hint">{{ $t('@.customization-tips.title') }}</a>
-					<div>
-						<x-timeline/>
-					</div>
-				</div>
-			</template>
-			<template v-else>
-				<div v-for="place in ['left', 'right']" :class="place" :key="place">
-					<component v-for="widget in widgets[place]" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="desktop"/>
-				</div>
-				<div class="main">
-					<router-view ref="content"></router-view>
-				</div>
-			</template>
-		</div>
 	</div>
-</component>
+</mk-ui>
 <x-welcome v-else/>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import * as XDraggable from 'vuedraggable';
 import { v4 as uuid } from 'uuid';
 import XWelcome from '../pages/welcome.vue';
 
@@ -85,13 +95,11 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/home.vue'),
 
 	components: {
-		XDraggable,
 		XWelcome
 	},
 
 	data() {
 		return {
-			customize: window.location.search == '?customize',
 			connection: null,
 			widgetAdderSelected: null,
 			trash: [],
@@ -101,22 +109,27 @@ export default Vue.extend({
 
 	computed: {
 		home(): any[] {
-			if (this.$store.getters.isSignedIn) {
-				return this.$store.getters.home || [];
-			} else {
 				return [{
-					name: 'instance',
-					place: 'right'
-				}, {
 					name: 'broadcast',
 					place: 'right',
 					data: {}
 				}, {
-					name: 'hashtags',
+					name: 'profile',
+					place: 'right',
+					data: {design: 1}
+				}, {
+					name: 'calendar',
+					place: 'right',
+					data: {}
+				}, {
+					name: 'nav',
+					place: 'right',
+					data: {}
+				}, {
+					name: 'version',
 					place: 'right',
 					data: {}
 				}];
-			}
 		},
 		left(): any[] {
 			return this.home.filter(w => w.place == 'left');
@@ -248,6 +261,13 @@ export default Vue.extend({
 		focus() {
 			(this.$refs.content as any).focus();
 		},
+		
+		goToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		},
 	}
 });
 </script>
@@ -341,7 +361,6 @@ export default Vue.extend({
 						pointer-events none
 
 	> .main
-		display flex
 		justify-content center
 		margin 0 auto
 
@@ -357,14 +376,7 @@ export default Vue.extend({
 					pointer-events none
 
 		> .main
-			padding 16px
-			width calc(100% - 280px * 2)
-			order 2
-
-		&.side
-			> .main
-				width calc(100% - 280px)
-				max-width 680px
+			margin 32px 344px
 
 		> *:not(.main)
 			width 280px
@@ -374,29 +386,91 @@ export default Vue.extend({
 				margin-bottom 16px
 
 		> .left
-			padding-left 16px
-			order 1
+			position fixed
+			background var(--secondary)
+			left 72px
+			top 32px
+			width 256px
+			bottom 32px
+			overflow auto
+			overflow-x hidden
+
+			> ul
+				list-style none 
+				margin 0
+				padding 0
+				
+				li>a
+					display flex
+					align-items center
+					padding-left 8px
+					margin 8px
+					height 48px
+					color var(--text)
+					font-size 18px
+					transition all 0.2s ease
+					
+					&:hover
+						color var(--primary)
+
+					.avatar
+						display block
+						float left
+						min-width 32px
+						max-width 32px
+						min-height 32px
+						max-height 32px
+						margin 8px 16px 8px 8px
+						border-radius 4px
+
+					svg
+						display block
+						width 48px
+						margin-right 8px
+						font-size 28px
+						text-align center
+
+					&.active
+						color var(--primary)
+						transform translateX(16px)
+			.post-button
+				font-size 18px
+
+			> .icon
+				margin-left 32px
+				display block
+				width 48px
+				text-align left
+				cursor pointer
+				opacity 0.5
+
+				> svg
+					width 32px
+					height 48px
+					vertical-align top
+					fill var(--desktopHeaderFg)
 
 		> .right
-			padding-right 16px
-			order 3
+			position fixed
+			right 72px
+			top 16px
+			width 256px
 
-		&.side
-			@media (max-width 1000px)
-				> *:not(.main)
-					display none
+@media (max-width 1200px)
+	.wqsofvpm
+		> .main
+			> .right
+				display none
 
-				> .main
-					width 100%
-					margin 0 auto
+			> .left
+				width 96px
+				left 16px
+				> ul > li > a
+					> span
+						display none
 
-		&:not(.side)
-			@media (max-width 1100px)
-				> *:not(.main)
-					display none
-
-				> .main
-					width 100%
-					margin 0 auto
+			> .main
+				margin-left 128px 
+				margin-right 16px 
 
 </style>

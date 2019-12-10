@@ -89,19 +89,6 @@
 				</template>
 			</section>
 
-			<section v-if="!$root.isMobile">
-				<header>{{ $t('@._settings.paste') }}</header>
-				<ui-input v-model="pastedFileName">{{ $t('@._settings.pasted-file-name') }}
-					<template v-if="pastedFileName === this.$store.state.settings.pastedFileName" #desc>{{ $t('@._settings.pasted-file-name-desc') }}</template>
-					<template v-else #desc>{{ pastedFileNamePreview() }}</template>
-				</ui-input>
-				<ui-button @click="save('pastedFileName', pastedFileName)"><fa :icon="[ 'far', 'save' ]"/> {{ $t('@._settings.save') }}</ui-button>
-
-				<ui-switch v-model="pasteDialog">{{ $t('@._settings.paste-dialog') }}
-					<template #desc>{{ $t('@._settings.paste-dialog-desc') }}</template>
-				</ui-switch>
-			</section>
-
 		</ui-card>
 
 		<ui-card v-if="tick >= 6">
@@ -128,14 +115,6 @@
 
 		<x-language v-if="tick >= 7"/>
 		<x-app-type v-if="tick >= 8"/>
-
-		<ui-card v-if="tick >= 9">
-			<template #title><fa icon="skull"/> {{ $t('@._settings.f--king-features') }}</template>
-			<section>
-				<ui-info warn>{{ $t('@._settings.f--king-features-warn') }}</ui-info>
-				<ui-switch v-model="enableJei">{{ $t('@._settings.enable-jei') }}</ui-switch>
-			</section>
-		</ui-card>
 	</template>
 
 	<template v-if="tick >= 10 && page == null || page == 'notification'">
@@ -168,22 +147,12 @@
 			</section>
 		</ui-card>
 	</template>
-	
 
-	<template v-if="tick >= 16 && page == null || page == 'security'">
-		<ui-card>
-			<template #title><fa icon="unlock-alt"/> {{ $t('@._settings.password') }}</template>
-			<section>
-				<x-password/>
-			</section>
-		</ui-card>
-	</template>
-
-	<template v-if="tick >= 17 && page == null || page == 'api'">
+	<template v-if="tick >= 16 && page == null || page == 'api'">
 		<x-api/>
 	</template>
 
-	<template v-if="tick >= 18 && page == null || page == 'other'">
+	<template v-if="tick >= 17 && page == null || page == 'other'">
 		<ui-card>
 			<template #title><fa icon="sync-alt"/> {{ $t('@._settings.update') }}</template>
 			<section>
@@ -213,7 +182,6 @@ import XTags from './tags.vue';
 import XTheme from './theme.vue';
 import XDrive from './drive.vue';
 import XMuteAndBlock from './mute-and-block.vue';
-import XPassword from './password.vue';
 import XProfile from './profile.vue';
 import XApi from './api.vue';
 import XLanguage from './language.vue';
@@ -234,7 +202,6 @@ export default Vue.extend({
 		XTheme,
 		XDrive,
 		XMuteAndBlock,
-		XPassword,
 		XProfile,
 		XApi,
 		XLanguage,
@@ -310,11 +277,6 @@ export default Vue.extend({
 		enableSpeech: {
 			get() { return this.$store.state.device.enableSpeech; },
 			set(value) { this.$store.commit('device/set', { key: 'enableSpeech', value }); }
-		},
-
-		enableJei: {
-			get() { return this.$store.state.device.enableJei; },
-			set(value) { this.$store.commit('device/set', { key: 'enableJei', value }); }
 		},
 
 		soundVolume: {
@@ -510,7 +472,7 @@ export default Vue.extend({
 			if (this.tick > 19) {
 				clearInterval(this.timeout);
 			}
-		}, 300);
+		}, 50);
 	},
 	methods: {
 		reload() {

@@ -57,9 +57,7 @@ export default Vue.extend({
 			};
 		},
 		url(): string {
-			return this.$store.state.device.enableJei
-				? "/assets/j.jpg" 
-				: this.$store.state.device.disableShowingAnimatedImages
+			return this.$store.state.device.disableShowingAnimatedImages
 				? getStaticImageUrl(this.user.avatarUrl)
 				: this.user.avatarUrl;
 		},

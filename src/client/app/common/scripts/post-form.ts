@@ -392,15 +392,13 @@ export default (opts) => ({
 					const lio = file.name.lastIndexOf('.');
 					const ext = lio >= 0 ? file.name.slice(lio) : '';
 					const formatted = `${formatTimeString(new Date(file.lastModified), this.$store.state.settings.pastedFileName).replace(/{{number}}/g, `${i + 1}`)}${ext}`;
-					const name = this.$store.state.settings.pasteDialog
-						? await this.$root.dialog({
-								title: this.$t('@.post-form.enter-file-name'),
-								input: {
-									default: formatted
-								},
-								allowEmpty: false
-							}).then(({ canceled, result }) => canceled ? false : result)
-						: formatted;
+					const name = await this.$root.dialog({
+						title: this.$t('@.post-form.enter-file-name'),
+						input: {
+							default: formatted
+						},
+						allowEmpty: false
+					}).then(({ canceled, result }) => canceled ? false : result);
 					if (name) this.upload(file, name);
 				}
 			}

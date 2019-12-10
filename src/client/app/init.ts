@@ -187,7 +187,8 @@ import {
 	faCloudUploadAlt,
 	faFastForward,
 	faChevronUp,
-	faChevronDown
+	faChevronDown,
+	faUserCheck
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -380,6 +381,7 @@ library.add(
 	faFastForward,
 	faChevronUp,
 	faChevronDown,
+	faUserCheck,
 
 	farBell,
 	farEnvelope,

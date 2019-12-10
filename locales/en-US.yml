@@ -295,9 +295,6 @@ common:
     saved: "Saved"
     preview: "Preview"
     home-profile: "Classic-mode profile"
-    f--king-features: "F**kin Features"
-    f--king-features-warn: "These are joke features. It may be deleted suddenly, or the specification may change suddenly. We do not accept any questions or complaints about this feature. Since it is literally a f**king function, please face with a f**king heart. F**kin!"
-    enable-jei: "Forcibly display all avatar images as Jei's"
   search: "Search"
   delete: "Delete"
   loading: "Loading"
@@ -714,6 +711,13 @@ common/views/components/profile-editor.vue:
   profile-metadata: "Profile metadata"
   metadata-label: "Label"
   metadata-content: "Content"
+  reset: "Change password"
+  enter-current-password: "Enter the current password"
+  enter-new-password: "Enter the new password"
+  enter-new-password-again: "Enter the new password again"
+  not-match: "The new passwords do not match"
+  changed: "Password changed"
+  failed: "Failed to change password"
 common/views/components/user-list-editor.vue:
   users: "User"
   rename: "Rename list"
@@ -817,6 +821,8 @@ common/views/pages/follow-requests.vue:
   received-follow-requests: "Follow requests"
   accept: "Accept"
   reject: "Reject"
+  nobody: "No body has requested to follow you yet."
+
 desktop:
   banner-crop-title: "Crop the part that appears as a banner"
   banner: "Banner"
@@ -1047,14 +1053,6 @@ common/views/components/mute-and-block.vue:
   save: "Save"
   unmute-confirm: "Are you certain that you want to unmute this user?"
   unblock-confirm: "Are you certain that you want to unblock this user?"
-common/views/components/password-settings.vue:
-  reset: "Change password"
-  enter-current-password: "Enter the current password"
-  enter-new-password: "Enter the new password"
-  enter-new-password-again: "Enter the new password again"
-  not-match: "The new passwords do not match"
-  changed: "Password changed"
-  failed: "Failed to change password"
 common/views/components/post-form-attaches.vue:
   attach-cancel: "Remove Attachment"
   mark-as-sensitive: "Mark as 'sensitive'"

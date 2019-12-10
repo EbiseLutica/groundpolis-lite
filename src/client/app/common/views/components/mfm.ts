@@ -5,9 +5,7 @@ import { parse, parsePlain } from '../../../../../mfm/parse';
 import MkUrl from './url.vue';
 import MkMention from './mention.vue';
 import { concat, sum } from '../../../../../prelude/array';
-import MkFormula from './formula.vue';
 import MkCode from './code.vue';
-import MkGoogle from './google.vue';
 import { host } from '../../../config';
 import { preorderF, countNodesF } from '../../../../../prelude/tree';
 
@@ -86,22 +84,6 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
-				case 'sup': {
-					return (createElement as any)('sup', {
-						attrs: {
-							style: 'vertical-align: super; font-size: smaller;'
-						},
-					}, genEl(token.children));
-				}
-
-				case 'sub': {
-					return (createElement as any)('sub', {
-						attrs: {
-							style: 'vertical-align: sub; font-size: smaller;'
-						},
-					}, genEl(token.children));
-				}
-
 				case 'big': {
 					bigCount++;
 					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
@@ -117,147 +99,12 @@ export default Vue.component('misskey-flavored-markdown', {
 					}, genEl(token.children));
 				}
 
-				case 'bigger': {
-					bigCount++;
-					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
-					const isMany = bigCount > 3;
-					return (createElement as any)('strong', {
-						attrs: {
-							style: `display: inline-block; font-size: ${ isMany ? '100%' : '300%' };`
-						},
-						directives: [this.$store.state.settings.disableAnimatedMfm || isLong || isMany ? {} : {
-							name: 'animate-css',
-							value: { classes: 'wobble', iteration: 'infinite' }
-						}]
-					}, genEl(token.children));
-				}
-
 				case 'small': {
 					return [createElement('small', {
 						attrs: {
 							style: 'opacity: 0.7;'
 						},
 					}, genEl(token.children))];
-				}
-
-				case 'center': {
-					return [createElement('div', {
-						attrs: {
-							style: 'text-align:center;'
-						}
-					}, genEl(token.children))];
-				}
-
-				case 'right': {
-					return [createElement('div', {
-						attrs: {
-							style: 'text-align:right;'
-						}
-					}, genEl(token.children))];
-				}
-
-				case 'motion': {
-					motionCount++;
-					const isLong = sumTextsLength(token.children) > 15 || countNodesF(token.children) > 5;
-					const isMany = motionCount > 5;
-					return (createElement as any)('span', {
-						attrs: {
-							style: 'display: inline-block;'
-						},
-						directives: [this.$store.state.settings.disableAnimatedMfm || isLong || isMany ? {} : {
-							name: 'animate-css',
-							value: { classes: 'rubberBand', iteration: 'infinite' }
-						}]
-					}, genEl(token.children));
-				}
-
-				case 'spin': {
-					motionCount++;
-					const isLong = sumTextsLength(token.children) > 10 || countNodesF(token.children) > 5;
-					const isMany = motionCount > 5;
-					const direction =
-						token.node.props.attr == 'left' ? 'reverse' :
-						token.node.props.attr == 'alternate' ? 'alternate' :
-						'normal';
-					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
-						? ''
-						: `animation: spin 1.5s linear infinite; animation-direction: ${direction};`;
-					return (createElement as any)('span', {
-						attrs: {
-							style: 'display: inline-block;' + style
-						},
-					}, genEl(token.children));
-				}
-
-				case 'xspin': {
-					motionCount++;
-					const isLong = sumTextsLength(token.children) > 10 || countNodesF(token.children) > 5;
-					const isMany = motionCount > 5;
-					const direction =
-						token.node.props.attr == 'left' ? 'reverse' :
-						token.node.props.attr == 'alternate' ? 'alternate' :
-						'normal';
-					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
-						? ''
-						: `animation: xspin 1.5s linear infinite; animation-direction: ${direction};`;
-					return (createElement as any)('span', {
-						attrs: {
-							style: 'display: inline-block;' + style
-						},
-					}, genEl(token.children));
-				}
-
-				case 'yspin': {
-					motionCount++;
-					const isLong = sumTextsLength(token.children) > 10 || countNodesF(token.children) > 5;
-					const isMany = motionCount > 5;
-					const direction =
-						token.node.props.attr == 'left' ? 'reverse' :
-						token.node.props.attr == 'alternate' ? 'alternate' :
-						'normal';
-					const style = (this.$store.state.settings.disableAnimatedMfm || isLong || isMany)
-						? ''
-						: `animation: yspin 1.5s linear infinite; animation-direction: ${direction};`;
-					return (createElement as any)('span', {
-						attrs: {
-							style: 'display: inline-block;' + style
-						},
-					}, genEl(token.children));
-				}
-
-				case 'jump': {
-					motionCount++;
-					const isLong = sumTextsLength(token.children) > 30 || countNodesF(token.children) > 5;
-					const isMany = motionCount > 5;
-					return (createElement as any)('span', {
-						attrs: {
-							style: (this.$store.state.settings.disableAnimatedMfm || isLong || isMany) ? 'display: inline-block;' : 'display: inline-block; animation: jump 0.75s linear infinite;'
-						},
-					}, genEl(token.children));
-				}
-
-				case 'blink': {
-					return (createElement as any)('span', {
-						attrs: {
-							style: (this.$store.state.settings.disableAnimatedMfm) ? 'display: inline-block;' : 'display: inline-block; animation: blink 0.75s linear infinite;'
-						},
-					}, genEl(token.children));
-				}
-
-				case 'flip': {
-					return (createElement as any)('span', {
-						attrs: {
-							style: 'display: inline-block; transform: scaleX(-1);'
-						},
-					}, genEl(token.children));
-				}
-
-				case 'vflip': {
-					return (createElement as any)('span', {
-						attrs: {
-							style: 'display: inline-block; transform: scaleY(-1);'
-						},
-					}, genEl(token.children));
 				}
 
 				case 'url': {
@@ -364,46 +211,6 @@ export default Vue.component('misskey-flavored-markdown', {
 							normal: this.plain
 						}
 					})];
-				}
-
-				case 'mathInline': {
-					//const MkFormula = () => import('./formula.vue').then(m => m.default);
-					return [createElement(MkFormula, {
-						key: Math.random(),
-						props: {
-							formula: token.node.props.formula,
-							block: false
-						}
-					})];
-				}
-
-				case 'mathBlock': {
-					//const MkFormula = () => import('./formula.vue').then(m => m.default);
-					return [createElement(MkFormula, {
-						key: Math.random(),
-						props: {
-							formula: token.node.props.formula,
-							block: true
-						}
-					})];
-				}
-
-				case 'search': {
-					//const MkGoogle = () => import('./google.vue').then(m => m.default);
-					return [createElement(MkGoogle, {
-						key: Math.random(),
-						props: {
-							q: token.node.props.query
-						}
-					})];
-				}
-
-				case 'marquee': {
-					if (this.$store.state.settings.disableAnimatedMfm) {
-						return genEl(token.children);
-					}
-
-					return [createElement('marquee', { class: 'marquee' }, genEl(token.children))];
 				}
 
 				default: {

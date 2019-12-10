@@ -47,7 +47,6 @@ export default Vue.extend({
 
 <style lang="stylus" scoped>
 .mk-drive-page
-	position fixed
 	width 100%
 	height 100%
 	background #fff

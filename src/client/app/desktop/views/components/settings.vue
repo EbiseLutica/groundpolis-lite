@@ -9,7 +9,6 @@
 		<router-link to="/i/settings/hashtags" active-class="active"><fa icon="hashtag" fixed-width/>{{ $t('@._settings.tags') }}</router-link>
 		<router-link to="/i/settings/muteAndBlock" active-class="active"><fa icon="ban" fixed-width/>{{ $t('@._settings.mute-and-block') }}</router-link>
 		<router-link to="/i/settings/apps" active-class="active"><fa icon="puzzle-piece" fixed-width/>{{ $t('@._settings.apps') }}</router-link>
-		<router-link to="/i/settings/security" active-class="active"><fa icon="unlock-alt" fixed-width/>{{ $t('@._settings.security') }}</router-link>
 		<router-link to="/i/settings/api" active-class="active"><fa icon="key" fixed-width/>API</router-link>
 		<router-link to="/i/settings/other" active-class="active"><fa icon="cogs" fixed-width/>{{ $t('@._settings.other') }}</router-link>
 	</div>

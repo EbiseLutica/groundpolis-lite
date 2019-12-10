@@ -292,9 +292,6 @@ common:
     saved: "保存しました"
     preview: "プレビュー"
     home-profile: "クラシックモードのプロファイル"
-    f--king-features: "クソ機能"
-    f--king-features-warn: "これらは、冗談まがいに作られたクソみたいな機能です。突然削除されることもあれば、勝手に仕様が変わったり変わらなかったりすることもあります。この機能についての質問や苦情は一切受け付けていません。文字通りクソ機能なので、クソみたいな心で臨んでください。クソが！"
-    enable-jei: "アバター画像を強制的にじぇいにする"
 
   search: "検索"
   delete: "削除"
@@ -690,6 +687,13 @@ common/views/components/profile-editor.vue:
   profile-metadata: "プロフィール補足情報"
   metadata-label: "ラベル"
   metadata-content: "内容"
+  reset: "パスワードを変更する"
+  enter-current-password: "現在のパスワードを入力してください"
+  enter-new-password: "新しいパスワードを入力してください"
+  enter-new-password-again: "もう一度新しいパスワードを入力してください"
+  not-match: "新しいパスワードが一致しません"
+  changed: "パスワードを変更しました"
+  failed: "パスワード変更に失敗しました"
 
 common/views/components/user-list-editor.vue:
   users: "ユーザー"
@@ -785,6 +789,7 @@ common/views/pages/follow.vue:
 
 common/views/pages/follow-requests.vue:
   received-follow-requests: "フォロー申請"
+  nobody: "まだ誰もフォロー申請をしていません。"
   accept: "承認"
   reject: "拒否"
 
@@ -1050,15 +1055,6 @@ common/views/components/mute-and-block.vue:
   unmute-confirm: "このユーザーをミュート解除しますか？"
   unblock-confirm: "このユーザーをブロック解除しますか？"
   save: "保存"
-
-common/views/components/password-settings.vue:
-  reset: "パスワードを変更する"
-  enter-current-password: "現在のパスワードを入力してください"
-  enter-new-password: "新しいパスワードを入力してください"
-  enter-new-password-again: "もう一度新しいパスワードを入力してください"
-  not-match: "新しいパスワードが一致しません"
-  changed: "パスワードを変更しました"
-  failed: "パスワード変更に失敗しました"
 
 common/views/components/post-form-attaches.vue:
   attach-cancel: "添付取り消し"
