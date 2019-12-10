@@ -10,13 +10,10 @@
 				<router-link to="/"><fa icon="home"/></router-link>
 			</div>
 			<div class="featured" :class="{ active: $route.name == 'featured' }">
-				<router-link to="/featured"><fa :icon="faNewspaper"/></router-link>
+				<router-link to="/featured"><fa icon="newspaper"/></router-link>
 			</div>
 			<div class="explore" :class="{ active: $route.name == 'explore' || $route.name == 'explore-tag' }">
-				<router-link to="/explore"><fa :icon="faHashtag"/></router-link>
-			</div>
-			<div class="game">
-				<a @click="game"><fa icon="gamepad"/><template v-if="hasGameInvitations"><fa icon="circle"/></template></a>
+				<router-link to="/explore"><fa icon="hashtag"/></router-link>
 			</div>
 		</div>
 
@@ -26,9 +23,6 @@
 			</div>
 			<div ref="notificationsButton" :class="{ active: showNotifications }">
 				<a @click="notifications"><fa :icon="['far', 'bell']"/></a>
-			</div>
-			<div class="messaging">
-				<a @click="messaging"><fa icon="comments"/><template v-if="hasUnreadMessagingMessage"><fa icon="circle"/></template></a>
 			</div>
 			<div>
 				<a @click="settings"><fa icon="cog"/></a>
@@ -46,14 +40,6 @@
 				<router-link :to="`/@${ $store.state.i.username }`">
 					<mk-avatar class="avatar" :user="$store.state.i"/>
 				</router-link>
-			</div>
-			<div>
-				<template v-if="$store.state.device.inDeckMode">
-					<a @click="toggleDeckMode(false)"><fa icon="home"/></a>
-				</template>
-				<template v-else>
-					<a @click="toggleDeckMode(true)"><fa icon="columns"/></a>
-				</template>
 			</div>
 			<div>
 				<a @click="dark"><template v-if="$store.state.device.darkmode"><fa icon="moon"/></template><template v-else><fa :icon="['far', 'moon']"/></template></a>
@@ -74,27 +60,18 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import MkSettingsWindow from './settings-window.vue';
 import MkDriveWindow from './drive-window.vue';
-import MkMessagingWindow from './messaging-window.vue';
-import MkGameWindow from './game-window.vue';
 import contains from '../../../common/scripts/contains';
-import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.sidebar.vue'),
 	data() {
 		return {
-			hasGameInvitations: false,
 			connection: null,
 			showNotifications: false,
-			faNewspaper, faHashtag
 		};
 	},
 
 	computed: {
-		hasUnreadMessagingMessage(): boolean {
-			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage;
-		},
-
 		navbar(): string {
 			return this.$store.state.device.navbar;
 		},
@@ -103,9 +80,6 @@ export default Vue.extend({
 	mounted() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection = this.$root.stream.useSharedConnection('main');
-
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 
@@ -116,27 +90,6 @@ export default Vue.extend({
 	},
 
 	methods: {
-		toggleDeckMode(deck) {
-			this.$store.commit('device/set', { key: 'deckMode', value: deck });
-			location.replace('/');
-		},
-
-		onReversiInvited() {
-			this.hasGameInvitations = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitations = false;
-		},
-
-		messaging() {
-			this.$root.new(MkMessagingWindow);
-		},
-
-		game() {
-			this.$root.new(MkGameWindow);
-		},
-
 		post() {
 			this.$post();
 		},

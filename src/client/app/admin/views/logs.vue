@@ -1,7 +1,7 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faStream"/> {{ $t('logs') }}</template>
+		<template #title><fa icon="stream"/> {{ $t('logs') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-input v-model="domain" :debounce="true">
@@ -36,7 +36,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import { faStream } from '@fortawesome/free-solid-svg-icons';
 import VueJsonPretty from 'vue-json-pretty';
 
 export default Vue.extend({
@@ -51,7 +50,6 @@ export default Vue.extend({
 			logs: [],
 			level: 'all',
 			domain: '',
-			faStream
 		};
 	},
 

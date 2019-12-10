@@ -19,7 +19,7 @@
 			</details>
 		</section>
 		<section class="fit-bottom">
-			<header><fa :icon="faHeadset"/> {{ $t('maintainer-config') }}</header>
+			<header><fa icon="headset"/> {{ $t('maintainer-config') }}</header>
 			<ui-input v-model="maintainerName">{{ $t('maintainer-name') }}</ui-input>
 			<ui-input v-model="maintainerEmail" type="email"><template #icon><fa :icon="farEnvelope"/></template>{{ $t('maintainer-email') }}</ui-input>
 		</section>
@@ -29,12 +29,12 @@
 			<ui-switch v-model="hideServerInformation">{{ $t('hide-server-information') }}</ui-switch>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faPencilAlt"/> {{ $t('note-and-tl') }}</template>
+		<template #title><fa icon="pencil-alt"/> {{ $t('note-and-tl') }}</template>
 		<section class="fit-top fit-bottom">
 			<ui-input v-model="maxNoteTextLength">{{ $t('max-note-text-length') }}</ui-input>
 		</section>
@@ -48,7 +48,7 @@
 			<ui-switch v-model="useStarForReactionFallback">{{ $t('use-star-for-reaction-fallback') }}</ui-switch>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
@@ -89,29 +89,29 @@
 			<ui-input v-model="remoteDriveCapacityMb" type="number" :disabled="!cacheRemoteFiles">{{ $t('remote-drive-capacity-mb') }}<template #suffix>MB</template><template #desc>{{ $t('mb') }}</template></ui-input>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faThumbtack"/> {{ $t('pinned-users') }}</template>
+		<template #title><fa icon="thumbtack"/> {{ $t('pinned-users') }}</template>
 		<section class="fit-top">
 			<ui-textarea v-model="pinnedUsers">
 				<template #desc>{{ $t('pinned-users-info') }}</template>
 			</ui-textarea>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faGhost"/> {{ $t('proxy-account-config') }}</template>
+		<template #title><fa icon="ghost"/> {{ $t('proxy-account-config') }}</template>
 		<section>
 			<ui-info>{{ $t('proxy-account-info') }}</ui-info>
 			<ui-input v-model="proxyAccount"><template #prefix>@</template>{{ $t('proxy-account-username') }}<template #desc>{{ $t('proxy-account-username-desc') }}</template></ui-input>
 			<ui-info warn>{{ $t('proxy-account-warn') }}</ui-info>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
@@ -135,12 +135,12 @@
 			</template>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faBolt"/> {{ $t('serviceworker-config') }}</template>
+		<template #title><fa icon="bolt"/> {{ $t('serviceworker-config') }}</template>
 		<section>
 			<ui-switch v-model="enableServiceWorker">{{ $t('enable-serviceworker') }}<template #desc>{{ $t('serviceworker-info') }}</template></ui-switch>
 			<template v-if="enableServiceWorker">
@@ -152,12 +152,12 @@
 			</template>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faShieldAlt"/> {{ $t('recaptcha-config') }}</template>
+		<template #title><fa icon="shield-alt"/> {{ $t('recaptcha-config') }}</template>
 		<section :class="enableRecaptcha ? 'fit-bottom' : ''">
 			<ui-switch v-model="enableRecaptcha">{{ $t('enable-recaptcha') }}</ui-switch>
 			<template v-if="enableRecaptcha">
@@ -174,12 +174,12 @@
 			<div ref="recaptcha" style="margin: 16px 0 0 0;" :key="recaptchaSiteKey"></div>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faShieldAlt"/> {{ $t('external-service-integration-config') }}</template>
+		<template #title><fa icon="shield-alt"/> {{ $t('external-service-integration-config') }}</template>
 		<section>
 			<header><fa :icon="['fab', 'twitter']"/> {{ $t('twitter-integration-config') }}</header>
 			<ui-switch v-model="enableTwitterIntegration">{{ $t('enable-twitter-integration') }}</ui-switch>
@@ -214,7 +214,7 @@
 			</template>
 		</section>
 		<section>
-			<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+			<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 		</section>
 	</ui-card>
 
@@ -222,12 +222,12 @@
 		<summary style="color:var(--text);">{{ $t('advanced-config') }}</summary>
 
 		<ui-card>
-			<template #title><fa :icon="faHashtag"/> {{ $t('hidden-tags') }}</template>
+			<template #title><fa icon="hashtag"/> {{ $t('hidden-tags') }}</template>
 			<section class="fit-top">
 				<ui-textarea v-model="hiddenTags">
 					<template #desc>{{ $t('hidden-tags-info') }}</template>
 				</ui-textarea>
-				<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+				<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 			</section>
 		</ui-card>
 
@@ -237,7 +237,7 @@
 				<ui-input v-model="summalyProxy">URL</ui-input>
 			</section>
 			<section>
-				<ui-button @click="updateMeta"><fa :icon="faSave"/> {{ $t('save') }}</ui-button>
+				<ui-button @click="updateMeta"><fa :icon="['far', 'save']"/> {{ $t('save') }}</ui-button>
 			</section>
 		</ui-card>
 	</details>
@@ -249,8 +249,6 @@ import Vue from 'vue';
 import i18n from '../../i18n';
 import { url, host } from '../../config';
 import { toUnicode } from 'punycode';
-import { faHeadset, faShieldAlt, faGhost, faUserPlus, faBolt, faThumbtack, faPencilAlt, faHashtag } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope as farEnvelope, faSave } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/instance.vue'),
@@ -319,7 +317,6 @@ export default Vue.extend({
 			objectStorageAccessKey: null,
 			objectStorageSecretKey: null,
 			objectStorageUseSSL: false,
-			faHeadset, faShieldAlt, faGhost, faUserPlus, farEnvelope, faBolt, faThumbtack, faPencilAlt, faSave, faHashtag
 		};
 	},
 

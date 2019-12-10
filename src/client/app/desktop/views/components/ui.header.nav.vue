@@ -5,13 +5,10 @@
 			<router-link to="/"><fa :icon="$store.getters.isSignedIn ? 'home' : 'arrow-left'"/><p>{{ $t($store.getters.isSignedIn ? '@.timeline' : '@.back-to-top') }}</p></router-link>
 		</li>
 		<li class="featured" :class="{ active: $route.name == 'featured' }">
-			<router-link to="/featured"><fa :icon="faNewspaper"/><p>{{ $t('@.featured-notes') }}</p></router-link>
+			<router-link to="/featured"><fa icon="newspaper"/><p>{{ $t('@.featured-notes') }}</p></router-link>
 		</li>
 		<li class="explore" :class="{ active: $route.name == 'explore' || $route.name == 'explore-tag' }">
-			<router-link to="/explore"><fa :icon="faHashtag"/><p>{{ $t('@.explore') }}</p></router-link>
-		</li>
-		<li class="apps">
-			<x-app-menu/>
+			<router-link to="/explore"><fa icon="hashtag"/><p>{{ $t('@.explore') }}</p></router-link>
 		</li>
 	</ul>
 </div>
@@ -21,20 +18,13 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import XAppMenu from './ui.header.apps.vue';
-import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.header.nav.vue'),
 	components: {
 		XAppMenu,
-	}
-	data() {
-		return {
-			faNewspaper, faHashtag
-		};
 	},
 	methods: {
-
 		goToTop() {
 			window.scrollTo({
 				top: 0,

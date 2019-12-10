@@ -1,27 +1,27 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faTerminal"/> {{ $t('operation') }}</template>
+		<template #title><fa icon="terminal"/> {{ $t('operation') }}</template>
 		<section class="fit-top">
 			<ui-input v-model="target" type="text">
 				<span>{{ $t('fileid-or-url') }}</span>
 			</ui-input>
 			<ui-horizon-group>
-				<ui-button @click="findAndToggleSensitive(true)"><fa :icon="faEyeSlash"/> {{ $t('mark-as-sensitive') }}</ui-button>
-				<ui-button @click="findAndToggleSensitive(false)"><fa :icon="faEye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
+				<ui-button @click="findAndToggleSensitive(true)"><fa  :icon="['far', 'eye-slash']" /> {{ $t('mark-as-sensitive') }}</ui-button>
+				<ui-button @click="findAndToggleSensitive(false)"><fa icon="eye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
 			</ui-horizon-group>
-			<ui-button @click="findAndDel()"><fa :icon="faTrashAlt"/> {{ $t('delete') }}</ui-button>
-			<ui-button @click="show()"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
+			<ui-button @click="findAndDel()"><fa icon="trash-alt"/> {{ $t('delete') }}</ui-button>
+			<ui-button @click="show()"><fa icon="search"/> {{ $t('lookup') }}</ui-button>
 			<ui-textarea v-if="file" :value="file | json5" readonly tall style="margin-top:16px;"></ui-textarea>
 		</section>
 		<section>
-			<ui-button @click="cleanUp()"><fa :icon="faTrashAlt"/> {{ $t('clean-up') }}</ui-button>
-			<ui-button @click="cleanRemoteFiles()"><fa :icon="faTrashAlt"/> {{ $t('clean-remote-files') }}</ui-button>
+			<ui-button @click="cleanUp()"><fa icon="trash-alt"/> {{ $t('clean-up') }}</ui-button>
+			<ui-button @click="cleanRemoteFiles()"><fa icon="trash-alt"/> {{ $t('clean-remote-files') }}</ui-button>
 		</section>
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faCloud"/> {{ $t('@.drive') }}</template>
+		<template #title><fa icon="cloud"/> {{ $t('@.drive') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-select v-model="sort">
@@ -61,9 +61,9 @@
 					<div v-show="file._open">
 						<ui-input readonly :value="file.url"></ui-input>
 						<ui-horizon-group>
-							<ui-button @click="toggleSensitive(file)" v-if="file.isSensitive"><fa :icon="faEye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
-							<ui-button @click="toggleSensitive(file)" v-else><fa :icon="faEyeSlash"/> {{ $t('mark-as-sensitive') }}</ui-button>
-							<ui-button @click="del(file)"><fa :icon="faTrashAlt"/> {{ $t('delete') }}</ui-button>
+							<ui-button @click="toggleSensitive(file)" v-if="file.isSensitive"><fa icon="eye"/> {{ $t('unmark-as-sensitive') }}</ui-button>
+							<ui-button @click="toggleSensitive(file)" v-else><fa :icon="['far', 'eye-slash']"/> {{ $t('mark-as-sensitive') }}</ui-button>
+							<ui-button @click="del(file)"><fa icon="trash-alt"/> {{ $t('delete') }}</ui-button>
 						</ui-horizon-group>
 					</div>
 				</div>
@@ -77,8 +77,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import { faCloud, faTerminal, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import XFileThumbnail from '../../common/views/components/drive-file-thumbnail.vue';
 
 export default Vue.extend({
@@ -98,7 +96,6 @@ export default Vue.extend({
 			offset: 0,
 			files: [],
 			existMore: false,
-			faCloud, faTrashAlt, faEye, faEyeSlash, faTerminal, faSearch
 		};
 	},
 

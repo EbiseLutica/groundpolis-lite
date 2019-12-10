@@ -24,7 +24,6 @@ common:
   do-not-copy-paste: "ここにコードを入力したり張り付けたりしないでください。アカウントが不正利用される可能性があります。"
   load-more: "もっと読み込む"
   enter-password: "パスワードを入力してください"
-  2fa: "二段階認証"
   customize-home: "ウィジェットのカスタマイズ"
   featured-notes: "ハイライト"
   dark-mode: "ダークモード"
@@ -55,9 +54,6 @@ common:
     gotit: "Got it!"
   notification:
     file-uploaded: "ファイルがアップロードされました"
-    message-from: "{}さんからメッセージ:"
-    reversi-invited: "対局への招待があります"
-    reversi-invited-by: "{}さんから"
     notified-by: "{}さんから"
     reply-from: "{}さんから返信:"
     quoted-by: "{}さんが引用:"
@@ -76,10 +72,7 @@ common:
 
   trash: "ゴミ箱"
   drive: "ドライブ"
-  pages: "ページ"
-  messaging: "トーク"
   home: "クラシック"
-  deck: "デッキ"
   timeline: "タイムライン"
   back-to-top: "トップへ戻る"
   explore: "みつける"
@@ -98,8 +91,6 @@ common:
     "write:favorites": "お気に入りを操作する"
     "read:following": "フォローの情報を見る"
     "write:following": "フォロー・フォロー解除する"
-    "read:messaging": "トークを見る"
-    "write:messaging": "トークを操作する"
     "read:mutes": "ミュートを見る"
     "write:mutes": "ミュートを操作する"
     "write:notes": "投稿を作成・削除する"
@@ -108,19 +99,12 @@ common:
     "read:reactions": "リアクションを見る"
     "write:reactions": "リアクションを操作する"
     "write:votes": "投票する"
-    "read:pages": "ページを見る"
-    "write:pages": "ページを操作する"
-    "read:page-likes": "ページのいいねを見る"
-    "write:page-likes": "ページのいいねを操作する"
-    "read:user-groups": "ユーザーグループを見る"
-    "write:user-groups": "ユーザーグループを操作する"
 
   empty-timeline-info:
     follow-users-to-make-your-timeline: "ユーザーをフォローすると投稿がタイムラインに表示されます。"
     explore: "ユーザーを探索する"
 
   post-form:
-    attach-location-information: "位置情報を添付する"
     hide-contents: "内容を隠す"
     reply-placeholder: "この投稿への返信..."
     quote-placeholder: "コメントを追加..."
@@ -133,14 +117,12 @@ common:
     posting: "投稿中"
     attach-media-from-local: "PCからメディアを添付"
     attach-media-from-drive: "ドライブからメディアを添付"
-    insert-a-kao: "v('ω')v"
     create-poll: "アンケートを作成"
     text-remain: "残り{}文字"
     recent-tags: "最近"
     local-only-message: "この投稿はローカルにのみ公開されます"
     click-to-tagging: "クリックでタグ付け"
     visibility: "公開範囲"
-    geolocation-alert: "お使いの端末は位置情報に対応していません"
     error: "エラー"
     enter-username: "ユーザー名を入力してください"
     specified-recipient: "宛先"
@@ -230,8 +212,6 @@ common:
     visibility-switch-local: "ローカル"
     visibility-switch-hybrid: "ホーム+ローカル"
     visibility-switch-global:  "グローバル"
-    web-search-engine: "ウェブ検索エンジン"
-    web-search-engine-desc: "例: https://www.google.com/?#q={{query}}"
     paste: "ペースト"
     pasted-file-name: "ペーストされたファイル名のテンプレート"
     pasted-file-name-desc: "例: \"yyyy-MM-dd HH-mm-ss [{{number}}]\" → \"2018-03-20 21-30-24 1\""
@@ -240,8 +220,6 @@ common:
     keep-cw: "CW保持"
     keep-cw-desc: "投稿にリプライする際、リプライ元の投稿にCWが設定されていたとき、デフォルトで同じCWを設定するようにします。"
     i-like-sushi: "私は(プリンよりむしろ)寿司が好き"
-    show-reversi-board-labels: "リバーシのボードの行と列のラベルを表示"
-    use-avatar-reversi-stones: "リバーシの石にアバターを使う"
     disable-animated-mfm: "投稿内の動きのあるテキストを無効にする"
     disable-showing-animated-images: "アニメーション画像を再生しない"
     enable-quick-notification-view: "通知のクイックビューを有効にする"
@@ -263,16 +241,6 @@ common:
     font-size-medium: "普通"
     font-size-large: "少し大きい"
     font-size-x-large: "大きい"
-    deck-column-align: "デッキのカラムの配置"
-    deck-column-align-center: "中央"
-    deck-column-align-left: "左"
-    deck-column-align-flexible: "フレキシブル"
-    deck-column-width: "デッキのカラムの幅"
-    deck-column-width-narrow: "狭"
-    deck-column-width-narrower: "やや狭"
-    deck-column-width-normal: "普通"
-    deck-column-width-wider: "やや広"
-    deck-column-width-wide: "広"
     use-shadow: "UIに影を使用"
     rounded-corners: "UIの角を丸める"
     circle-icons: "円形のアバターを使用"
@@ -293,8 +261,6 @@ common:
     enable-sounds-timeline: "タイムライン"
     enable-sounds-notifications: "通知"
     enable-sounds-desc: "投稿やメッセージを送受信したときなどにサウンドを再生します。この設定はブラウザに記憶されます。"
-    enable-speech: "読み上げを有効にする"
-    enable-speech-desc: "投稿が到着したときに読み上げます。この設定はブラウザに記憶されます。"
     volume: "ボリューム"
     test: "テスト"
     update: "Groundpolis Update"
@@ -311,9 +277,6 @@ common:
     debug-mode: "デバッグモードを有効にする"
     debug-mode-desc: "この設定はブラウザに記憶されます。"
     navbar-position: "ナビゲーションバーの位置"
-    navbar-position-top: "上"
-    navbar-position-left: "左"
-    navbar-position-right: "右"
     i-am-under-limited-internet: "私は通信を制限されている"
     post-style: "投稿の表示スタイル"
     post-style-standard: "標準"
@@ -329,17 +292,6 @@ common:
     saved: "保存しました"
     preview: "プレビュー"
     home-profile: "クラシックモードのプロファイル"
-    deck-profile: "デッキモードのプロファイル"
-    room: "ルーム"
-    _room:
-      graphicsQuality: "グラフィックの品質"
-      _graphicsQuality:
-        ultra: "最高"
-        high: "高"
-        medium: "中"
-        low: "低"
-        cheep: "最低"
-      useOrthographicCamera: "平行投影カメラを使用"
     f--king-features: "クソ機能"
     f--king-features-warn: "これらは、冗談まがいに作られたクソみたいな機能です。突然削除されることもあれば、勝手に仕様が変わったり変わらなかったりすることもあります。この機能についての質問や苦情は一切受け付けていません。文字通りクソ機能なので、クソみたいな心で臨んでください。クソが！"
     enable-jei: "アバター画像を強制的にじぇいにする"
@@ -370,18 +322,6 @@ common:
   error:
     title: "問題が発生しました"
     retry: "やり直す"
-
-  reversi:
-    drawn: "引き分け"
-    my-turn: "あなたのターンです"
-    opponent-turn: "相手のターンです"
-    turn-of: "{name}のターンです"
-    past-turn-of: "{name}のターン"
-    won: "{name}の勝ち"
-    black: "黒"
-    white: "白"
-    total: "合計"
-    this-turn: "{count}ターン目"
 
   widgets:
     analog-clock: "アナログ時計"
@@ -467,53 +407,6 @@ common/views/components/url-preview.vue:
 common/views/components/user-list.vue:
   no-users: "ユーザーがいません"
 
-common/views/components/games/reversi/reversi.vue:
-  matching:
-    waiting-for: "{}を待っています"
-    cancel: "キャンセル"
-
-common/views/components/games/reversi/reversi.game.vue:
-  surrender: "投了"
-  surrendered: "投了により"
-  is-llotheo: "石の少ない方が勝ち(ロセオ)"
-  looped-map: "ループマップ"
-  can-put-everywhere: "どこでも置けるモード"
-
-common/views/components/games/reversi/reversi.index.vue:
-  title: "Groundpolis Reversi"
-  sub-title: "他のGroundpolisユーザーとリバーシで対戦しよう"
-  invite: "招待"
-  rule: "遊び方"
-  rule-desc: "リバーシは、相手と交互に石をボードに置いて、相手の石を挟んで自分の色に変えてゆき、最終的に残った石が多い方が勝ちというボードゲームです。"
-  mode-invite: "招待"
-  mode-invite-desc: "指定したユーザーと対戦するモードです。"
-  invitations: "対局の招待があります！"
-  my-games: "自分の対局"
-  all-games: "みんなの対局"
-  enter-username: "ユーザー名を入力してください"
-  game-state:
-    ended: "終了"
-    playing: "進行中"
-
-common/views/components/games/reversi/reversi.room.vue:
-  settings-of-the-game: "ゲームの設定"
-  choose-map: "マップを選択"
-  random: "ランダム"
-  black-or-white: "先手/後手"
-  black-is: "{}が黒"
-  rules: "ルール"
-  is-llotheo: "石の少ない方が勝ち(ロセオ)"
-  looped-map: "ループマップ"
-  can-put-everywhere: "どこでも置けるモード"
-  settings-of-the-bot: "Botの設定"
-  this-game-is-started-soon: "ゲームは数秒後に開始されます"
-  waiting-for-other: "相手の準備が完了するのを待っています"
-  waiting-for-me: "あなたの準備が完了するのを待っています"
-  waiting-for-both: "準備中"
-  cancel: "キャンセル"
-  ready: "準備完了"
-  cancel-ready: "準備続行"
-
 common/views/components/connect-failed.vue:
   title: "サーバーに接続できません"
   description: "インターネット回線に問題があるか、サーバーがダウンまたはメンテナンスしている可能性があります。しばらくしてから{再度お試し}ください。"
@@ -546,41 +439,6 @@ common/views/components/media-banner.vue:
 
 common/views/components/theme.vue:
   theme: "テーマ"
-  light-theme: "非ダークモード時に使用するテーマ"
-  dark-theme: "ダークモード時に使用するテーマ"
-  light-themes: "明るいテーマ"
-  dark-themes: "暗いテーマ"
-  install-a-theme: "テーマのインストール"
-  theme-code: "テーマコード"
-  install: "インストール"
-  installed: "「{}」をインストールしました"
-  create-a-theme: "テーマの作成"
-  save-created-theme: "テーマを保存"
-  primary-color: "プライマリ カラー"
-  secondary-color: "セカンダリ カラー"
-  text-color: "文字色"
-  base-theme: "ベーステーマ"
-  base-theme-light: "Light"
-  base-theme-dark: "Dark"
-  find-more-theme: "その他のテーマを入手"
-  theme-name: "テーマ名"
-  preview-created-theme: "プレビュー"
-  invalid-theme: "テーマが正しくありません。"
-  already-installed: "既にそのテーマはインストールされています。"
-  saved: "保存しました"
-  manage-themes: "テーマの管理"
-  builtin-themes: "標準テーマ"
-  my-themes: "マイテーマ"
-  installed-themes: "インストールされたテーマ"
-  select-theme: "テーマを選択してください"
-  uninstall: "アンインストール"
-  uninstalled: "「{}」をアンインストールしました"
-  author: "作者"
-  desc: "説明"
-  export: "エクスポート"
-  import: "インポート"
-  import-by-code: "またはコードをペースト"
-  theme-name-required: "テーマ名は必須です。"
 
 common/views/components/cw-button.vue:
   hide: "隠す"
@@ -588,34 +446,6 @@ common/views/components/cw-button.vue:
   chars: "{count}文字"
   files: "{count}ファイル"
   poll: "アンケート"
-
-common/views/components/messaging.vue:
-  search-user: "ユーザーを探す"
-  you: "あなた"
-  no-history: "履歴はありません"
-  user: "ユーザー"
-  group: "グループ"
-  start-with-user: "ユーザーとトークを開始"
-  start-with-group: "グループとトークを開始"
-  select-group: "グループを選択してください"
-
-common/views/components/messaging-room.vue:
-  not-talked-user: "このユーザーとの会話はありません"
-  not-talked-group: "このグループでの会話はありません"
-  no-history: "これより過去の履歴はありません"
-  new-message: "新しいメッセージがあります"
-  only-one-file-attached: "メッセージに添付できるファイルはひとつです"
-
-common/views/components/messaging-room.form.vue:
-  input-message-here: "ここにメッセージを入力"
-  send: "送信"
-  attach-from-local: "PCからファイルを添付する"
-  attach-from-drive: "ドライブからファイルを添付する"
-  only-one-file-attached: "メッセージに添付できるファイルはひとつです"
-
-common/views/components/messaging-room.message.vue:
-  is-read: "既読"
-  deleted: "このメッセージは削除されました"
 
 common/views/components/nav.vue:
   about: "Groundpolisについて"
@@ -673,7 +503,6 @@ common/views/components/user-menu.vue:
   unsuspend-confirm: "このユーザーを凍結解除しますか？"
   update-remote-user: "リモートユーザー情報の更新"
   remote-user-updated: "リモートユーザー情報を更新しました"
-  go-to-the-room: "ルームにお邪魔する"
 
 common/views/components/poll.vue:
   vote-to: "「{}」に投票する"
@@ -738,15 +567,8 @@ common/views/components/settings/app-type.vue:
 common/views/components/signin.vue:
   username: "ユーザー名"
   password: "パスワード"
-  token: "トークン"
-  signing-in: "やってます..."
-  or: "または"
-  signin-with-twitter: "Twitterでログイン"
-  signin-with-github: "GitHubでログイン"
-  signin-with-discord: "Discordでログイン"
+  signing-in: "ログイン中..."
   login-failed: "ログインできませんでした。ユーザー名とパスワードを確認してください。"
-  tap-key: "セキュリティキーをクリックしてログイン"
-  enter-2fa-code: "認証コードを入力してください"
 
 common/views/components/signup.vue:
   invitation-code: "招待コード"
@@ -774,10 +596,6 @@ common/views/components/signup.vue:
   create: "アカウント作成"
   some-error: "何らかの原因によりアカウントの作成に失敗しました。再度お試しください。"
 
-common/views/components/special-message.vue:
-  new-year: "Happy New Year!"
-  christmas: "Merry Christmas!"
-
 common/views/components/stream-indicator.vue:
   connecting: "接続中"
   reconnecting: "再接続中"
@@ -787,31 +605,8 @@ common/views/components/notification-settings.vue:
   title: "通知"
   mark-as-read-all-notifications: "すべての通知を既読にする"
   mark-as-read-all-unread-notes: "すべての投稿を既読にする"
-  mark-as-read-all-talk-messages: "すべてのトークを既読にする"
   auto-watch: "投稿の自動ウォッチ"
   auto-watch-desc: "リアクションしたり返信したりした投稿に関する通知を自動的に受け取るようにします。"
-
-common/views/components/integration-settings.vue:
-  title: "サービス連携"
-  connect: "接続する"
-  disconnect: "切断する"
-  connected-to: "次のアカウントに接続されています"
-
-common/views/components/github-setting.vue:
-  description: "お使いのGitHubアカウントをお使いのGroundpolisアカウントに接続しておくと、プロフィールでGitHubアカウント情報が表示されるようになったり、GitHubを用いた便利なサインインを利用できるようになります。"
-  connected-to: "次のGitHubアカウントに接続されています"
-  detail: "詳細..."
-  reconnect: "再接続する"
-  connect: "GitHubと接続する"
-  disconnect: "切断する"
-
-common/views/components/discord-setting.vue:
-  description: "お使いのDiscordアカウントをお使いのGroundpolisアカウントに接続しておくと、プロフィールでDiscordアカウント情報が表示されるようになったり、Discordを用いた便利なサインインを利用できるようになります。"
-  connected-to: "次のDiscordアカウントに接続されています"
-  detail: "詳細..."
-  reconnect: "再接続する"
-  connect: "Discordと接続する"
-  disconnect: "切断する"
 
 common/views/components/uploader.vue:
   waiting: "待機中"
@@ -905,33 +700,10 @@ common/views/components/user-list-editor.vue:
   deleted: "削除しました"
   add-user: "ユーザーを追加"
 
-common/views/components/user-group-editor.vue:
-  users: "メンバー"
-  rename: "グループ名を変更"
-  delete: "グループを削除"
-  transfer: "グループを譲渡"
-  transfer-are-you-sure: "グループ「$1」を「@$2」さんに譲渡しますか？"
-  transferred: "グループを譲渡しました"
-  remove-user: "このグループから削除"
-  delete-are-you-sure: "グループ「$1」を削除しますか？"
-  deleted: "削除しました"
-  invite: "招待"
-  invited: "招待を送信しました"
-
 common/views/components/user-lists.vue:
   user-lists: "リスト"
   create-list: "リストを作成"
   list-name: "リスト名"
-
-common/views/components/user-groups.vue:
-  user-groups: "グループ"
-  create-group: "グループを作成"
-  group-name: "グループ名"
-  owned-groups: "自分のグループ"
-  joined-groups: "参加しているグループ"
-  invites: "招待"
-  accept-invite: "参加"
-  reject-invite: "拒否"
 
 common/views/widgets/broadcast.vue:
   fetching: "確認中"
@@ -1138,9 +910,6 @@ desktop/views/components/following-window.vue:
 desktop/views/components/following.vue:
   empty: "フォロー中のユーザーはいないようです。"
 
-desktop/views/components/game-window.vue:
-  game: "リバーシ"
-
 desktop/views/components/home.vue:
   done: "完了"
   add-widget: "ウィジェットを追加:"
@@ -1328,27 +1097,16 @@ desktop/views/components/ui.header.vue:
 desktop/views/components/ui.header.account.vue:
   profile: "プロフィール"
   lists: "リスト"
-  groups: "グループ"
   follow-requests: "フォロー申請"
   admin: "管理"
-  room: "ルーム"
 
 desktop/views/components/ui.header.nav.vue:
   game: "ゲーム"
 
 desktop/views/components/ui.header.apps.vue:
   app: "アプリ"
-  talk: "トーク"
   drive: "ドライブ"
-  reversi: "リバーシ"
-  page: "ページ"
-  premium: "プレミアム"
-  bug-tracker: "バグ報告"
-  calendar: "カレンダー"
-  wiki: "ウィキ"
   customize: "カスタマイズ"
-  mml: "MML"
-  room: "ルーム"
   help: "ヘルプ"
 
 desktop/views/components/ui.header.notifications.vue:
@@ -1961,7 +1719,6 @@ mobile/views/components/ui.nav.vue:
   follow-requests: "フォロー申請"
   search: "検索"
   user-lists: "リスト"
-  user-groups: "グループ"
   widgets: "ウィジェット"
   game: "ゲーム"
   admin: "管理"
@@ -2066,49 +1823,6 @@ mobile/views/pages/user/home.vue:
 mobile/views/pages/user/home.photos.vue:
   no-photos: "写真はありません"
 
-deck:
-  widgets: "ウィジェット"
-  home: "ホーム"
-  local: "ローカル"
-  hybrid: "ホーム+ローカル"
-  hashtag: "ハッシュタグ"
-  global: "グローバル"
-  mentions: "あなた宛て"
-  direct: "ダイレクト投稿"
-  notifications: "通知"
-  list: "リスト"
-  select-list: "リストを選択してください"
-  swap-left: "左に移動"
-  swap-right: "右に移動"
-  swap-up: "上に移動"
-  swap-down: "下に移動"
-  remove: "カラムを削除"
-  add-column: "カラムを追加"
-  rename: "名前を変更"
-  stack-left: "左に重ねる"
-  pop-right: "右に出す"
-  disabled-timeline:
-    title: "無効化されたタイムライン"
-    description: "サーバーの運営者により、このタイムラインは使用できない状態に設定されています。"
-
-deck/deck.tl-column.vue:
-  is-media-only: "メディア投稿のみ"
-  edit: "オプション"
-
-deck/deck.user-column.vue:
-  follows-you: "フォローされています"
-  blocked: "ブロックされています"
-  blocking: "ブロックしています"
-  blocked-each: "相互ブロック"
-  posts: "投稿"
-  following: "フォロー"
-  followers: "フォロワー"
-  images: "画像"
-  activity: "アクティビティ"
-  timeline: "タイムライン"
-  pinned-notes: "ピン留めされた投稿"
-  pinned-page: "ピン留めされたページ"
-
 docs:
   edit-this-page-on-github: "間違いや改善点を見つけましたか？"
   edit-this-page-on-github-link: "このページをGitHubで編集"
@@ -2137,353 +1851,3 @@ dev/views/new-app.vue:
   authority: "権限"
   authority-desc: "ここで要求した機能だけがAPIからアクセスできます。"
   authority-warning: "アプリ作成後も変更できますが、新たな権限を付与する場合、その時点で関連付けられているユーザーキーはすべて無効になります。"
-
-pages:
-  new-page: "ページの作成"
-  edit-page: "ページの編集"
-  read-page: "ソースを表示中"
-  page-created: "ページを作成しました"
-  page-updated: "ページを更新しました"
-  name-already-exists: "指定されたページURLは既に存在しています"
-  title-invalid-name: "不正なページURLです"
-  text-invalid-name: "空白でないか確認してください"
-  are-you-sure-delete: "このページを削除しますか？"
-  page-deleted: "ページを削除しました"
-  edit-this-page: "このページを編集"
-  pin-this-page: "ピン留め"
-  unpin-this-page: "ピン留め解除"
-  view-source: "ソースを表示"
-  view-page: "ページを見る"
-  like: "いいね"
-  unlike: "いいね解除"
-  liked-pages: "いいねしたページ"
-  my-pages: "自分のページ"
-  inspector: "インスペクター"
-  content: "ページブロック"
-  variables: "変数"
-  variables-info: "変数を使うことで動的なページを作成できます。テキスト内で <b>{ 変数名 }</b> と書くとそこに変数の値を埋め込めます。例えば <b>Hello { thing } world!</b> というテキストで、変数(thing)の値が <b>ai</b> だった場合、テキストは <b>Hello ai world!</b> になります。"
-  variables-info2: "変数の評価(値を算出すること)は上から下に行われるので、ある変数の中で自分より下の変数を参照することはできません。例えば上から <b>A、B、C</b> と3つの変数を定義したとき、<b>C</b>の中で<b>A</b>や<b>B</b>を参照することはできますが、<b>A</b>の中で<b>B</b>や<b>C</b>を参照することはできません。"
-  variables-info3: "ユーザーからの入力を受け取るには、ページに「ユーザー入力」ブロックを設置し、「変数名」に入力を格納したい変数名を設定します(変数は自動で作成されます)。その変数を使ってユーザー入力に応じた動作を行えます。"
-  variables-info4: "関数を使うと、値の算出処理を再利用可能な形にまとめることができます。関数を作るには、「関数」タイプの変数を作成します。関数にはスロット(引数)を設定することができ、スロットの値は関数内で変数として利用可能です。また、AiScript標準で関数を引数に取る関数(高階関数と呼ばれます)も存在します。関数は予め定義しておくほかに、このような高階関数のスロットに即席でセットすることもできます。"
-  more-details: "詳しい説明"
-  title: "タイトル"
-  url: "ページURL"
-  summary: "ページの要約"
-  align-center: "中央寄せ"
-  hide-title-when-pinned: "ピン留めされているときにタイトルを非表示"
-  font: "フォント"
-  fontSerif: "セリフ"
-  fontSansSerif: "サンセリフ"
-  set-eye-catching-image: "アイキャッチ画像を設定"
-  remove-eye-catching-image: "アイキャッチ画像を削除"
-  choose-block: "ブロックを追加"
-  select-type: "種類を選択"
-  enter-variable-name: "変数名を決めてください"
-  the-variable-name-is-already-used: "その変数名は既に使われています"
-  content-blocks: "コンテンツ"
-  input-blocks: "入力"
-  special-blocks: "特殊"
-  post-from-post-form: "この内容を投稿"
-  posted-from-post-form: "投稿しました"
-  blocks:
-    text: "テキスト"
-    textarea: "テキストエリア"
-    section: "セクション"
-    image: "画像"
-    button: "ボタン"
-
-    if: "もし"
-    _if:
-      variable: "変数"
-
-    post: "投稿フォーム"
-    _post:
-      text: "内容"
-
-    textInput: "テキスト入力"
-    _textInput:
-      name: "変数名"
-      text: "タイトル"
-      default: "デフォルト値"
-
-    textareaInput: "複数行テキスト入力"
-    _textareaInput:
-      name: "変数名"
-      text: "タイトル"
-      default: "デフォルト値"
-
-    numberInput: "数値入力"
-    _numberInput:
-      name: "変数名"
-      text: "タイトル"
-      default: "デフォルト値"
-
-    switch: "スイッチ"
-    _switch:
-      name: "変数名"
-      text: "タイトル"
-      default: "デフォルト値"
-
-    counter: "カウンター"
-    _counter:
-      name: "変数名"
-      text: "タイトル"
-      inc: "増加値"
-
-    _button:
-      text: "タイトル"
-      colored: "色付き"
-      action: "ボタンを押したときの動作"
-      _action:
-        dialog: "ダイアログを表示する"
-        _dialog:
-          content: "内容"
-        resetRandom: "乱数をリセット"
-        pushEvent: "イベントを送信させる"
-        _pushEvent:
-          event: "イベント名"
-          message: "押したときに表示するメッセージ"
-          variable: "送信する変数"
-          no-variable: "なし"
-
-    radioButton: "選択肢"
-    _radioButton:
-      name: "変数名"
-      title: "タイトル"
-      values: "改行で区切った選択肢"
-      default: "デフォルト値"
-
-  script:
-    categories:
-      flow: "制御"
-      logical: "論理演算"
-      operation: "計算"
-      comparison: "比較"
-      random: "ランダム"
-      value: "値"
-      fn: "関数"
-      text: "テキスト操作"
-      convert: "変換"
-      list: "リスト"
-    blocks:
-      text: "テキスト"
-      multiLineText: "テキスト(複数行)"
-      textList: "テキストのリスト"
-      _textList:
-        info: "ひとつひとつを改行で区切ってください"
-      strLen: "テキストの長さ"
-      _strLen:
-        arg1: "テキスト"
-      strPick: "文字取り出し"
-      _strPick:
-        arg1: "テキスト"
-        arg2: "文字の位置"
-      strReplace: "テキスト置き換え"
-      _strReplace:
-        arg1: "テキスト"
-        arg2: "置き換え前"
-        arg3: "置き換え後"
-      strReverse: "テキストを反転"
-      _strReverse:
-        arg1: "テキスト"
-      join: "テキストを連結"
-      _join:
-        arg1: "リスト"
-        arg2: "区切り"
-      add: "+ 足す"
-      _add:
-        arg1: "A"
-        arg2: "B"
-      subtract: "- 引く"
-      _subtract:
-        arg1: "A"
-        arg2: "B"
-      multiply: "× 掛ける"
-      _multiply:
-        arg1: "A"
-        arg2: "B"
-      divide: "÷ 割る"
-      _divide:
-        arg1: "A"
-        arg2: "B"
-      mod: "÷ 割った余り"
-      _mod:
-        arg1: "A"
-        arg2: "B"
-      eq: "AとBが同じ"
-      _eq:
-        arg1: "A"
-        arg2: "B"
-      notEq: "AとBが異なる"
-      _notEq:
-        arg1: "A"
-        arg2: "B"
-      and: "AかつB"
-      _and:
-        arg1: "A"
-        arg2: "B"
-      or: "AまたはB"
-      _or:
-        arg1: "A"
-        arg2: "B"
-      lt: "< AがBより小さい"
-      _lt:
-        arg1: "A"
-        arg2: "B"
-      gt: "> AがBより大きい"
-      _gt:
-        arg1: "A"
-        arg2: "B"
-      ltEq: "<= AがBと同じか小さい"
-      _ltEq:
-        arg1: "A"
-        arg2: "B"
-      gtEq: ">= AがBと同じか大きい"
-      _gtEq:
-        arg1: "A"
-        arg2: "B"
-      if: "分岐"
-      _if:
-        arg1: "もし"
-        arg2: "なら"
-        arg3: "そうでなければ"
-      not: "否定"
-      _not:
-        arg1: "否定"
-      random: "ランダム"
-      _random:
-        arg1: "確率"
-      rannum: "乱数"
-      _rannum:
-        arg1: "最小"
-        arg2: "最大"
-      randomPick: "リストからランダムに選択"
-      _randomPick:
-        arg1: "リスト"
-      dailyRandom: "ランダム (ユーザーごとに日替わり)"
-      _dailyRandom:
-        arg1: "確率"
-      dailyRannum: "乱数 (ユーザーごとに日替わり)"
-      _dailyRannum:
-        arg1: "最小"
-        arg2: "最大"
-      dailyRandomPick: "リストからランダムに選択 (ユーザーごとに日替わり)"
-      _dailyRandomPick:
-        arg1: "リスト"
-      seedRandom: "ランダム (シード)"
-      _seedRandom:
-        arg1: "シード"
-        arg2: "確率"
-      seedRannum: "乱数 (シード)"
-      _seedRannum:
-        arg1: "シード"
-        arg2: "最小"
-        arg3: "最大"
-      seedRandomPick: "リストからランダムに選択 (シード)"
-      _seedRandomPick:
-        arg1: "シード"
-        arg2: "リスト"
-      DRPWPM: "確率付きリストからランダムに選択 (ユーザーごとに日替わり)"
-      _DRPWPM:
-        arg1: "テキストのリスト"
-      pick: "リストから選択"
-      _pick:
-        arg1: "リスト"
-        arg2: "位置"
-      listLen: "リストの長さを取得"
-      _listLen:
-        arg1: "リスト"
-      number: "数値"
-      stringToNumber: "テキストを数値に"
-      _stringToNumber:
-        arg1: "テキスト"
-      numberToString: "数値をテキストに"
-      _numberToString:
-        arg1: "数値"
-      splitStrByLine: "テキストを行で分割"
-      _splitStrByLine:
-        arg1: "テキスト"
-      ref: "変数"
-      fn: "関数"
-      _fn:
-        slots: "スロット"
-        slots-info: "スロットひとつひとつを改行で区切ってください"
-        arg1: "出力"
-      for: "繰り返し"
-      _for:
-        arg1: "回数"
-        arg2: "処理"
-    typeError: "スロット{slot}は\"{expect}\"を受け付けますが、\"{actual}\"が入れられています！"
-    thereIsEmptySlot: "スロット{slot}が空です！"
-    types:
-      string: "テキスト"
-      number: "数値"
-      boolean: "フラグ"
-      array: "リスト"
-      stringArray: "テキストのリスト"
-    emptySlot: "空のスロット"
-    enviromentVariables: "環境変数"
-    pageVariables: "ページ要素"
-    argVariables: "入力スロット"
-
-room:
-  add-furniture: "家具を置く"
-  translate: "移動"
-  rotate: "回転"
-  exit: "戻る"
-  remove: "しまう"
-  save: "保存"
-  saved: "保存しました"
-  clear: "片付け"
-  clear-confirm: "全ての家具をしまいますか？"
-  leave-confirm: "未保存の変更があります、移動しますか？"
-  chooseImage: "画像を選択"
-  room-type: "部屋のタイプ"
-  carpet-color: "床の色"
-  rooms:
-    default: "デフォルト"
-    washitsu: "和室"
-  furnitures:
-    milk: "牛乳パック"
-    bed: "ベッド"
-    low-table: "ローテーブル"
-    desk: "デスク"
-    chair: "チェア"
-    chair2: "チェア2"
-    fan: "換気扇"
-    pc: "パソコン"
-    plant: "観葉植物"
-    plant2: "観葉植物2"
-    eraser: "消しゴム"
-    pencil: "鉛筆"
-    pudding: "プリン"
-    cardboard-box: "段ボール箱"
-    cardboard-box2: "段ボール箱2"
-    cardboard-box3: "段ボール箱3"
-    book: "本"
-    book2: "本2"
-    piano: "ピアノ"
-    facial-tissue: "ティッシュボックス"
-    server: "サーバー"
-    moon: "月"
-    corkboard: "コルクボード"
-    mousepad: "マウスパッド"
-    monitor: "モニター"
-    keyboard: "キーボード"
-    carpet-stripe: "カーペット(縞)"
-    mat: "マット"
-    color-box: "カラーボックス"
-    wall-clock: "壁掛け時計"
-    photoframe: "額縁"
-    cube: "キューブ"
-    tv: "テレビ"
-    pinguin: "ピンギン"
-    rubik-cube: "ルービックキューブ"
-    poster-h: "ポスター(横長)"
-    poster-v: "ポスター(縦長)"
-    sofa: "ソファ"
-    spiral: "螺旋階段"
-    bin: "ゴミ箱"
-    cup-noodle: "カップ麺"
-    holo-display: "ホログラフィックディスプレイ"
-    energy-drink: "エナジードリンク"

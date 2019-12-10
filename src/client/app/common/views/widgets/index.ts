@@ -1,6 +1,5 @@
 import Vue from 'vue';
 
-import wAnalogClock from './analog-clock.vue';
 import wVersion from './version.vue';
 import wRss from './rss.vue';
 import wServer from './server.vue';
@@ -17,7 +16,6 @@ import wInstance from './instance.vue';
 import wPostForm from './post-form.vue';
 import wHtml from './html.vue';
 
-Vue.component('mkw-analog-clock', wAnalogClock);
 Vue.component('mkw-nav', wNav);
 Vue.component('mkw-calendar', wCalendar);
 Vue.component('mkw-photo-stream', wPhotoStream);

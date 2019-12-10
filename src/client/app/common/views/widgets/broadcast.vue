@@ -18,8 +18,8 @@
 				</div>
 				<div class="broadcast-nav" v-show="announcements && announcements.length > 1">
 					<mk-frac class="broadcast-page" :value="i + 1" :total="announcements.length"/>
-					<ui-button class="broadcast-prev" @click="prev" :title="$t('next')"><fa :icon="faAngleLeft"/></ui-button>
-					<ui-button class="broadcast-next" @click="next" :title="$t('prev')"><fa :icon="faAngleRight"/></ui-button>
+					<ui-button class="broadcast-prev" @click="prev" :title="$t('next')"><fa icon="angle-left"/></ui-button>
+					<ui-button class="broadcast-next" @click="next" :title="$t('prev')"><fa icon="angle-right"/></ui-button>
 				</div>
 			</div>
 			<div class="broadcast-right">
@@ -38,7 +38,6 @@
 
 <script lang="ts">
 import define from '../../../common/define-widget';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import i18n from '../../../i18n';
 
 export default define({
@@ -53,7 +52,6 @@ export default define({
 			i: 0,
 			fetching: true,
 			announcements: [],
-			faAngleLeft, faAngleRight
 		};
 	},
 	mounted() {

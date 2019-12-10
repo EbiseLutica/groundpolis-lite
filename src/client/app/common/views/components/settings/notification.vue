@@ -8,7 +8,6 @@
 		<section>
 			<ui-button @click="readAllNotifications">{{ $t('mark-as-read-all-notifications') }}</ui-button>
 			<ui-button @click="readAllUnreadNotes">{{ $t('mark-as-read-all-unread-notes') }}</ui-button>
-			<ui-button @click="readAllMessagingMessages">{{ $t('mark-as-read-all-talk-messages') }}</ui-button>
 		</section>
 	</section>
 </ui-card>
@@ -30,10 +29,6 @@ export default Vue.extend({
 
 		readAllUnreadNotes() {
 			this.$root.api('i/read_all_unread_notes');
-		},
-
-		readAllMessagingMessages() {
-			this.$root.api('i/read_all_messaging_messages');
 		},
 
 		readAllNotifications() {

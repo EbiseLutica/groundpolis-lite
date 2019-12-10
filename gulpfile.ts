@@ -46,11 +46,7 @@ gulp.task('build:copy:views', () =>
 	gulp.src('./src/server/web/views/**/*').pipe(gulp.dest('./built/server/web/views'))
 );
 
-gulp.task('build:copy:fonts', () =>
-	gulp.src('./node_modules/three/examples/fonts/**/*').pipe(gulp.dest('./built/client/assets/fonts/'))
-);
-
-gulp.task('build:copy', gulp.parallel('build:copy:views', 'build:copy:fonts', () =>
+gulp.task('build:copy', gulp.parallel('build:copy:views',  () =>
 	gulp.src([
 		'./src/const.json',
 		'./src/emojilist.json',

@@ -15,7 +15,7 @@ import packFeed from './feed';
 import { fetchMeta } from '../../misc/fetch-meta';
 import { genOpenapiSpec } from '../api/openapi/gen-spec';
 import config from '../../config';
-import { Users, Notes, Emojis, UserProfiles, Pages } from '../../models';
+import { Users, Notes, Emojis, UserProfiles } from '../../models';
 import parseAcct from '../../misc/acct/parse';
 import getNoteSummary from '../../misc/get-note-summary';
 import { ensure } from '../../prelude/ensure';
@@ -223,42 +223,6 @@ router.get('/notes/:note', async ctx => {
 	ctx.status = 404;
 });
 
-// Page
-router.get('/@:user/pages/:page', async ctx => {
-	const { username, host } = parseAcct(ctx.params.user);
-	const user = await Users.findOne({
-		usernameLower: username.toLowerCase(),
-		host
-	});
-
-	if (user == null) return;
-
-	const page = await Pages.findOne({
-		name: ctx.params.page,
-		userId: user.id
-	});
-
-	if (page) {
-		const _page = await Pages.pack(page);
-		const meta = await fetchMeta();
-		await ctx.render('page', {
-			page: _page,
-			instanceName: meta.name || 'Groundpolis'
-		});
-
-		if (['public'].includes(page.visibility)) {
-			setCache(ctx, 'public, max-age=180');
-		} else {
-			setCache(ctx, 'private, max-age=0, must-revalidate');
-		}
-
-		return;
-	}
-
-	ctx.status = 404;
-});
-//#endregion
-
 router.get('/info', async ctx => {
 	const meta = await fetchMeta(true);
 	const emojis = await Emojis.find({
@@ -285,8 +249,6 @@ router.get('/info', async ctx => {
 const override = (source: string, target: string, depth: number = 0) =>
 	[, ...target.split('/').filter(x => x), ...source.split('/').filter(x => x).splice(depth)].join('/');
 
-router.get('/othello', async ctx => ctx.redirect(override(ctx.URL.pathname, 'games/reversi', 1)));
-router.get('/reversi', async ctx => ctx.redirect(override(ctx.URL.pathname, 'games')));
 
 // Render base html for all requests
 router.get('*', async ctx => {

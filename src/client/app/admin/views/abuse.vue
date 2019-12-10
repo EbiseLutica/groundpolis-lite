@@ -1,7 +1,7 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faExclamationCircle"/> {{ $t('title') }}</template>
+		<template #title><fa icon="exclamation-circle"/> {{ $t('title') }}</template>
 		<section class="fit-top">
 			<sequential-entrance animation="entranceFromTop" delay="25">
 				<div v-for="report in userReports" :key="report.id" class="haexwsjc">
@@ -28,7 +28,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/abuse.vue'),
@@ -39,7 +38,6 @@ export default Vue.extend({
 			untilId: undefined,
 			userReports: [],
 			existMore: false,
-			faExclamationCircle
 		};
 	},
 

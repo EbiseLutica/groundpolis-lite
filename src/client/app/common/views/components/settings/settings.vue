@@ -5,100 +5,32 @@
 		<x-integration/>
 	</template>
 
-	<template v-if="page == null || page == 'appearance'">
-		<x-theme/>
-
+	<template v-if="tick >= 1 && page == null || page == 'appearance'">
 		<ui-card>
 			<template #title><fa icon="desktop"/> {{ $t('@._settings.appearance') }}</template>
-
+			<x-theme/>
 			<section v-if="!$root.isMobile">
 				<ui-switch v-model="showPostFormOnTopOfTl">{{ $t('@._settings.post-form-on-timeline') }}</ui-switch>
-				<ui-button @click="customizeHome">{{ $t('@.customize-home') }}</ui-button>
-			</section>
-			<section v-if="!$root.isMobile">
-				<header>{{ $t('@._settings.wallpaper') }}</header>
-				<ui-horizon-group class="fit-bottom">
-					<ui-button @click="updateWallpaper">{{ $t('@._settings.choose-wallpaper') }}</ui-button>
-					<ui-button @click="deleteWallpaper">{{ $t('@._settings.delete-wallpaper') }}</ui-button>
-				</ui-horizon-group>
-			</section>
-			<section v-if="!$root.isMobile">
-				<header>{{ $t('@._settings.navbar-position') }}</header>
-				<ui-radio v-model="navbar" value="top">{{ $t('@._settings.navbar-position-top') }}</ui-radio>
-				<ui-radio v-model="navbar" value="left">{{ $t('@._settings.navbar-position-left') }}</ui-radio>
-				<ui-radio v-model="navbar" value="right">{{ $t('@._settings.navbar-position-right') }}</ui-radio>
 			</section>
 			<section>
-				<ui-switch v-model="useShadow">{{ $t('@._settings.use-shadow') }}</ui-switch>
-				<ui-switch v-model="roundedCorners">{{ $t('@._settings.rounded-corners') }}</ui-switch>
-				<ui-switch v-model="circleIcons">{{ $t('@._settings.circle-icons') }}</ui-switch>
 				<ui-switch v-model="reduceMotion">{{ $t('@._settings.reduce-motion') }}</ui-switch>
-				<ui-switch v-model="contrastedAcct">{{ $t('@._settings.contrasted-acct') }}</ui-switch>
-				<ui-switch v-model="showFullAcct">{{ $t('@._settings.show-full-acct') }}</ui-switch>
 				<ui-switch v-model="showVia">{{ $t('@._settings.show-via') }}</ui-switch>
 				<ui-switch v-model="useOsDefaultEmojis">{{ $t('@._settings.use-os-default-emojis') }}</ui-switch>
-				<ui-switch v-model="iLikeSushi">{{ $t('@._settings.i-like-sushi') }}</ui-switch>
-			</section>
-			<section>
 				<ui-switch v-model="suggestRecentHashtags">{{ $t('@._settings.suggest-recent-hashtags') }}</ui-switch>
-				<ui-switch v-model="showClockOnHeader" v-if="!$root.isMobile">{{ $t('@._settings.show-clock-on-header') }}</ui-switch>
 				<ui-switch v-model="alwaysShowNsfw">{{ $t('@._settings.always-show-nsfw') }}</ui-switch>
 				<ui-switch v-model="showReplyTarget">{{ $t('@._settings.show-reply-target') }}</ui-switch>
 				<ui-switch v-model="disableAnimatedMfm">{{ $t('@._settings.disable-animated-mfm') }}</ui-switch>
 				<ui-switch v-model="disableShowingAnimatedImages">{{ $t('@._settings.disable-showing-animated-images') }}</ui-switch>
 				<ui-switch v-model="remainDeletedNote">{{ $t('@._settings.remain-deleted-note') }}</ui-switch>
-				<ui-switch v-model="enableMobileQuickNotificationView">{{ $t('@._settings.enable-quick-notification-view') }}</ui-switch>
-			</section>
-			<section>
-				<header>{{ $t('@._settings.line-width') }}</header>
-				<ui-radio v-model="lineWidth" :value="0.5">{{ $t('@._settings.line-width-thin') }}</ui-radio>
-				<ui-radio v-model="lineWidth" :value="1">{{ $t('@._settings.line-width-normal') }}</ui-radio>
-				<ui-radio v-model="lineWidth" :value="2">{{ $t('@._settings.line-width-thick') }}</ui-radio>
-			</section>
-			<section>
-				<header>{{ $t('@._settings.font-size') }}</header>
-				<ui-radio v-model="fontSize" :value="-2">{{ $t('@._settings.font-size-x-small') }}</ui-radio>
-				<ui-radio v-model="fontSize" :value="-1">{{ $t('@._settings.font-size-small') }}</ui-radio>
-				<ui-radio v-model="fontSize" :value="0">{{ $t('@._settings.font-size-medium') }}</ui-radio>
-				<ui-radio v-model="fontSize" :value="1">{{ $t('@._settings.font-size-large') }}</ui-radio>
-				<ui-radio v-model="fontSize" :value="2">{{ $t('@._settings.font-size-x-large') }}</ui-radio>
-			</section>
-			<section v-if="$root.isMobile">
-				<header>{{ $t('@._settings.post-style') }}</header>
-				<ui-radio v-model="postStyle" value="standard">{{ $t('@._settings.post-style-standard') }}</ui-radio>
-				<ui-radio v-model="postStyle" value="smart">{{ $t('@._settings.post-style-smart') }}</ui-radio>
-			</section>
-			<section v-if="$root.isMobile">
-				<header>{{ $t('@._settings.notification-position') }}</header>
-				<ui-radio v-model="mobileNotificationPosition" value="bottom">{{ $t('@._settings.notification-position-bottom') }}</ui-radio>
-				<ui-radio v-model="mobileNotificationPosition" value="top">{{ $t('@._settings.notification-position-top') }}</ui-radio>
-			</section>
-			<section>
-				<header>{{ $t('@._settings.deck-column-align') }}</header>
-				<ui-radio v-model="deckColumnAlign" value="center">{{ $t('@._settings.deck-column-align-center') }}</ui-radio>
-				<ui-radio v-model="deckColumnAlign" value="left">{{ $t('@._settings.deck-column-align-left') }}</ui-radio>
-				<ui-radio v-model="deckColumnAlign" value="flexible">{{ $t('@._settings.deck-column-align-flexible') }}</ui-radio>
-			</section>
-			<section>
-				<header>{{ $t('@._settings.deck-column-width') }}</header>
-				<ui-radio v-model="deckColumnWidth" value="narrow">{{ $t('@._settings.deck-column-width-narrow') }}</ui-radio>
-				<ui-radio v-model="deckColumnWidth" value="narrower">{{ $t('@._settings.deck-column-width-narrower') }}</ui-radio>
-				<ui-radio v-model="deckColumnWidth" value="normal">{{ $t('@._settings.deck-column-width-normal') }}</ui-radio>
-				<ui-radio v-model="deckColumnWidth" value="wider">{{ $t('@._settings.deck-column-width-wider') }}</ui-radio>
-				<ui-radio v-model="deckColumnWidth" value="wide">{{ $t('@._settings.deck-column-width-wide') }}</ui-radio>
-			</section>
-			<section>
-				<ui-switch v-model="games_reversi_showBoardLabels">{{ $t('@._settings.show-reversi-board-labels') }}</ui-switch>
-				<ui-switch v-model="games_reversi_useAvatarStones">{{ $t('@._settings.use-avatar-reversi-stones') }}</ui-switch>
 			</section>
 		</ui-card>
 	</template>
 
-	<template v-if="page == null || page == 'behavior'">
+	<template v-if="tick >= 1 && page == null || page == 'behavior'">
 		<ui-card>
 			<template #title><fa icon="sliders-h"/> {{ $t('@._settings.behavior') }}</template>
 
-			<section>
+			<section v-if="tick >= 2">
 				<ui-switch v-model="fetchOnScroll">{{ $t('@._settings.fetch-on-scroll') }}
 					<template #desc>{{ $t('@._settings.fetch-on-scroll-desc') }}</template>
 				</ui-switch>
@@ -108,25 +40,14 @@
 				<ui-switch v-if="$root.isMobile" v-model="disableViaMobile">{{ $t('@._settings.disable-via-mobile') }}</ui-switch>
 			</section>
 
-			<!-- <section>
-				<header>{{ $t('@._settings.reactions') }}</header>
-				<ui-textarea v-model="reactions">
-					{{ $t('@._settings.reactions') }}<template #desc>{{ $t('@._settings.reactions-description') }}</template>
-				</ui-textarea>
-				<ui-horizon-group>
-					<ui-button @click="save('reactions', reactions.trim().split('\n'))" primary><fa :icon="faSave"/> {{ $t('@._settings.save') }}</ui-button>
-					<ui-button @click="previewReaction()" ref="reactionsPreviewButton"><fa :icon="faEye"/> {{ $t('@._settings.preview') }}</ui-button>
-				</ui-horizon-group>
-			</section> -->
-
-			<section>
+			<section v-if="tick >= 3">
 				<header>{{ $t('@._settings.timeline') }}</header>
 				<ui-switch v-model="showMyRenotes">{{ $t('@._settings.show-my-renotes') }}</ui-switch>
 				<ui-switch v-model="showRenotedMyNotes">{{ $t('@._settings.show-renoted-my-notes') }}</ui-switch>
 				<ui-switch v-model="showLocalRenotes">{{ $t('@._settings.show-local-renotes') }}</ui-switch>
 			</section>
 
-			<section>
+			<section v-if="tick >= 4">
 				<header>{{ $t('@._settings.note-visibility') }}</header>
 				<ui-switch v-model="rememberNoteVisibility">{{ $t('@._settings.remember-note-visibility') }}</ui-switch>				
 				<section>
@@ -137,7 +58,7 @@
 				</section>
 			</section>
 
-			<section>
+			<section v-if="tick >= 5">
 				<header>{{ $t('@._settings.visibility-switch') }}</header>
 				<p>{{ $t('@._settings.visibility-switch-desc') }}</p>
 				<ui-switch v-model="useVisibilitySwitch">{{ $t('@._settings.use-visibility-switch') }}</ui-switch>
@@ -169,49 +90,22 @@
 				</template>
 			</section>
 
-			<section>
-				<header>{{ $t('@._settings.sync') }}</header>
-				<ui-input v-if="$root.isMobile" v-model="mobileHomeProfile" :datalist="Object.keys($store.state.settings.mobileHomeProfiles)">{{ $t('@._settings.home-profile') }}</ui-input>
-				<ui-input v-else v-model="homeProfile" :datalist="Object.keys($store.state.settings.homeProfiles)">{{ $t('@._settings.home-profile') }}</ui-input>
-				<ui-input v-model="deckProfile" :datalist="Object.keys($store.state.settings.deckProfiles)">{{ $t('@._settings.deck-profile') }}</ui-input>
-			</section>
-
-			<section>
-				<header>{{ $t('@._settings.web-search-engine') }}</header>
-				<ui-input v-model="webSearchEngine">{{ $t('@._settings.web-search-engine') }}
-					<template #desc>{{ $t('@._settings.web-search-engine-desc') }}</template>
-				</ui-input>
-				<ui-button @click="save('webSearchEngine', webSearchEngine)"><fa :icon="faSave"/> {{ $t('@._settings.save') }}</ui-button>
-			</section>
-
 			<section v-if="!$root.isMobile">
 				<header>{{ $t('@._settings.paste') }}</header>
 				<ui-input v-model="pastedFileName">{{ $t('@._settings.pasted-file-name') }}
 					<template v-if="pastedFileName === this.$store.state.settings.pastedFileName" #desc>{{ $t('@._settings.pasted-file-name-desc') }}</template>
 					<template v-else #desc>{{ pastedFileNamePreview() }}</template>
 				</ui-input>
-				<ui-button @click="save('pastedFileName', pastedFileName)"><fa :icon="faSave"/> {{ $t('@._settings.save') }}</ui-button>
+				<ui-button @click="save('pastedFileName', pastedFileName)"><fa :icon="[ 'far', 'save' ]"/> {{ $t('@._settings.save') }}</ui-button>
 
 				<ui-switch v-model="pasteDialog">{{ $t('@._settings.paste-dialog') }}
 					<template #desc>{{ $t('@._settings.paste-dialog-desc') }}</template>
 				</ui-switch>
 			</section>
 
-			<section>
-				<header>{{ $t('@._settings.room') }}</header>
-				<ui-select v-model="roomGraphicsQuality">
-					<template #label>{{ $t('@._settings._room.graphicsQuality') }}</template>
-					<option value="ultra">{{ $t('@._settings._room._graphicsQuality.ultra') }}</option>
-					<option value="high">{{ $t('@._settings._room._graphicsQuality.high') }}</option>
-					<option value="medium">{{ $t('@._settings._room._graphicsQuality.medium') }}</option>
-					<option value="low">{{ $t('@._settings._room._graphicsQuality.low') }}</option>
-					<option value="cheep">{{ $t('@._settings._room._graphicsQuality.cheep') }}</option>
-				</ui-select>
-				<ui-switch v-model="roomUseOrthographicCamera">{{ $t('@._settings._room.useOrthographicCamera') }}</ui-switch>
-			</section>
 		</ui-card>
 
-		<ui-card>
+		<ui-card v-if="tick >= 6">
 			<template #title><fa icon="volume-up"/> {{ $t('@._settings.sound') }}</template>
 
 			<section>
@@ -231,18 +125,12 @@
 				/>
 				<ui-button @click="soundTest"><fa icon="volume-up"/> {{ $t('@._settings.test') }}</ui-button>
 			</section>
-
-			<section>
-				<ui-switch v-model="enableSpeech">{{ $t('@._settings.enable-speech') }}
-					<template #desc>{{ $t('@._settings.enable-speech-desc') }}</template>
-				</ui-switch>
-			</section>
 		</ui-card>
 
-		<x-language/>
-		<x-app-type/>
+		<x-language v-if="tick >= 7"/>
+		<x-app-type v-if="tick >= 8"/>
 
-		<ui-card>
+		<ui-card v-if="tick >= 9">
 			<template #title><fa icon="skull"/> {{ $t('@._settings.f--king-features') }}</template>
 			<section>
 				<ui-info warn>{{ $t('@._settings.f--king-features-warn') }}</ui-info>
@@ -251,15 +139,15 @@
 		</ui-card>
 	</template>
 
-	<template v-if="page == null || page == 'notification'">
+	<template v-if="tick >= 10 && page == null || page == 'notification'">
 		<x-notification/>
 	</template>
 
-	<template v-if="page == null || page == 'drive'">
+	<template v-if="tick >= 11 && page == null || page == 'drive'">
 		<x-drive/>
 	</template>
 
-	<template v-if="page == null || page == 'hashtags'">
+	<template v-if="tick >= 13 && page == null || page == 'hashtags'">
 		<ui-card>
 			<template #title><fa icon="hashtag"/> {{ $t('@._settings.tags') }}</template>
 			<section>
@@ -268,12 +156,12 @@
 		</ui-card>
 	</template>
 
-	<template v-if="page == null || page == 'muteAndBlock'">
+	<template v-if="tick >= 14 && page == null || page == 'muteAndBlock'">
 		<x-mute-and-block/>
 	</template>
 
 	
-	<template v-if="page == null || page == 'apps'">
+	<template v-if="tick >= 15 && page == null || page == 'apps'">
 		<ui-card>
 			<template #title><fa icon="puzzle-piece"/> {{ $t('@._settings.apps') }}</template>
 			<section>
@@ -283,36 +171,20 @@
 	</template>
 	
 
-	<template v-if="page == null || page == 'security'">
+	<template v-if="tick >= 16 && page == null || page == 'security'">
 		<ui-card>
 			<template #title><fa icon="unlock-alt"/> {{ $t('@._settings.password') }}</template>
 			<section>
 				<x-password/>
 			</section>
 		</ui-card>
-
-		<ui-card v-if="!$root.isMobile">
-			<template #title><fa icon="mobile-alt"/> {{ $t('@.2fa') }}</template>
-			<section>
-				<x-2fa/>
-			</section>
-		</ui-card>
-
-		<!--
-		<ui-card>
-			<template #title><fa icon="sign-in-alt"/> {{ $t('@._settings.signin') }}</template>
-			<section>
-				<x-signins/>
-			</section>
-		</ui-card>
-		-->
 	</template>
 
-	<template v-if="page == null || page == 'api'">
+	<template v-if="tick >= 17 && page == null || page == 'api'">
 		<x-api/>
 	</template>
 
-	<template v-if="page == null || page == 'other'">
+	<template v-if="tick >= 18 && page == null || page == 'other'">
 		<ui-card>
 			<template #title><fa icon="sync-alt"/> {{ $t('@._settings.update') }}</template>
 			<section>
@@ -329,15 +201,6 @@
 				</ui-button>
 			</section>
 		</ui-card>
-
-		<ui-card>
-			<template #title><fa icon="cogs"/> {{ $t('@._settings.advanced-settings') }}</template>
-			<section>
-				<ui-switch v-model="debug">
-					{{ $t('@._settings.debug-mode') }}<template #desc>{{ $t('@._settings.debug-mode-desc') }}</template>
-				</ui-switch>
-			</section>
-		</ui-card>
 	</template>
 </div>
 </template>
@@ -345,7 +208,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../../i18n';
-import X2fa from './2fa.vue';
 import XApps from './apps.vue';
 import XSignins from './signins.vue';
 import XTags from './tags.vue';
@@ -364,12 +226,10 @@ import MkReactionPicker from '../reaction-picker.vue';
 import { url, version } from '../../../../config';
 import checkForUpdate from '../../../scripts/check-for-update';
 import { formatTimeString } from '../../../../../../misc/format-time-string';
-import { faSave, faEye } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n(),
 	components: {
-		X2fa,
 		XApps,
 		XSignins,
 		XTags,
@@ -400,6 +260,8 @@ export default Vue.extend({
 			pastedFileName : this.$store.state.settings.pastedFileName,
 			latestVersion: undefined,
 			checkingForUpdate: false,
+			timeout: null,
+			tick: 0,
 			visibilities: [
 				'public',
 				'home',
@@ -410,7 +272,6 @@ export default Vue.extend({
 				'local-home',
 				'local-followers',
 			],
-			faSave, faEye
 		};
 	},
 	computed: {
@@ -432,16 +293,6 @@ export default Vue.extend({
 		navbar: {
 			get() { return this.$store.state.device.navbar; },
 			set(value) { this.$store.commit('device/set', { key: 'navbar', value }); }
-		},
-
-		deckColumnAlign: {
-			get() { return this.$store.state.device.deckColumnAlign; },
-			set(value) { this.$store.commit('device/set', { key: 'deckColumnAlign', value }); }
-		},
-
-		deckColumnWidth: {
-			get() { return this.$store.state.device.deckColumnWidth; },
-			set(value) { this.$store.commit('device/set', { key: 'deckColumnWidth', value }); }
 		},
 
 		enableSounds: {
@@ -589,11 +440,6 @@ export default Vue.extend({
 			set(value) { this.$store.dispatch('settings/set', { key: 'suggestRecentHashtags', value }); }
 		},
 
-		showClockOnHeader: {
-			get() { return this.$store.state.settings.showClockOnHeader; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'showClockOnHeader', value }); }
-		},
-
 		circleIcons: {
 			get() { return this.$store.state.settings.circleIcons; },
 			set(value) {
@@ -621,31 +467,6 @@ export default Vue.extend({
 		showVia: {
 			get() { return this.$store.state.settings.showVia; },
 			set(value) { this.$store.dispatch('settings/set', { key: 'showVia', value }); }
-		},
-
-		iLikeSushi: {
-			get() { return this.$store.state.settings.iLikeSushi; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'iLikeSushi', value }); }
-		},
-
-		roomUseOrthographicCamera: {
-			get() { return this.$store.state.device.roomUseOrthographicCamera; },
-			set(value) { this.$store.commit('device/set', { key: 'roomUseOrthographicCamera', value }); }
-		},
-
-		roomGraphicsQuality: {
-			get() { return this.$store.state.device.roomGraphicsQuality; },
-			set(value) { this.$store.commit('device/set', { key: 'roomGraphicsQuality', value }); }
-		},
-
-		games_reversi_showBoardLabels: {
-			get() { return this.$store.state.settings.gamesReversiShowBoardLabels; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiShowBoardLabels', value }); }
-		},
-
-		games_reversi_useAvatarStones: {
-			get() { return this.$store.state.settings.gamesReversiUseAvatarStones; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiUseAvatarStones', value }); }
 		},
 
 		disableAnimatedMfm: {
@@ -682,16 +503,17 @@ export default Vue.extend({
 			get() { return this.$store.state.device.mobileHomeProfile; },
 			set(value) { this.$store.commit('device/set', { key: 'mobileHomeProfile', value }); }
 		},
-
-		deckProfile: {
-			get() { return this.$store.state.device.deckProfile; },
-			set(value) { this.$store.commit('device/set', { key: 'deckProfile', value }); }
-		},
 	},
 	created() {
 		this.$root.getMeta().then(meta => {
 			this.meta = meta;
 		});
+		this.timeout = setInterval(() => {
+			this.tick++;
+			if (this.tick > 19) {
+				clearInterval(this.timeout);
+			}
+		}, 300);
 	},
 	methods: {
 		reload() {

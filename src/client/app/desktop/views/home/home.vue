@@ -8,7 +8,6 @@
 					<p>{{ $t('add-widget') }}</p>
 					<select v-model="widgetAdderSelected">
 						<option value="profile">{{ $t('@.widgets.profile') }}</option>
-						<option value="analog-clock">{{ $t('@.widgets.analog-clock') }}</option>
 						<option value="calendar">{{ $t('@.widgets.calendar') }}</option>
 						<option value="timemachine">{{ $t('@.widgets.timemachine') }}</option>
 						<option value="activity">{{ $t('@.widgets.activity') }}</option>
@@ -23,7 +22,6 @@
 						<option value="users">{{ $t('@.widgets.users') }}</option>
 						<option value="polls">{{ $t('@.widgets.polls') }}</option>
 						<option value="post-form">{{ $t('@.widgets.post-form') }}</option>
-						<option value="messaging">{{ $t('@.messaging') }}</option>
 						<option value="memo">{{ $t('@.widgets.memo') }}</option>
 						<option value="hashtags">{{ $t('@.widgets.hashtags') }}</option>
 						<option value="posts-monitor">{{ $t('@.widgets.posts-monitor') }}</option>

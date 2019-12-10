@@ -1,6 +1,6 @@
 <template>
-<div class="mk-ui" :class="{ deck: $store.state.device.inDeckMode }">
-	<x-header v-if="!$store.state.device.inDeckMode">
+<div class="mk-ui">
+	<x-header>
 		<template #func><slot name="func"></slot></template>
 		<slot name="header"></slot>
 		<button class="back" v-if="displayBack" @click="$router.back()"><fa icon="arrow-left"/></button>
@@ -10,9 +10,9 @@
 		<slot></slot>
 	</div>
 	<mk-stream-indicator v-if="$store.getters.isSignedIn"/>
-	<button class="nav button" v-if="$store.state.device.inDeckMode" @click="isDrawerOpening = !isDrawerOpening"><fa icon="bars"/><i v-if="indicate"><fa icon="circle"/></i></button>
+	<button class="nav button" @click="isDrawerOpening = !isDrawerOpening"><fa icon="bars"/><i v-if="indicate"><fa icon="circle"/></i></button>
 	<button class="post button" ref="fab" v-if="displayFab" @click="fabClicked"><fa :icon="fabIcon"/></button>
-	<x-footer v-if="!$store.state.device.inDeckMode"/>
+	<x-footer/>
 </div>
 </template>
 
@@ -53,7 +53,6 @@ export default Vue.extend({
 
 	data() {
 		return {
-			hasGameInvitation: false,
 			isDrawerOpening: false,
 			connection: null
 		};
@@ -64,12 +63,8 @@ export default Vue.extend({
 			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadNotification;
 		},
 
-		hasUnreadMessagingMessage(): boolean {
-			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage;
-		},
-
 		indicate(): boolean {
-			return !!this.hasGameInvitation;
+			return false;
 		},
 
 		fabClicked() {
@@ -90,8 +85,6 @@ export default Vue.extend({
 			this.connection = this.$root.stream.useSharedConnection('main');
 
 			this.connection.on('notification', this.onNotification);
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 
@@ -112,14 +105,6 @@ export default Vue.extend({
 				notification
 			});
 		},
-
-		onReversiInvited() {
-			this.hasGameInvitation = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitation = false;
-		}
 	}
 });
 </script>

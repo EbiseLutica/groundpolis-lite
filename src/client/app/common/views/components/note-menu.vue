@@ -9,8 +9,6 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import { url } from '../../../config';
 import copyToClipboard from '../../../common/scripts/copy-to-clipboard';
-import { faCopy, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/note-menu.vue'),
@@ -33,7 +31,7 @@ export default Vue.extend({
 					text: this.$t('detail'),
 					action: this.detail
 				}, {
-					icon: faCopy,
+					icon: 'copy',
 					text: this.$t('copy-content'),
 					action: this.copyContent
 				}, {
@@ -58,11 +56,11 @@ export default Vue.extend({
 					action: () => this.toggleFavorite(true)
 				},
 				this.note.userId != this.$store.state.i.id ? this.isWatching ? {
-					icon: faEyeSlash,
+					icon: ['far', 'eye-slash'],
 					text: this.$t('unwatch'),
 					action: () => this.toggleWatch(false)
 				} : {
-					icon: faEye,
+					icon: 'eye',
 					text: this.$t('watch'),
 					action: () => this.toggleWatch(true)
 				} : undefined,
@@ -78,7 +76,7 @@ export default Vue.extend({
 				...(this.note.userId == this.$store.state.i.id || this.$store.state.i.isAdmin || this.$store.state.i.isModerator ? [
 					null,
 					this.note.userId == this.$store.state.i.id ? {
-						icon: faEdit,
+						icon: 'edit',
 						text: this.$t('delete-and-edit'),
 						action: this.deleteAndEdit
 					} : undefined,
@@ -102,7 +100,7 @@ export default Vue.extend({
 					text: this.$t('detail'),
 					action: this.detail
 				}, {
-					icon: faCopy,
+					icon: 'copy',
 					text: this.$t('copy-content'),
 					action: this.copyContent
 				}, {

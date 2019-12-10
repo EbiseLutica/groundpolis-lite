@@ -1,7 +1,7 @@
 <template>
 <div>
 	<ui-container :show-header="!props.compact">
-		<template #header><fa :icon="faTasks"/>Queue</template>
+		<template #header><fa icon="tasks"/>Queue</template>
 
 		<div class="mntrproz">
 			<div>
@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import define from '../../define-widget';
-import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import ApexCharts from 'apexcharts';
 
 export default define({
@@ -35,7 +34,6 @@ export default define({
 			stats: [],
 			inChart: null,
 			outChart: null,
-			faTasks
 		};
 	},
 

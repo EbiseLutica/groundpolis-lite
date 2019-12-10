@@ -3,7 +3,6 @@
 	<ui-container :show-header="!props.compact">
 		<template #header><fa icon="chart-bar"/>{{ $t('activity') }}</template>
 		<div :class="$style.body">
-			<x-activity :user="$store.state.i"/>
 		</div>
 	</ui-container>
 </div>
@@ -21,7 +20,6 @@ export default define({
 }).extend({
 	i18n: i18n(),
 	components: {
-		XActivity: () => import('../../../common/views/components/activity.vue').then(m => m.default)
 	},
 	methods: {
 		func() {

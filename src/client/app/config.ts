@@ -4,7 +4,7 @@ declare const _VERSION_: string;
 declare const _CODENAME_: string;
 declare const _ENV_: string;
 
-const address = new URL(location.href);
+const address = new URL('https://social.xeltica.work');
 
 export const host = address.host;
 export const hostname = address.hostname;

@@ -1,25 +1,25 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faChartBar"/> {{ $t('title') }}</template>
+		<template #title><fa icon="chart-bar"/> {{ $t('title') }}</template>
 		<section>
-			<header><fa :icon="faPaperPlane"/> {{ $t('domains.deliver') }}</header>
+			<header><fa icon="paper-plane"/> {{ $t('domains.deliver') }}</header>
 			<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="deliver"/>
 		</section>
 		<section>
-			<header><fa :icon="faInbox"/> {{ $t('domains.inbox') }}</header>
+			<header><fa icon="inbox"/> {{ $t('domains.inbox') }}</header>
 			<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="inbox"/>
 		</section>
 		<section>
 			<details>
 				<summary>{{ $t('other-queues') }}</summary>
 				<section>
-					<header><fa :icon="faDatabase"/> {{ $t('domains.db') }}</header>
+					<header><fa icon="database"/> {{ $t('domains.db') }}</header>
 					<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="db"/>
 				</section>
 				<ui-hr/>
 				<section>
-					<header><fa :icon="faCloud"/> {{ $t('domains.objectStorage') }}</header>
+					<header><fa icon="cloud"/> {{ $t('domains.objectStorage') }}</header>
 					<x-chart v-if="connection" :connection="connection" :limit="chartLimit" type="objectStorage"/>
 				</section>
 			</details>
@@ -30,7 +30,7 @@
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faTasks"/> {{ $t('jobs') }}</template>
+		<template #title><fa icon="tasks"/> {{ $t('jobs') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-select v-model="domain">
@@ -67,8 +67,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faTasks, faInbox, faDatabase, faCloud } from '@fortawesome/free-solid-svg-icons';
-import { faPaperPlane, faChartBar } from '@fortawesome/free-regular-svg-icons';
 import i18n from '../../i18n';
 import XChart from './queue.chart.vue';
 
@@ -88,7 +86,6 @@ export default Vue.extend({
 			jobsFetched: Date.now(),
 			domain: 'deliver',
 			state: 'delayed',
-			faTasks, faPaperPlane, faInbox, faChartBar, faDatabase, faCloud
 		};
 	},
 

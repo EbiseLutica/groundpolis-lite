@@ -13,8 +13,8 @@
 			<span class="is-moderator" v-if="user.isModerator">moderator</span>
 			<span class="is-verified" v-if="user.isVerified" :title="$t('@.verified-user')"><fa icon="star"/></span>
 			<span class="is-premium" v-if="user.isPremium" :title="$t('@.premium-user')"><fa icon="crown"/></span>
-			<span class="is-silenced" v-if="user.isSilenced" :title="$t('@.silenced-user')"><fa :icon="faMicrophoneSlash"/></span>
-			<span class="is-suspended" v-if="user.isSuspended" :title="$t('@.suspended-user')"><fa :icon="faSnowflake"/></span>
+			<span class="is-silenced" v-if="user.isSilenced" :title="$t('@.silenced-user')"><fa icon="microphone-slash"/></span>
+			<span class="is-suspended" v-if="user.isSuspended" :title="$t('@.suspended-user')"><fa icon="snowflake"/></span>
 		</header>
 		<div>
 			<span>{{ $t('users.updatedAt') }}: <mk-time :time="user.updatedAt" mode="detail"/></span>
@@ -29,17 +29,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import { faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
-import { faSnowflake } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/users.vue'),
 	props: ['user', 'click'],
-	data() {
-		return {
-			faSnowflake, faMicrophoneSlash
-		};
-	},
 });
 </script>
 

@@ -23,7 +23,7 @@
 						<router-link :to="`/@${$store.state.i.username}/followers`" @click.native="$parent.isDrawerOpening = false"><b>{{ $store.state.i.followersCount }}</b>{{ $t('followers') }}</router-link>
 					</p>
 					<button class="toggle-user-switcher" @click="isUserSwitcher = !isUserSwitcher">
-						<fa :icon="isUserSwitcher ? faChevronUp : faChevronDown"/>
+						<fa :icon="isUserSwitcher ? 'chevron-up' : 'chevron-down'"/>
 					</button>
 				</div>
 				<div v-if="!isUserSwitcher">
@@ -31,23 +31,16 @@
 						<ul>
 							<li v-if="$store.getters.isSignedIn && ($store.state.i.isLocked || $store.state.i.carefulBot)"><router-link to="/i/follow-requests" :data-active="$route.name == 'follow-requests'"><i><fa :icon="['far', 'envelope']" fixed-width/></i>{{ $t('follow-requests') }}<i v-if="$store.getters.isSignedIn && $store.state.i.pendingReceivedFollowRequestsCount" class="circle"><fa icon="circle"/></i><i><fa icon="angle-right"/></i></router-link></li>
 							<li><router-link to="/i/lists" :data-active="$route.name == 'user-lists'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="list" fixed-width/></i>{{ $t('user-lists') }}<i><fa icon="angle-right"/></i></router-link></li>
-							<li><router-link to="/i/groups" :data-active="$route.name == 'user-groups'" @click.native="$parent.isDrawerOpening = false"><i><fa :icon="faUsers" fixed-width/></i>{{ $t('user-groups') }}<i><fa icon="angle-right"/></i></router-link></li>
 							<li><router-link to="/i/favorites" :data-active="$route.name == 'favorites'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="star" fixed-width/></i>{{ $t('@.favorites') }}<i><fa icon="angle-right"/></i></router-link></li>
 						</ul>
 						<ul>
 							<li><router-link to="/i/drive" :data-active="$route.name == 'drive'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="cloud" fixed-width/></i>{{ $t('@.drive') }}<i><fa icon="angle-right"/></i></router-link></li>
 							<li><router-link to="/i/widgets" :data-active="$route.name == 'widgets'" @click.native="$parent.isDrawerOpening = false"><i><fa :icon="['far', 'calendar-alt']" fixed-width/></i>{{ $t('widgets') }}<i><fa icon="angle-right"/></i></router-link></li>
-							<li><router-link to="/games/reversi" :data-active="$route.name == 'reversi'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="gamepad" fixed-width/></i>{{ $t('game') }}<i v-if="hasGameInvitation" class="circle"><fa icon="circle"/></i><i><fa icon="angle-right"/></i></router-link></li>
-							<li><router-link to="/i/pages" :data-active="$route.name == 'pages'" @click.native="$parent.isDrawerOpening = false"><i><fa :icon="faStickyNote" fixed-width/></i>{{ $t('@.pages') }}<i><fa icon="angle-right"/></i></router-link></li>
 						</ul>
 						<ul>
 							<li><router-link to="/i/settings" :data-active="$route.name == 'settings'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="cog" fixed-width/></i>{{ $t('@.settings') }}<i><fa icon="angle-right"/></i></router-link></li>
 							<li v-if="$store.getters.isSignedIn && ($store.state.i.isAdmin || $store.state.i.isModerator)"><a href="/admin" @click="$parent.isDrawerOpening = false" @touchstart="$parent.isDrawerOpening = false"><i><fa icon="terminal" fixed-width/></i><span>{{ $t('admin') }}</span><i><fa icon="angle-right"/></i></a></li>
 							<li><a :href="aboutUrl" target=”_blank” rel=”noopener” @click="$parent.isDrawerOpening = false" @touchstart="$parent.isDrawerOpening = false"><i><fa icon="question-circle" fixed-width/></i><span>{{ $t('about') }}</span><i><fa icon="angle-right"/></i></a></li>
-						</ul>
-						<ul>
-							<li @click="toggleDeckMode"><p><i><fa :icon="$store.state.device.inDeckMode ? faHome : faColumns" fixed-width/></i><span>{{ $store.state.device.inDeckMode ? $t('@.home') : $t('@.deck') }}</span></p></li>
-							<li @click="dark"><p><i><fa :icon="$store.state.device.darkmode ? faSun : faMoon" fixed-width/></i><span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span></p></li>
 						</ul>
 					</div>
 					<div class="announcements" v-if="announcements && announcements.length > 0">
@@ -74,8 +67,6 @@
 import Vue from 'vue';
 import i18n from '../../../i18n';
 import { lang } from '../../../config';
-import { faNewspaper, faHashtag, faHome, faColumns, faUsers, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { faMoon, faSun, faStickyNote, faBell } from '@fortawesome/free-regular-svg-icons';
 import { search } from '../../../common/scripts/search';
 import { version, codename } from '../../../config';
 
@@ -90,14 +81,12 @@ export default Vue.extend({
 
 	data() {
 		return {
-			hasGameInvitation: false,
 			connection: null,
 			aboutUrl: `/docs/${lang}/about`,
 			announcements: [],
 			searching: false,
 			isUserSwitcher: false,
 			version, codename,
-			faNewspaper, faHashtag, faMoon, faSun, faHome, faColumns, faStickyNote, faUsers, faBell, faChevronUp, faChevronDown
 		};
 	},
 
@@ -105,10 +94,6 @@ export default Vue.extend({
 		hasUnreadNotification(): boolean {
 			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadNotification;
 		},
-
-		hasUnreadMessagingMessage(): boolean {
-			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage;
-		}
 	},
 
 	mounted() {
@@ -118,9 +103,6 @@ export default Vue.extend({
 
 		if (this.$store.getters.isSignedIn) {
 			this.connection = this.$root.stream.useSharedConnection('main');
-
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 
@@ -147,24 +129,11 @@ export default Vue.extend({
 			});
 		},
 
-		onReversiInvited() {
-			this.hasGameInvitation = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitation = false;
-		},
-
 		dark() {
 			this.$store.commit('device/set', {
 				key: 'darkmode',
 				value: !this.$store.state.device.darkmode
 			});
-		},
-
-		toggleDeckMode() {
-			this.$store.commit('device/set', { key: 'deckMode', value: !this.$store.state.device.inDeckMode });
-			location.replace('/');
 		},
 	}
 });

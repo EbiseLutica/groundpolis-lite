@@ -22,119 +22,28 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { faGamepad, faComments, faQuestionCircle, faCloud, faStickyNote, faDoorOpen, faCrown, faMusic, faSlidersH, faBug, faBook } from '@fortawesome/free-solid-svg-icons';
-import MkGameWindow from './game-window.vue';
-import MkMessagingWindow from './messaging-window.vue';
 import MkDriveWindow from './drive-window.vue';
 import contains from '../../../common/scripts/contains';
-import { url, lang } from '../../../config';
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.header.apps.vue'),
 	data() {
 		return {
-			hasGameInvitations: false,
 			connection: null,
 			isOpen: false,
 			items: [
 				{
-					text: this.$t('talk'),
-					icon: faComments,
-					callback: () => this.$root.new(MkMessagingWindow),
-					badge: () => this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage,
-				},
-				{
 					text: this.$t('drive'),
-					icon: faCloud,
+					icon: 'cloud',
 					callback: () => this.$root.new(MkDriveWindow),
-					badge: () => false,
-				},
-				{
-					text: this.$t('page'),
-					icon: faStickyNote,
-					callback: () => this.$router.push('/i/pages'),
-					badge: () => false,
-				},
-				{
-					text: this.$t('room'),
-					icon: faDoorOpen,
-					callback: () => this.$router.push(`/@${this.$store.state.i.username}/room`),
-					badge: () => false,
-				},
-				{
-					text: this.$t('reversi'),
-					icon: faGamepad,
-					callback: () => this.$root.new(MkGameWindow),
-					badge: () => this.hasGameInvitations
-				},
-				// {
-				// 	text: this.$t('mml'),
-				// 	icon: faMusic,
-				// 	badge: () => false,
-				// 	disabled: true,
-				// },
-				// {
-				// 	text: this.$t('bug-tracker'),
-				// 	icon: faBug,
-				// 	badge: () => false,
-				// 	disabled: true,
-				// },
-				// {
-				// 	text: this.$t('calendar'),
-				// 	icon: faCalendar,
-				// 	isCalendar: true,
-				// 	badge: () => false,
-				// 	disabled: true,
-				// },
-				// {
-				// 	text: this.$t('wiki'),
-				// 	icon: faBook,
-				// 	badge: () => false,
-				// 	disabled: true,
-				// },
-				{
-					text: this.$t('customize'),
-					icon: faSlidersH,
-					callback: () => this.customize(),
-					badge: () => false,
-				},
-				{
-					text: this.$t('help'),
-					icon: faQuestionCircle,
-					callback: () => window.open(`${url}/docs/${lang}/about`, '_blank'),
 					badge: () => false,
 				},
 			],
 		};
 	},
-	computed: {
-		month() {
-			return [
-				'JAN',
-				'FEB',
-				'MAR',
-				'APR',
-				'MAY',
-				'JUN',
-				'JUL',
-				'AUG',
-				'SEP',
-				'OCT',
-				'NOV',
-				'DEC',
-			][new Date().getMonth()];
-		},
-		day() {
-			return new Date().getDate();
-		}
-	},
 	mounted() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection = this.$root.stream.useSharedConnection('main');
-
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 	beforeDestroy() {
@@ -145,9 +54,6 @@ export default Vue.extend({
 	methods: {
 		toggle() {
 			this.isOpen ? this.close() : this.open();
-		},
-		customize() {
-			location.href = '/?customize';
 		},
 		open() {
 			this.isOpen = true;
@@ -170,22 +76,13 @@ export default Vue.extend({
 			if (callback)
 				callback();
 		},
-		onReversiInvited() {
-			this.hasGameInvitations = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitations = false;
-		},
 	},
 });
 </script>
 
 <style lang="stylus" scoped>
-.zoom-in-top-enter-active,
-.zoom-in-top-leave-active {
+.zoom-in-top-enter-active, .zoom-in-top-leave-active
 	transform-origin: center -16px;
-}
 
 a 
 	*

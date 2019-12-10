@@ -16,29 +16,6 @@
 		<p v-if="meta && meta.enableGithubIntegration"  style="margin: 8px 0;"><a :href="`${apiUrl}/signin/github`"><fa :icon="['fab', 'github']"/> {{ $t('signin-with-github') }}</a></p>
 		<p v-if="meta && meta.enableDiscordIntegration" style="margin: 8px 0;"><a :href="`${apiUrl}/signin/discord`"><fa :icon="['fab', 'discord']"/> {{ $t('signin-with-discord') /* TODO: Make these layouts better */ }}</a></p>
 	</div>
-	<div class="2fa-signin" v-if="totpLogin" :class="{ securityKeys: user && user.securityKeys }">
-		<div v-if="user && user.securityKeys" class="twofa-group tap-group">
-			<p>{{ $t('tap-key') }}</p>
-			<ui-button @click="queryKey" v-if="!queryingKey">
-				{{ $t('@.error.retry') }}
-			</ui-button>
-		</div>
-		<div class="or-hr" v-if="user && user.securityKeys">
-			<p class="or-msg">{{ $t('or') }}</p>
-		</div>
-		<div class="twofa-group totp-group">
-			<p style="margin-bottom:0;">{{ $t('enter-2fa-code') }}</p>
-			<ui-input v-model="password" type="password" :with-password-toggle="true" v-if="user && user.usePasswordLessLogin" required>
-				<span>{{ $t('password') }}</span>
-				<template #prefix><fa icon="lock"/></template>
-			</ui-input>
-			<ui-input v-model="token" type="text" pattern="^[0-9]{6}$" autocomplete="off" spellcheck="false" required>
-				<span>{{ $t('@.2fa') }}</span>
-				<template #prefix><fa icon="gavel"/></template>
-			</ui-input>
-			<ui-button type="submit" :disabled="signing">{{ signing ? $t('signing-in') : $t('@.signin') }}</ui-button>
-		</div>
-	</div>
 </form>
 </template>
 
@@ -47,7 +24,6 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import { apiUrl, host } from '../../../config';
 import { toUnicode } from 'punycode';
-import { hexifyAB } from '../../scripts/2fa';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/signin.vue'),

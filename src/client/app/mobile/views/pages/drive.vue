@@ -26,8 +26,6 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import Progress from '../../../common/scripts/loading';
 import XMenu from '../../../common/views/components/menu.vue';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/pages/drive.vue'),
@@ -114,7 +112,7 @@ export default Vue.extend({
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.url-upload'),
-					icon: faCloudUploadAlt,
+					icon: 'cloud-upload-alt',
 					action: this.$refs.browser.urlUpload
 				}, {
 					type: 'item',
@@ -134,7 +132,7 @@ export default Vue.extend({
 				}, {
 					type: 'item',
 					text: this.$t('contextmenu.delete-folder'),
-					icon: faTrashAlt,
+					icon: ['far', 'trash-alt'],
 					action: this.$refs.browser.deleteFolder
 				}] : [])],
 				source: this.$refs.ui.$refs.fab,

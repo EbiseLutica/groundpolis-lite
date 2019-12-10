@@ -26,7 +26,7 @@
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faGrin"/> {{ $t('emojis.title') }}</template>
+		<template #title><fa icon="grin"/> {{ $t('emojis.title') }}</template>
 		<section v-for="emoji in emojis" :key="emoji.name" class="oryfrbft">
 			<div>
 				<img :src="emoji.url" :alt="emoji.name" style="width: 64px;"/>
@@ -60,7 +60,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import { faGrin } from '@fortawesome/free-regular-svg-icons';
 import { unique } from '../../../../prelude/array';
 
 export default Vue.extend({
@@ -72,7 +71,6 @@ export default Vue.extend({
 			url: '',
 			aliases: '',
 			emojis: [],
-			faGrin
 		};
 	},
 

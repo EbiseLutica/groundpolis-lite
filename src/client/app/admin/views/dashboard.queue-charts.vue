@@ -2,14 +2,14 @@
 <div class="mzxlfysy">
 	<div>
 		<header>
-			<span><fa :icon="faInbox"/> In</span>
+			<span><fa icon="inbox"/> In</span>
 			<span v-if="latestStats">{{ latestStats.inbox.activeSincePrevTick | number }} / {{ latestStats.inbox.delayed | number }}</span>
 		</header>
 		<div ref="in"></div>
 	</div>
 	<div>
 		<header>
-			<span><fa :icon="faPaperPlane"/> Out</span>
+			<span><fa icon="paper-plane"/> Out</span>
 			<span v-if="latestStats">{{ latestStats.deliver.activeSincePrevTick | number }} / {{ latestStats.deliver.delayed | number }}</span>
 		</header>
 		<div ref="out"></div>
@@ -19,8 +19,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faInbox } from '@fortawesome/free-solid-svg-icons';
-import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import ApexCharts from 'apexcharts';
 
 const limit = 150;
@@ -31,7 +29,6 @@ export default Vue.extend({
 			stats: [],
 			inChart: null,
 			outChart: null,
-			faInbox, faPaperPlane
 		};
 	},
 

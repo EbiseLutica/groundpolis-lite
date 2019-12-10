@@ -5,7 +5,7 @@
 			<x-file-thumbnail :data-id="file.id" class="thumbnail" :file="file" fit="cover"/>
 			<img class="remove" @click.stop="detachMedia(file.id)" src="/assets/desktop/remove.png" :title="$t('attach-cancel')" alt=""/>
 			<div class="sensitive" v-if="file.isSensitive">
-				<fa class="icon" :icon="faExclamationTriangle"/>
+				<fa class="icon" icon="exclamation-triangle"/>
 			</div>
 		</div>
 	</x-draggable>
@@ -18,8 +18,6 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import * as XDraggable from 'vuedraggable';
 import XMenu from '../../../common/views/components/menu.vue';
-import { faTimesCircle, faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import XFileThumbnail from './drive-file-thumbnail.vue'
 
 export default Vue.extend({
@@ -41,12 +39,6 @@ export default Vue.extend({
 		}
 	},
 
-	data() {
-		return {
-			faExclamationTriangle
-		};
-	},
-
 	methods: {
 		detachMedia(id) {
 			if (this.detachMediaFn) this.detachMediaFn(id)
@@ -65,12 +57,12 @@ export default Vue.extend({
 				items: [{
 					type: 'item',
 					text: file.isSensitive ? this.$t('unmark-as-sensitive') : this.$t('mark-as-sensitive'),
-					icon: file.isSensitive ? faEyeSlash : faEye,
+					icon: file.isSensitive ? [ 'far', 'eye-slash' ] : 'eye',
 					action: () => { this.toggleSensitive(file) }
 				}, {
 					type: 'item',
 					text: this.$t('attach-cancel'),
-					icon: faTimesCircle,
+					icon: 'times-circle',
 					action: () => { this.detachMedia(file.id) }
 				}],
 				source: ev.currentTarget || ev.target

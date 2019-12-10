@@ -4,7 +4,6 @@ import createPersistedState from 'vuex-persistedstate';
 import * as nestedProperty from 'nested-property';
 
 import MiOS from './mios';
-import { erase } from '../../prelude/array';
 import getNoteSummary from '../../misc/get-note-summary';
 
 const defaultSettings = {
@@ -14,7 +13,6 @@ const defaultSettings = {
 	remainDeletedNote: false,
 	showPostFormOnTopOfTl: false,
 	suggestRecentHashtags: true,
-	showClockOnHeader: true,
 	circleIcons: true,
 	contrastedAcct: true,
 	showFullAcct: false,
@@ -26,7 +24,6 @@ const defaultSettings = {
 	loadRemoteMedia: true,
 	disableViaMobile: false,
 	memo: null,
-	iLikeSushi: false,
 	rememberNoteVisibility: false,
 	useVisibilitySwitch: false,
 	defaultNoteVisibility: 'public',
@@ -37,12 +34,9 @@ const defaultSettings = {
 	wallpaper: null,
 	webSearchEngine: 'https://www.google.com/?#q={{query}}',
 	mutedWords: [],
-	gamesReversiShowBoardLabels: false,
-	gamesReversiUseAvatarStones: true,
 	disableAnimatedMfm: false,
 	homeProfiles: {},
 	mobileHomeProfiles: {},
-	deckProfiles: {},
 	uploadFolder: null,
 	pastedFileName: 'yyyy-MM-dd HH-mm-ss [{{number}}]',
 	pasteDialog: false,
@@ -52,15 +46,11 @@ const defaultSettings = {
 const defaultDeviceSettings = {
 	homeProfile: 'Default',
 	mobileHomeProfile: 'Default',
-	deckProfile: 'Default',
-	deckMode: false,
-	deckColumnAlign: 'center',
-	deckColumnWidth: 'normal',
 	useShadow: false,
 	roundedCorners: true,
 	reduceMotion: false,
 	darkmode: true,
-	darkTheme: 'bb5a8287-a072-4b0a-8ae5-ea2a0d33f4f2',
+	darkTheme: 'dark',
 	lightTheme: 'light',
 	lineWidth: 1,
 	fontSize: 0,
@@ -86,8 +76,6 @@ const defaultDeviceSettings = {
 	expandUsersActivity: true,
 	showPostPreview: true,
 	enableMobileQuickNotificationView: false,
-	roomGraphicsQuality: 'medium',
-	roomUseOrthographicCamera: true,
 	activeEmojiCategoryName: undefined,
 	recentEmojis: [],
 };
@@ -110,8 +98,6 @@ export default (os: MiOS) => new Vuex.Store({
 		home: state => state.settings.homeProfiles[state.device.homeProfile],
 
 		mobileHome: state => state.settings.mobileHomeProfiles[state.device.mobileHomeProfile],
-
-		deck: state => state.settings.deckProfiles[state.device.deckProfile],
 	},
 
 	mutations: {
@@ -146,11 +132,6 @@ export default (os: MiOS) => new Vuex.Store({
 		setHome(state, data) {
 			Vue.set(state.settings.homeProfiles, state.device.homeProfile, data);
 			os.store.dispatch('settings/updateHomeProfile');
-		},
-
-		setDeck(state, data) {
-			Vue.set(state.settings.deckProfiles, state.device.deckProfile, data);
-			os.store.dispatch('settings/updateDeckProfile');
 		},
 
 		addHomeWidget(state, widget) {
@@ -198,160 +179,6 @@ export default (os: MiOS) => new Vuex.Store({
 			Vue.set('state.settings.mobileHomeProfiles', state.device.mobileHomeProfile, state.settings.mobileHomeProfiles[state.device.mobileHomeProfile].filter(w => w.id != widget.id));
 			os.store.dispatch('settings/updateMobileHomeProfile');
 		},
-
-		addDeckColumn(state, column) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			if (column.name == undefined) column.name = null;
-			deck.columns.push(column);
-			deck.layout.push([column.id]);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		removeDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			deck.columns = deck.columns.filter(c => c.id != id);
-			deck.layout = deck.layout.map(ids => erase(id, ids));
-			deck.layout = deck.layout.filter(ids => ids.length > 0);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		swapDeckColumn(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const a = x.a;
-			const b = x.b;
-			const aX = deck.layout.findIndex(ids => ids.indexOf(a) != -1);
-			const aY = deck.layout[aX].findIndex(id => id == a);
-			const bX = deck.layout.findIndex(ids => ids.indexOf(b) != -1);
-			const bY = deck.layout[bX].findIndex(id => id == b);
-			deck.layout[aX][aY] = b;
-			deck.layout[bX][bY] = a;
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		swapLeftDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			deck.layout.some((ids, i) => {
-				if (ids.indexOf(id) != -1) {
-					const left = deck.layout[i - 1];
-					if (left) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//state.deck.layout[i - 1] = state.deck.layout[i];
-						//state.deck.layout[i] = left;
-						deck.layout.splice(i - 1, 1, deck.layout[i]);
-						deck.layout.splice(i, 1, left);
-					}
-					return true;
-				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		swapRightDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			deck.layout.some((ids, i) => {
-				if (ids.indexOf(id) != -1) {
-					const right = deck.layout[i + 1];
-					if (right) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//state.deck.layout[i + 1] = state.deck.layout[i];
-						//state.deck.layout[i] = right;
-						deck.layout.splice(i + 1, 1, deck.layout[i]);
-						deck.layout.splice(i, 1, right);
-					}
-					return true;
-				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		swapUpDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const ids = deck.layout.find(ids => ids.indexOf(id) != -1);
-			ids.some((x, i) => {
-				if (x == id) {
-					const up = ids[i - 1];
-					if (up) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//ids[i - 1] = id;
-						//ids[i] = up;
-						ids.splice(i - 1, 1, id);
-						ids.splice(i, 1, up);
-					}
-					return true;
-				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		swapDownDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const ids = deck.layout.find(ids => ids.indexOf(id) != -1);
-			ids.some((x, i) => {
-				if (x == id) {
-					const down = ids[i + 1];
-					if (down) {
-						// https://vuejs.org/v2/guide/list.html#Caveats
-						//ids[i + 1] = id;
-						//ids[i] = down;
-						ids.splice(i + 1, 1, id);
-						ids.splice(i, 1, down);
-					}
-					return true;
-				}
-			});
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		stackLeftDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const i = deck.layout.findIndex(ids => ids.indexOf(id) != -1);
-			deck.layout = deck.layout.map(ids => erase(id, ids));
-			const left = deck.layout[i - 1];
-			if (left) deck.layout[i - 1].push(id);
-			deck.layout = deck.layout.filter(ids => ids.length > 0);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		popRightDeckColumn(state, id) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const i = deck.layout.findIndex(ids => ids.indexOf(id) != -1);
-			deck.layout = deck.layout.map(ids => erase(id, ids));
-			deck.layout.splice(i + 1, 0, [id]);
-			deck.layout = deck.layout.filter(ids => ids.length > 0);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		addDeckWidget(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column.widgets.unshift(x.widget);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		removeDeckWidget(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column.widgets = column.widgets.filter(w => w.id != x.widget.id);
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		renameDeckColumn(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			const column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column.name = x.name;
-			os.store.dispatch('settings/updateDeckProfile');
-		},
-
-		updateDeckColumn(state, x) {
-			const deck = state.settings.deckProfiles[state.device.deckProfile];
-			let column = deck.columns.find(c => c.id == x.id);
-			if (column == null) return;
-			column = x;
-			os.store.dispatch('settings/updateDeckProfile');
-		}
 	},
 
 	actions: {
@@ -451,18 +278,6 @@ export default (os: MiOS) => new Vuex.Store({
 					});
 					os.api('i/update-client-setting', {
 						name: 'mobileHomeProfiles',
-						value: profiles
-					});
-				},
-
-				updateDeckProfile(ctx) {
-					const profiles = ctx.state.deckProfiles;
-					ctx.commit('set', {
-						key: 'deckProfiles',
-						value: profiles
-					});
-					os.api('i/update-client-setting', {
-						name: 'deckProfiles',
 						value: profiles
 					});
 				},

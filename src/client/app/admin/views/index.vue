@@ -20,19 +20,19 @@
 		<ul v-if="isModerator">
 			<li><router-link to="/dashboard" active-class="active"><fa icon="home" fixed-width/>{{ $t('dashboard') }}</router-link></li>
 			<li><router-link to="/instance" active-class="active"><fa icon="cog" fixed-width/>{{ $t('instance') }}</router-link></li>
-			<li><router-link to="/queue" active-class="active"><fa :icon="faTasks" fixed-width/>{{ $t('queue') }}</router-link></li>
-			<li><router-link to="/logs" active-class="active"><fa :icon="faStream" fixed-width/>{{ $t('logs') }}</router-link></li>
-			<li><router-link to="/db" active-class="active"><fa :icon="faDatabase" fixed-width/>{{ $t('db') }}</router-link></li>
-			<li><router-link to="/moderators" active-class="active"><fa :icon="faHeadset" fixed-width/>{{ $t('moderators') }}</router-link></li>
+			<li><router-link to="/queue" active-class="active"><fa icon="tasks" fixed-width/>{{ $t('queue') }}</router-link></li>
+			<li><router-link to="/logs" active-class="active"><fa con="stream" fixed-width/>{{ $t('logs') }}</router-link></li>
+			<li><router-link to="/db" active-class="active"><fa icon="database" fixed-width/>{{ $t('db') }}</router-link></li>
+			<li><router-link to="/moderators" active-class="active"><fa icon="headset" fixed-width/>{{ $t('moderators') }}</router-link></li>
 			<li><router-link to="/users" active-class="active"><fa icon="users" fixed-width/>{{ $t('users') }}</router-link></li>
 			<li><router-link to="/drive" active-class="active"><fa icon="cloud" fixed-width/>{{ $t('@.drive') }}</router-link></li>
-			<li><router-link to="/federation" active-class="active"><fa :icon="faGlobe" fixed-width/>{{ $t('federation') }}</router-link></li>
-			<li><router-link to="/emoji" active-class="active"><fa :icon="faGrin" fixed-width/>{{ $t('emoji') }}</router-link></li>
+			<li><router-link to="/federation" active-class="active"><fa icon="globe" fixed-width/>{{ $t('federation') }}</router-link></li>
+			<li><router-link to="/emoji" active-class="active"><fa icon="grin" fixed-width/>{{ $t('emoji') }}</router-link></li>
 			<li><router-link to="/announcements" active-class="active"><fa icon="broadcast-tower" fixed-width/>{{ $t('announcements') }}</router-link></li>
-			<li><router-link to="/abuse" active-class="active"><fa :icon="faExclamationCircle" fixed-width/>{{ $t('abuse') }}</router-link></li>
+			<li><router-link to="/abuse" active-class="active"><fa icon="exclamation-circle" fixed-width/>{{ $t('abuse') }}</router-link></li>
 		</ul>
 		<div class="back-to-misskey">
-			<a href="/"><fa :icon="faArrowLeft"/> {{ $t('back-to-misskey') }}</a>
+			<a href="/"><fa icon="arrow-left"/> {{ $t('back-to-misskey') }}</a>
 		</div>
 		<div class="version">
 			<small>Groundpolis {{ version }}</small>
@@ -80,9 +80,6 @@ import XDrive from './drive.vue';
 import XAbuse from './abuse.vue';
 import XFederation from './federation.vue';
 
-import { faHeadset, faArrowLeft, faGlobe, faExclamationCircle, faTasks, faStream, faDatabase } from '@fortawesome/free-solid-svg-icons';
-import { faGrin } from '@fortawesome/free-regular-svg-icons';
-
 // Detect the user agent
 const ua = navigator.userAgent.toLowerCase();
 const isMobile = /mobile|iphone|ipad|android/.test(ua);
@@ -111,14 +108,6 @@ export default Vue.extend({
 			version,
 			isMobile,
 			navOpend: !isMobile,
-			faGrin,
-			faArrowLeft,
-			faHeadset,
-			faGlobe,
-			faExclamationCircle,
-			faTasks,
-			faStream,
-			faDatabase,
 		};
 	},
 	computed: {

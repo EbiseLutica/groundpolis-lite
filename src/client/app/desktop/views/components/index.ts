@@ -13,7 +13,6 @@ import renoteForm from './renote-form.vue';
 import notePreview from './note-preview.vue';
 import noteDetail from './note-detail.vue';
 import calendar from './calendar.vue';
-import activity from './activity.vue';
 import userListTimeline from './user-list-timeline.vue';
 import uiContainer from './ui-container.vue';
 
@@ -30,6 +29,5 @@ Vue.component('mk-renote-form', renoteForm);
 Vue.component('mk-note-preview', notePreview);
 Vue.component('mk-note-detail', noteDetail);
 Vue.component('mk-calendar', calendar);
-Vue.component('mk-activity', activity);
 Vue.component('mk-user-list-timeline', userListTimeline);
 Vue.component('ui-container', uiContainer);

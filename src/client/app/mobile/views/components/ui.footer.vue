@@ -14,10 +14,6 @@
 					<fa :icon="['far', 'bell']"/>
 					<i v-if="$parent.hasUnreadNotification" class="circle"><fa icon="circle"/></i>
 				</router-link>
-				<router-link :class="{ active: $route.name == 'messaging' }" to="/i/messaging">
-					<fa :icon="['far', 'comments']"/>
-					<i v-if="$parent.hasUnreadMessagingMessage" class="circle"><fa icon="circle"/></i>
-				</router-link>
 			</div>
 		</div>
 	</div>
@@ -43,10 +39,6 @@ export default Vue.extend({
 		hasUnreadNotification(): boolean {
 			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadNotification;
 		},
-
-		hasUnreadMessagingMessage(): boolean {
-			return this.$store.getters.isSignedIn && this.$store.state.i.hasUnreadMessagingMessage;
-		}
 	}
 
 	mounted() {

@@ -1,18 +1,18 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faTerminal"/> {{ $t('operation') }}</template>
+		<template #title><fa icon="terminal"/> {{ $t('operation') }}</template>
 		<section class="fit-top">
 			<ui-input class="target" v-model="target" type="text" @enter="showUser">
 				<span>{{ $t('username-or-userid') }}</span>
 			</ui-input>
-			<ui-button @click="showUser"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
+			<ui-button @click="showUser"><fa icon="search"/> {{ $t('lookup') }}</ui-button>
 
 			<div ref="user" class="user" v-if="user" :key="user.id">
 				<x-user :user="user"/>
 				<div class="actions">
-					<ui-button v-if="user.host != null" @click="updateRemoteUser"><fa :icon="faSync"/> {{ $t('update-remote-user') }}</ui-button>
-					<ui-button @click="resetPassword"><fa :icon="faKey"/> {{ $t('reset-password') }}</ui-button>
+					<ui-button v-if="user.host != null" @click="updateRemoteUser"><fa icon="sync"/> {{ $t('update-remote-user') }}</ui-button>
+					<ui-button @click="resetPassword"><fa icon="key"/> {{ $t('reset-password') }}</ui-button>
 					<ui-horizon-group v-if="user.host == null" >
 						<ui-button :disabled="changing" @click="markAsAdmin">{{ $t('mark-admin') }}</ui-button>
 						<ui-button :disabled="changing" @click="unmarkAsAdmin">{{ $t('unmark-admin') }}</ui-button>
@@ -22,18 +22,18 @@
 						<ui-button @click="unsetPremium" :disabled="changing">{{ $t('unset-premium') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="verifyUser" :disabled="verifying"><fa :icon="faCertificate"/> {{ $t('verify') }}</ui-button>
+						<ui-button @click="verifyUser" :disabled="verifying"><fa icon="certificate"/> {{ $t('verify') }}</ui-button>
 						<ui-button @click="unverifyUser" :disabled="unverifying">{{ $t('unverify') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="silenceUser"><fa :icon="faMicrophoneSlash"/> {{ $t('make-silence') }}</ui-button>
+						<ui-button @click="silenceUser"><fa icon="microphone-slash"/> {{ $t('make-silence') }}</ui-button>
 						<ui-button @click="unsilenceUser">{{ $t('unmake-silence') }}</ui-button>
 					</ui-horizon-group>
 					<ui-horizon-group>
-						<ui-button @click="suspendUser" :disabled="suspending"><fa :icon="faSnowflake"/> {{ $t('suspend') }}</ui-button>
+						<ui-button @click="suspendUser" :disabled="suspending"><fa icon="snowflake"/> {{ $t('suspend') }}</ui-button>
 						<ui-button @click="unsuspendUser" :disabled="unsuspending">{{ $t('unsuspend') }}</ui-button>
 					</ui-horizon-group>
-					<ui-button @click="deleteAllFiles"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
+					<ui-button @click="deleteAllFiles"><fa icon="trash-alt"/> {{ $t('delete-all-files') }}</ui-button>
 					<ui-textarea v-if="user" :value="user | json5" readonly tall style="margin-top:16px;"></ui-textarea>
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faUsers"/> {{ $t('users.title') }}</template>
+		<template #title><fa icon="users"/> {{ $t('users.title') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-select v-model="sort">
@@ -89,8 +89,6 @@
 import Vue from 'vue';
 import i18n from '../../i18n';
 import parseAcct from "../../../../misc/acct/parse";
-import { faCertificate, faUsers, faTerminal, faSearch, faKey, faSync, faMicrophoneSlash } from '@fortawesome/free-solid-svg-icons';
-import { faSnowflake, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import XUser from './users.user.vue';
 
 export default Vue.extend({
@@ -116,7 +114,6 @@ export default Vue.extend({
 			users: [],
 			existMore: false,
 			changing: false,
-			faTerminal, faCertificate, faUsers, faSnowflake, faSearch, faKey, faSync, faMicrophoneSlash, faTrashAlt
 		};
 	},
 

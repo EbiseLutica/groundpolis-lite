@@ -1,7 +1,7 @@
 import $ from 'cafy';
 import { EntityRepository, Repository, In, Not } from 'typeorm';
 import { User, ILocalUser, IRemoteUser } from '../entities/user';
-import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, MessagingMessages, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys, UserGroupJoinings, Pages } from '..';
+import { Emojis, Notes, NoteUnreads, FollowRequests, Notifications, UserNotePinings, Followings, Blockings, Mutings, UserProfiles, UserSecurityKeys } from '..';
 import { ensure } from '../../prelude/ensure';
 import config from '../../config';
 import { SchemaType } from '../../misc/schema';
@@ -53,35 +53,6 @@ export class UserRepository extends Repository<User> {
 			isBlocked: fromBlocked != null,
 			isMuted: mute != null
 		};
-	}
-
-	public async getHasUnreadMessagingMessage(userId: User['id']): Promise<boolean> {
-		const mute = await Mutings.find({
-			muterId: userId
-		});
-
-		const joinings = await UserGroupJoinings.find({ userId: userId });
-
-		const groupQs = Promise.all(joinings.map(j => MessagingMessages.createQueryBuilder('message')
-			.where(`message.groupId = :groupId`, { groupId: j.userGroupId })
-			.andWhere('message.userId != :userId', { userId: userId })
-			.andWhere('NOT (:userId = ANY(message.reads))', { userId: userId })
-			.andWhere('message.createdAt > :joinedAt', { joinedAt: j.createdAt }) // 自分が加入する前の会話については、未読扱いしない
-			.getOne().then(x => x != null)));
-
-		const [withUser, withGroups] = await Promise.all([
-			MessagingMessages.count({
-				where: {
-					recipientId: userId,
-					isRead: false,
-					...(mute.length > 0 ? { userId: Not(In(mute.map(x => x.muteeId))) } : {}),
-				},
-				take: 1
-			}).then(count => count > 0),
-			groupQs
-		]);
-
-		return withUser || withGroups.some(x => x);
 	}
 
 	public async pack(
@@ -165,8 +136,6 @@ export class UserRepository extends Repository<User> {
 				pinnedNotes: Notes.packMany(pins.map(pin => pin.noteId), meId, {
 					detail: true
 				}),
-				pinnedPageId: profile!.pinnedPageId,
-				pinnedPage: profile!.pinnedPageId ? Pages.pack(profile!.pinnedPageId, meId) : null,
 				twoFactorEnabled: profile!.twoFactorEnabled,
 				usePasswordLessLogin: profile!.usePasswordLessLogin,
 				securityKeys: profile!.twoFactorEnabled
@@ -196,7 +165,6 @@ export class UserRepository extends Repository<User> {
 				alwaysMarkNsfw: profile!.alwaysMarkNsfw,
 				carefulBot: profile!.carefulBot,
 				autoAcceptFollowed: profile!.autoAcceptFollowed,
-				hasUnreadMessagingMessage: this.getHasUnreadMessagingMessage(user.id),
 				hasUnreadNotification: Notifications.count({
 					where: {
 						notifieeId: user.id,

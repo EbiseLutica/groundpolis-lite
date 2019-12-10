@@ -28,9 +28,9 @@ export default Vue.extend({
 			},
 
 			notesComponent:
-				this.platform === 'desktop' ? () => import('../../../desktop/views/components/detail-notes.vue').then(m => m.default) :
-				this.platform === 'mobile' ? () => import('../../../mobile/views/components/detail-notes.vue').then(m => m.default) :
-				this.platform === 'deck' ? () => import('../deck/deck.notes.vue').then(m => m.default) : null
+				this.platform === 'desktop' 
+					? () => import('../../../desktop/views/components/detail-notes.vue').then(m => m.default)
+					: () => import('../../../mobile/views/components/detail-notes.vue').then(m => m.default),
 		};
 	},
 

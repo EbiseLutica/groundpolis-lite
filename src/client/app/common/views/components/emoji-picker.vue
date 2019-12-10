@@ -12,7 +12,7 @@
 	</header>
 	<div class="emojis">
 		<template v-if="categories[0].isActive">
-			<header class="category"><fa :icon="faHistory" fixed-width/> {{ $t('recent-emoji') }}</header>
+			<header class="category"><fa icon="history" fixed-width/> {{ $t('recent-emoji') }}</header>
 			<div class="list">
 				<button v-for="(emoji, i) in ($store.state.device.recentEmojis || [])"
 					:title="emoji.name"
@@ -60,8 +60,6 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import { emojilist } from '../../../../../misc/emojilist';
 import { getStaticImageUrl } from '../../../common/scripts/get-static-image-url';
-import { faAsterisk, faLeaf, faUtensils, faFutbol, faCity, faDice, faGlobe, faHistory } from '@fortawesome/free-solid-svg-icons';
-import { faHeart, faFlag } from '@fortawesome/free-regular-svg-icons';
 import { groupByX } from '../../../../../prelude/array';
 
 export default Vue.extend({
@@ -72,10 +70,9 @@ export default Vue.extend({
 			emojilist,
 			getStaticImageUrl,
 			customEmojis: {},
-			faGlobe, faHistory,
 			categories: [{
 				text: this.$t('custom-emoji'),
-				icon: faAsterisk,
+				icon: 'asterisk',
 				isActive: true
 			}, {
 				name: 'people',
@@ -85,37 +82,37 @@ export default Vue.extend({
 			}, {
 				name: 'animals_and_nature',
 				text: this.$t('animals-and-nature'),
-				icon: faLeaf,
+				icon: 'leaf',
 				isActive: false
 			}, {
 				name: 'food_and_drink',
 				text: this.$t('food-and-drink'),
-				icon: faUtensils,
+				icon: 'utensils',
 				isActive: false
 			}, {
 				name: 'activity',
 				text: this.$t('activity'),
-				icon: faFutbol,
+				icon: 'futbol',
 				isActive: false
 			}, {
 				name: 'travel_and_places',
 				text: this.$t('travel-and-places'),
-				icon: faCity,
+				icon: 'city',
 				isActive: false
 			}, {
 				name: 'objects',
 				text: this.$t('objects'),
-				icon: faDice,
+				icon: 'dice',
 				isActive: false
 			}, {
 				name: 'symbols',
 				text: this.$t('symbols'),
-				icon: faHeart,
+				icon: 'heart',
 				isActive: false
 			}, {
 				name: 'flags',
 				text: this.$t('flags'),
-				icon: faFlag,
+				icon: 'flag',
 				isActive: false
 			}]
 		}

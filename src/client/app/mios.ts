@@ -245,18 +245,6 @@ export default class MiOS extends EventEmitter {
 				});
 			});
 
-			main.on('readAllMessagingMessages', () => {
-				this.store.dispatch('mergeMe', {
-					hasUnreadMessagingMessage: false
-				});
-			});
-
-			main.on('unreadMessagingMessage', () => {
-				this.store.dispatch('mergeMe', {
-					hasUnreadMessagingMessage: true
-				});
-			});
-
 			main.on('unreadMention', () => {
 				this.store.dispatch('mergeMe', {
 					hasUnreadMentions: true
@@ -415,6 +403,8 @@ export default class MiOS extends EventEmitter {
 			if (this.debug) {
 				this.requests.push(req);
 			}
+
+			console.debug(`${apiUrl}/${endpoint}`);
 
 			// Send request
 			fetch(endpoint.indexOf('://') > -1 ? endpoint : `${apiUrl}/${endpoint}`, {

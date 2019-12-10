@@ -1,6 +1,5 @@
 <template>
 <div class="wojmldye">
-	<x-page class="page" v-if="user.pinnedPage" :page="user.pinnedPage" :key="user.pinnedPage.id" :show-title="!user.pinnedPage.hideTitleWhenPinned"/>
 	<mk-note-detail class="note" v-for="n in user.pinnedNotes" :key="n.id" :note="n" :compact="true"/>
 	<ui-container :body-togglable="true">
 		<template #header><fa :icon="['far', 'comments']"/>{{ $t('recent-notes') }}</template>
@@ -12,12 +11,6 @@
 		<template #header><fa icon="image"/>{{ $t('images') }}</template>
 		<div>
 			<x-photos :user="user"/>
-		</div>
-	</ui-container>
-	<ui-container :body-togglable="true">
-		<template #header><fa icon="chart-bar"/>{{ $t('activity') }}</template>
-		<div style="padding:8px;">
-			<x-activity :user="user"/>
 		</div>
 	</ui-container>
 </div>
@@ -34,8 +27,6 @@ export default Vue.extend({
 	components: {
 		XNotes,
 		XPhotos,
-		XPage: () => import('../../../../common/views/components/page/page.vue').then(m => m.default),
-		XActivity: () => import('../../../../common/views/components/activity.vue').then(m => m.default)
 	},
 	props: ['user'],
 	data() {

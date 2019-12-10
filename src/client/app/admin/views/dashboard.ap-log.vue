@@ -3,8 +3,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th><fa :icon="faExchangeAlt"/> In/Out</th>
-				<th><fa :icon="faBolt"/> Activity</th>
+				<th><fa icon="exchange-alt"/> In/Out</th>
+				<th><fa icon="bolt"/> Activity</th>
 				<th><fa icon="server"/> Host</th>
 				<th><fa icon="user"/> Actor</th>
 			</tr>
@@ -23,14 +23,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faBolt, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	data() {
 		return {
 			logs: [],
 			connection: null,
-			faBolt, faExchangeAlt
 		};
 	},
 

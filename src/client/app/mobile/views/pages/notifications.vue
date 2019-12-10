@@ -1,6 +1,6 @@
 <template>
 <mk-ui :fabClickedAction="filter" fabIcon="cog">
-	<template #header><fa :icon="faBell"/> {{ $t('notifications') }}</template>
+	<template #header><fa :icon="['far', 'bell']"/> {{ $t('notifications') }}</template>
 
 	<main>
 		<mk-notifications @before-init="beforeInit()" @inited="inited()" :type="type === 'all' ? null : type" :wide="true" :class="{ shadow: $store.state.device.useShadow, round: $store.state.device.roundedCorners }"/>
@@ -10,7 +10,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { faBell } from '@fortawesome/free-regular-svg-icons';
 import i18n from '../../../i18n';
 import Progress from '../../../common/scripts/loading';
 
@@ -19,7 +18,6 @@ export default Vue.extend({
 	data() {
 		return {
 			type: 'all',
-			faBell,
 		};
 	},
 	mounted() {

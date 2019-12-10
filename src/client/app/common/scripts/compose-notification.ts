@@ -23,22 +23,6 @@ export default function(type, data): Notification {
 				url,
 			};
 
-		case 'unreadMessagingMessage':
-			return {
-				title: `New message from ${getUserName(data.user)}`,
-				body: data.text, // TODO: getMessagingMessageSummary(data),
-				icon: data.user.avatarUrl,
-				url,
-			};
-
-		case 'reversiInvited':
-			return {
-				title: 'Play reversi with me',
-				body: `You got reversi invitation from ${getUserName(data.parent)}`,
-				icon: data.parent.avatarUrl,
-				url,
-			};
-
 		case 'notification':
 			switch (data.type) {
 				case 'mention':

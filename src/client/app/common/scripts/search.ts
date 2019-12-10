@@ -1,5 +1,3 @@
-import { faHistory } from '@fortawesome/free-solid-svg-icons';
-
 export async function search(v: any, q: string) {
 	q = q.trim();
 
@@ -27,7 +25,7 @@ export async function search(v: any, q: string) {
 
 		v.$root.$emit('warp', date);
 		v.$root.dialog({
-			icon: faHistory,
+			icon: 'history',
 			splash: true,
 		});
 		return;

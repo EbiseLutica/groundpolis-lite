@@ -59,11 +59,7 @@ export default function <T extends object>(data: {
 			},
 
 			save() {
-				if (this.platform == 'deck') {
-					this.$store.commit('updateDeckColumn', this.column);
-				} else {
-					this.$store.commit('updateWidget', this.widget);
-				}
+				this.$store.commit('updateWidget', this.widget);
 			}
 		}
 	});

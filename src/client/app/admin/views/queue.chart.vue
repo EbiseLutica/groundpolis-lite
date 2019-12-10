@@ -4,22 +4,22 @@
 	<ui-horizon-group inputs v-if="latestStats" class="fit-bottom">
 		<ui-input :value="latestStats.activeSincePrevTick | number" type="text" readonly>
 			<span>Process</span>
-			<template #prefix><fa :icon="fasPlayCircle"/></template>
+			<template #prefix><fa icon="play-circle"/></template>
 			<template #suffix>jobs/tick</template>
 		</ui-input>
 		<ui-input :value="latestStats.active | number" type="text" readonly>
 			<span>Active</span>
-			<template #prefix><fa :icon="farPlayCircle"/></template>
+			<template #prefix><fa icon="play-circle"/></template>
 			<template #suffix>jobs</template>
 		</ui-input>
 		<ui-input :value="latestStats.waiting | number" type="text" readonly>
 			<span>Waiting</span>
-			<template #prefix><fa :icon="faStopCircle"/></template>
+			<template #prefix><fa icon="stop-circle"/></template>
 			<template #suffix>jobs</template>
 		</ui-input>
 		<ui-input :value="latestStats.delayed | number" type="text" readonly>
 			<span>Delayed</span>
-			<template #prefix><fa :icon="faStopwatch"/></template>
+			<template #prefix><fa icon="stopwatch"/></template>
 			<template #suffix>jobs</template>
 		</ui-input>
 	</ui-horizon-group>
@@ -32,8 +32,6 @@ import Vue from 'vue';
 import i18n from '../../i18n';
 import ApexCharts from 'apexcharts';
 import * as tinycolor from 'tinycolor2';
-import { faStopwatch, faPlayCircle as fasPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import { faStopCircle, faPlayCircle as farPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('admin/views/queue.vue'),
@@ -56,7 +54,6 @@ export default Vue.extend({
 		return {
 			stats: [],
 			chart: null,
-			faStopwatch, faStopCircle, farPlayCircle, fasPlayCircle
 		};
 	},
 

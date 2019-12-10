@@ -8,6 +8,7 @@ import VueRouter from 'vue-router';
 import VAnimateCss from 'v-animate-css';
 import VModal from 'vue-js-modal';
 import VueI18n from 'vue-i18n';
+import VLazyImage from 'v-lazy-image';
 import SequentialEntrance from 'vue-sequential-entrance';
 
 import VueHotkey from './common/hotkey';
@@ -16,11 +17,11 @@ import App from './app.vue';
 import checkForUpdate from './common/scripts/check-for-update';
 import MiOS from './mios';
 import { version, codename, lang, locale } from './config';
-import { builtinThemes, applyTheme, futureTheme } from './theme';
+import { builtinThemes, applyTheme, darkTheme } from './theme';
 import Dialog from './common/views/components/dialog.vue';
 
 if (localStorage.getItem('theme') == null) {
-	applyTheme(futureTheme);
+	applyTheme(darkTheme);
 }
 
 //#region FontAwesome
@@ -138,6 +139,55 @@ import {
 	faComment,
 	faQuestionCircle,
 	faCrown,
+	faNewspaper,
+	faExchangeAlt,
+	faBolt,
+	faInbox,
+	faDatabase,
+	faBroom,
+	faTrashAlt,
+	faGrin,
+	faCrosshairs,
+	faEnvelopeOpenText,
+	faCaretUp,
+	faTrafficLight,
+	faMinusCircle,
+	faTasks,
+	faStream,
+	faHeadset,
+	faGhost,
+	faShieldAlt,
+	faStopwatch,
+	faStopCircle,
+	faPlayCircle,
+	faMicrophoneSlash,
+	faSnowflake,
+	faTimesCircle,
+	faFileVideo,
+	faMusic,
+	faFileCsv,
+	faFilePdf,
+	faFileAlt,
+	faFileArchive,
+	faFile,
+	faFilm,
+	faHistory,
+	faAsterisk,
+	faLeaf,
+	faUtensils,
+	faFutbol,
+	faCity,
+	faDice,
+	faFlag,
+	faCopy,
+	faEdit,
+	faBoxes,
+	faAngleLeft,
+	faCrop,
+	faCloudUploadAlt,
+	faFastForward,
+	faChevronUp,
+	faChevronDown
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -158,10 +208,12 @@ import {
 	faClock as farClock,
 	faCalendarAlt as farCalendarAlt,
 	faHdd as farHdd,
+	faSun as farSun,
 	faMoon as farMoon,
 	faPlayCircle as farPlayCircle,
 	faLightbulb as farLightbulb,
 	faStickyNote as farStickyNote,
+	faHeart as farHeart,
 } from '@fortawesome/free-regular-svg-icons';
 
 import {
@@ -184,6 +236,8 @@ library.add(
 	faQuoteRight,
 	faAngleUp,
 	faAngleDown,
+	faAngleLeft,
+	faAngleRight,
 	faAt,
 	faHashtag,
 	faHome,
@@ -199,6 +253,8 @@ library.add(
 	faPencilAlt,
 	faColumns,
 	faComments,
+	faCrop,
+	faCloudUploadAlt,
 	faGamepad,
 	faCloud,
 	faPowerOff,
@@ -208,7 +264,6 @@ library.add(
 	faTimes,
 	faThumbtack,
 	faSearch,
-	faAngleRight,
 	faWrench,
 	faTerminal,
 	faMoon,
@@ -243,6 +298,7 @@ library.add(
 	faArrowRight,
 	faICursor,
 	faCaretRight,
+	faCaretUp,
 	faReplyAll,
 	faCamera,
 	faMinus,
@@ -282,6 +338,53 @@ library.add(
 	faComment,
 	faQuestionCircle,
 	faCrown,
+	faNewspaper,
+	faExchangeAlt,
+	faBolt,
+	faInbox,
+	faDatabase,
+	faBroom,
+	faTrashAlt,
+	faGrin,
+	faCrosshairs,
+	faEnvelopeOpenText,
+	faTrafficLight,
+	faMinusCircle,
+	faTasks,
+	faStream,
+	faHeadset,
+	faGhost,
+	faShieldAlt,
+	faStopwatch,
+	faStopCircle,
+	faPlayCircle,
+	faMicrophoneSlash,
+	faSnowflake,
+	faTimesCircle,
+	faQuestionCircle,
+	faFileVideo,
+	faMusic,
+	faFileCsv,
+	faFilePdf,
+	faFileAlt,
+	faFileArchive,
+	faFile,
+	faFilm,
+	faHistory,
+	faAsterisk,
+	faLeaf,
+	faUtensils,
+	faFutbol,
+	faCity,
+	faDice,
+	faHeart,
+	faFlag,
+	faCopy,
+	faEdit,
+	faBoxes,
+	faFastForward,
+	faChevronUp,
+	faChevronDown,
 
 	farBell,
 	farEnvelope,
@@ -304,10 +407,9 @@ library.add(
 	farPlayCircle,
 	farLightbulb,
 	farStickyNote,
-
-	fabTwitter,
-	fabGithub,
-	fabDiscord
+	farHeart,
+	farSun,
+	farMoon,
 );
 //#endregion
 
@@ -319,6 +421,7 @@ Vue.use(VueHotkey);
 Vue.use(VueSize);
 Vue.use(VueI18n);
 Vue.use(SequentialEntrance);
+Vue.use(VLazyImage);
 
 Vue.component('fa', FontAwesomeIcon);
 Vue.component('fa-layer', FontAwesomeLayers);
@@ -523,13 +626,6 @@ export default (callback: (launch: (router: VueRouter) => [Vue, MiOS], os: MiOS)
 
 			return [app, os] as [Vue, MiOS];
 		};
-
-		// Deck mode
-		os.store.commit('device/set', {
-			key: 'inDeckMode',
-			value: os.store.getters.isSignedIn && os.store.state.device.deckMode
-				&& (document.location.pathname === '/' || window.performance.navigation.type === 1)
-		});
 
 		callback(launch, os);
 	});

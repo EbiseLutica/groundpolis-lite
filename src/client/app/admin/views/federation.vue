@@ -1,58 +1,58 @@
 <template>
 <div>
 	<ui-card>
-		<template #title><fa :icon="faTerminal"/> {{ $t('instance') }}</template>
+		<template #title><fa icon="terminal"/> {{ $t('instance') }}</template>
 		<section class="fit-top">
 			<ui-input class="target" v-model="target" type="text" @enter="showInstance()">
 				<span>{{ $t('host') }}</span>
-				<template #prefix><fa :icon="faServer"/></template>
+				<template #prefix><fa icon="server"/></template>
 			</ui-input>
-			<ui-button @click="showInstance()"><fa :icon="faSearch"/> {{ $t('lookup') }}</ui-button>
+			<ui-button @click="showInstance()"><fa icon="search"/> {{ $t('lookup') }}</ui-button>
 
 			<div class="instance" v-if="instance">
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.host" type="text" readonly>
 						<span>{{ $t('host') }}</span>
-						<template #prefix><fa :icon="faServer"/></template>
+						<template #prefix><fa icon="server"/></template>
 					</ui-input>
 					<ui-input :value="instance.caughtAt | date" type="text" readonly>
 						<span>{{ $t('caught-at') }}</span>
-						<template #prefix><fa :icon="faCrosshairs"/></template>
+						<template #prefix><fa icon="crosshairs"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.notesCount | number" type="text" readonly>
 						<span>{{ $t('notes') }}</span>
-						<template #prefix><fa :icon="faEnvelopeOpenText"/></template>
+						<template #prefix><fa icon="envelope-open-text"/></template>
 					</ui-input>
 					<ui-input :value="instance.usersCount | number" type="text" readonly>
 						<span>{{ $t('users') }}</span>
-						<template #prefix><fa :icon="faUsers"/></template>
+						<template #prefix><fa icon="users"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.followingCount | number" type="text" readonly>
 						<span>{{ $t('following') }}</span>
-						<template #prefix><fa :icon="faCaretDown"/></template>
+						<template #prefix><fa icon="caret-down"/></template>
 					</ui-input>
 					<ui-input :value="instance.followersCount | number" type="text" readonly>
 						<span>{{ $t('followers') }}</span>
-						<template #prefix><fa :icon="faCaretUp"/></template>
+						<template #prefix><fa icon="caret-up"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-horizon-group inputs>
 					<ui-input :value="instance.latestRequestSentAt | date" type="text" readonly>
 						<span>{{ $t('latest-request-sent-at') }}</span>
-						<template #prefix><fa :icon="faPaperPlane"/></template>
+						<template #prefix><fa icon="paper-plane"/></template>
 					</ui-input>
 					<ui-input :value="instance.latestStatus" type="text" readonly>
 						<span>{{ $t('status') }}</span>
-						<template #prefix><fa :icon="faTrafficLight"/></template>
+						<template #prefix><fa icon="traffic-light"/></template>
 					</ui-input>
 				</ui-horizon-group>
 				<ui-input :value="instance.latestRequestReceivedAt | date" type="text" readonly>
 					<span>{{ $t('latest-request-received-at') }}</span>
-					<template #prefix><fa :icon="faInbox"/></template>
+					<template #prefix><fa icon="inbox"/></template>
 				</ui-input>
 				<ui-switch v-model="instance.isMarkedAsClosed" @change="updateInstance()">{{ $t('marked-as-closed') }}</ui-switch>
 				<details>
@@ -80,11 +80,11 @@
 				</details>
 				<details>
 					<summary>{{ $t('delete-all-files') }}</summary>
-					<ui-button @click="deleteAllFiles()" style="margin-top: 16px;"><fa :icon="faTrashAlt"/> {{ $t('delete-all-files') }}</ui-button>
+					<ui-button @click="deleteAllFiles()" style="margin-top: 16px;"><fa icon="trash-alt"/> {{ $t('delete-all-files') }}</ui-button>
 				</details>
 				<details>
 					<summary>{{ $t('remove-all-following') }}</summary>
-					<ui-button @click="removeAllFollowing()" style="margin-top: 16px;"><fa :icon="faMinusCircle"/> {{ $t('remove-all-following') }}</ui-button>
+					<ui-button @click="removeAllFollowing()" style="margin-top: 16px;"><fa icon="minus-circle"/> {{ $t('remove-all-following') }}</ui-button>
 					<ui-info warn>{{ $t('remove-all-following-info', { host: instance.host }) }}</ui-info>
 				</details>
 			</div>
@@ -92,7 +92,7 @@
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faServer"/> {{ $t('instances') }}</template>
+		<template #title><fa icon="server"/> {{ $t('instances') }}</template>
 		<section class="fit-top">
 			<ui-horizon-group inputs>
 				<ui-select v-model="sort">
@@ -147,7 +147,7 @@
 	</ui-card>
 
 	<ui-card>
-		<template #title><fa :icon="faBan"/> {{ $t('blocked-hosts') }}</template>
+		<template #title><fa icon="ban"/> {{ $t('blocked-hosts') }}</template>
 		<section class="fit-top">
 			<ui-textarea v-model="blockedHosts">
 				<template #desc>{{ $t('blocked-hosts-info') }}</template>
@@ -161,8 +161,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../i18n';
-import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { faTrashAlt, faBan, faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faTrafficLight, faInbox } from '@fortawesome/free-solid-svg-icons';
 import ApexCharts from 'apexcharts';
 import * as tinycolor from 'tinycolor2';
 
@@ -190,7 +188,6 @@ export default Vue.extend({
 			chartSpan: 'hour',
 			chartInstance: null,
 			blockedHosts: '',
-			faTrashAlt, faBan, faGlobe, faTerminal, faSearch, faMinusCircle, faServer, faCrosshairs, faEnvelopeOpenText, faUsers, faCaretDown, faCaretUp, faPaperPlane, faTrafficLight, faInbox
 		};
 	},
 

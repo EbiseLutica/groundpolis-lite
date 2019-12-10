@@ -17,10 +17,10 @@
 			</div>
 			<div class="icon" v-else-if="!input && !select && !user" :class="type">
 				<fa icon="check" v-if="type === 'success'"/>
-				<fa :icon="faTimesCircle" v-if="type === 'error'"/>
+				<fa icon="times-circle" v-if="type === 'error'"/>
 				<fa icon="exclamation-triangle" v-if="type === 'warning'"/>
 				<fa icon="info-circle" v-if="type === 'info'"/>
-				<fa :icon="faQuestionCircle" v-if="type === 'question'"/>
+				<fa icon="question-circle" v-if="type === 'question'"/>
 				<fa icon="spinner" pulse v-if="type === 'waiting'"/>
 			</div>
 			<header v-if="title" v-html="title"></header>
@@ -50,7 +50,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import anime from 'animejs';
-import { faTimesCircle, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import parseAcct from "../../../../../misc/acct/parse";
 import i18n from '../../../i18n';
 
@@ -106,7 +105,6 @@ export default Vue.extend({
 			userInputValue: null,
 			selectedValue: this.select ? this.select.default ? this.select.default : this.select.items ? this.select.items[0].value : this.select.groupedItems[0].items[0].value : null,
 			canOk: true,
-			faTimesCircle, faQuestionCircle
 		};
 	},
 

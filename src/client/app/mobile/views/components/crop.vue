@@ -2,9 +2,9 @@
 <div class="jxdyxsek">
 	<div class="body">
 		<header>
-			<h1><fa :icon="faCrop" />{{ title }}</h1>
+			<h1><fa icon="crop" />{{ title }}</h1>
 			<button class="close" @click="cancel"><fa icon="times"/></button>
-			<button class="menu" @click="skip()"><fa :icon="faFastForward"/></button>
+			<button class="menu" @click="skip()"><fa icon="fast-forward"/></button>
 			<button class="ok" @click="ok"><fa icon="check"/></button>
 		</header>
 		<vue-cropper class="cropper" ref="cropper"
@@ -23,7 +23,6 @@ import i18n from '../../../i18n';
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
 import * as url from '../../../../../prelude/url';
-import { faFastForward, faCrop } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('mobile/views/components/crop.vue'),
@@ -43,13 +42,6 @@ export default Vue.extend({
 			type: Number,
 			required: true
 		}
-	},
-
-	data() {
-		return {
-			faFastForward,
-			faCrop
-		};
 	},
 
 	computed: {

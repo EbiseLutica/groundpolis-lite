@@ -10,7 +10,7 @@ import extractHashtags from '../../../../misc/extract-hashtags';
 import * as langmap from 'langmap';
 import { updateUsertags } from '../../../../services/update-hashtag';
 import { ApiError } from '../../error';
-import { Users, DriveFiles, UserProfiles, Pages } from '../../../../models';
+import { Users, DriveFiles, UserProfiles } from '../../../../models';
 import { User } from '../../../../models/entities/user';
 import { UserProfile } from '../../../../models/entities/user-profile';
 import { ensure } from '../../../../prelude/ensure';
@@ -133,13 +133,6 @@ export const meta = {
 			}
 		},
 
-		pinnedPageId: {
-			validator: $.optional.nullable.type(ID),
-			desc: {
-				'ja-JP': 'ピン留めするページID'
-			}
-		},
-
 		sex: {
 			validator: $.optional.str.or(['not-known', 'male', 'female', 'not-applicable']),
 			desc: {
@@ -171,12 +164,6 @@ export const meta = {
 			message: 'The file specified as a banner is not an image.',
 			code: 'BANNER_NOT_AN_IMAGE',
 			id: '75aedb19-2afd-4e6d-87fc-67941256fa60'
-		},
-
-		noSuchPage: {
-			message: 'No such page.',
-			code: 'NO_SUCH_PAGE',
-			id: '8e01b590-7eb9-431b-a239-860e086c408e'
 		},
 	}
 };
@@ -229,16 +216,6 @@ export default define(meta, async (ps, user, app) => {
 		if (banner.properties.avgColor) {
 			updates.bannerColor = banner.properties.avgColor;
 		}
-	}
-
-	if (ps.pinnedPageId) {
-		const page = await Pages.findOne(ps.pinnedPageId);
-
-		if (page == null || page.userId !== user.id) throw new ApiError(meta.errors.noSuchPage);
-
-		profileUpdates.pinnedPageId = page.id;
-	} else if (ps.pinnedPageId === null) {
-		profileUpdates.pinnedPageId = null;
 	}
 
 	if (ps.fields) {

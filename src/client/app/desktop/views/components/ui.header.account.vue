@@ -14,6 +14,13 @@
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
+				<li @click="drive">
+					<p>
+						<i><fa icon="cloud" fixed-width/></i>
+						<span>{{ $t('@.drive') }}</span>
+						<i><fa icon="angle-right"/></i>
+					</p>
+				</li>
 				<li>
 					<router-link to="/i/favorites">
 						<i><fa icon="star" fixed-width/></i>
@@ -25,13 +32,6 @@
 					<router-link to="/i/lists">
 						<i><fa icon="list" fixed-width/></i>
 						<span>{{ $t('lists') }}</span>
-						<i><fa icon="angle-right"/></i>
-					</router-link>
-				</li>
-				<li>
-					<router-link to="/i/groups">
-						<i><fa :icon="faUsers" fixed-width/></i>
-						<span>{{ $t('groups') }}</span>
 						<i><fa icon="angle-right"/></i>
 					</router-link>
 				</li>
@@ -60,16 +60,10 @@
 				</li>
 			</ul>
 			<ul>
-				<li @click="toggleDeckMode">
-					<p>
-						<template v-if="$store.state.device.inDeckMode"><span>{{ $t('@.home') }}</span><i><fa :icon="faHome"/></i></template>
-						<template v-else><span>{{ $t('@.deck') }}</span><i><fa :icon="faColumns"/></i></template>
-					</p>
-				</li>
 				<li @click="dark">
 					<p>
 						<span>{{ $store.state.device.darkmode ? $t('@.turn-off-darkmode') : $t('@.turn-on-darkmode') }}</span>
-						<template><i><fa :icon="$store.state.device.darkmode ? faSun : faMoon"/></i></template>
+						<template><i><fa :icon="['far', $store.state.device.darkmode ? 'sun' : 'moon']"/></i></template>
 					</p>
 				</li>
 			</ul>
@@ -92,15 +86,12 @@ import i18n from '../../../i18n';
 // import MkSettingsWindow from './settings-window.vue';
 import MkDriveWindow from './drive-window.vue';
 import contains from '../../../common/scripts/contains';
-import { faHome, faColumns, faUsers, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { faMoon, faSun, faStickyNote } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.header.account.vue'),
 	data() {
 		return {
 			isOpen: false,
-			faHome, faColumns, faMoon, faSun, faStickyNote, faUsers, faDoorOpen
 		};
 	},
 	computed: {
@@ -146,10 +137,6 @@ export default Vue.extend({
 				key: 'darkmode',
 				value: !this.$store.state.device.darkmode
 			});
-		},
-		toggleDeckMode() {
-			this.$store.commit('device/set', { key: 'deckMode', value: !this.$store.state.device.inDeckMode });
-			location.replace('/');
 		},
 	}
 });

@@ -24,20 +24,14 @@ import { SwSubscription } from '../models/entities/sw-subscription';
 import { Blocking } from '../models/entities/blocking';
 import { UserList } from '../models/entities/user-list';
 import { UserListJoining } from '../models/entities/user-list-joining';
-import { UserGroup } from '../models/entities/user-group';
-import { UserGroupJoining } from '../models/entities/user-group-joining';
-import { UserGroupInvite } from '../models/entities/user-group-invite';
 import { Hashtag } from '../models/entities/hashtag';
 import { NoteFavorite } from '../models/entities/note-favorite';
 import { AbuseUserReport } from '../models/entities/abuse-user-report';
 import { RegistrationTicket } from '../models/entities/registration-tickets';
-import { MessagingMessage } from '../models/entities/messaging-message';
 import { Signin } from '../models/entities/signin';
 import { AuthSession } from '../models/entities/auth-session';
 import { FollowRequest } from '../models/entities/follow-request';
 import { Emoji } from '../models/entities/emoji';
-import { ReversiGame } from '../models/entities/games/reversi/game';
-import { ReversiMatching } from '../models/entities/games/reversi/matching';
 import { UserNotePining } from '../models/entities/user-note-pinings';
 import { Poll } from '../models/entities/poll';
 import { UserKeypair } from '../models/entities/user-keypair';
@@ -45,8 +39,6 @@ import { UserPublickey } from '../models/entities/user-publickey';
 import { UserProfile } from '../models/entities/user-profile';
 import { UserSecurityKey } from '../models/entities/user-security-key';
 import { AttestationChallenge } from '../models/entities/attestation-challenge';
-import { Page } from '../models/entities/page';
-import { PageLike } from '../models/entities/page-like';
 import { ModerationLog } from '../models/entities/moderation-log';
 import { UsedUsername } from '../models/entities/used-username';
 
@@ -96,9 +88,6 @@ export const entities = [
 	UserPublickey,
 	UserList,
 	UserListJoining,
-	UserGroup,
-	UserGroupJoining,
-	UserGroupInvite,
 	UserNotePining,
 	UserSecurityKey,
 	UsedUsername,
@@ -112,8 +101,6 @@ export const entities = [
 	NoteReaction,
 	NoteWatching,
 	NoteUnread,
-	Page,
-	PageLike,
 	Log,
 	DriveFile,
 	DriveFolder,
@@ -125,11 +112,8 @@ export const entities = [
 	SwSubscription,
 	AbuseUserReport,
 	RegistrationTicket,
-	MessagingMessage,
 	Signin,
 	ModerationLog,
-	ReversiGame,
-	ReversiMatching,
 	...charts as any
 ];
 

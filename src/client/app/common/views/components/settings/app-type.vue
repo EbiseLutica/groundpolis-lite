@@ -1,6 +1,6 @@
 <template>
 <ui-card>
-	<template #title><fa :icon="faMobileAlt"/> {{ $t('title') }}</template>
+	<template #title><fa icon="mobile-alt"/> {{ $t('title') }}</template>
 
 	<section class="fit-top">
 		<p>{{ $t('intro') }}</p>
@@ -15,16 +15,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../../i18n';
-import { faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/settings/app-type.vue'),
-
-	data() {
-		return {
-			faMobileAlt
-		};
-	},
 
 	computed: {
 		appTypeForce: {

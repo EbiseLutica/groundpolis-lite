@@ -7,14 +7,10 @@ import notesStats from './notes-stats';
 import serverStats from './server-stats';
 import queueStats from './queue-stats';
 import userList from './user-list';
-import messaging from './messaging';
-import messagingIndex from './messaging-index';
 import drive from './drive';
 import hashtag from './hashtag';
 import apLog from './ap-log';
 import admin from './admin';
-import gamesReversi from './games/reversi';
-import gamesReversiGame from './games/reversi-game';
 
 export default {
 	main,
@@ -26,12 +22,8 @@ export default {
 	serverStats,
 	queueStats,
 	userList,
-	messaging,
-	messagingIndex,
 	drive,
 	hashtag,
 	apLog,
 	admin,
-	gamesReversi,
-	gamesReversiGame
 };

@@ -7,8 +7,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { faExclamationCircle, faMicrophoneSlash, faSync, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
-import { faSnowflake } from '@fortawesome/free-regular-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('common/views/components/user-menu.vue'),
@@ -38,18 +36,10 @@ export default Vue.extend({
 				text: this.user.isBlocking ? this.$t('unblock') : this.$t('block'),
 				action: this.toggleBlock
 			}, null, {
-				icon: faExclamationCircle,
+				icon: 'exclamation-circle',
 				text: this.$t('report-abuse'),
 				action: this.reportAbuse
 			}]);
-		}
-
-		if (this.$store.getters.isSignedIn && this.user.host == null) {
-				menu = menu.concat({
-					icon: faDoorOpen,
-					text: this.$t('go-to-the-room'),
-					action: this.goToTheRoom,
-				});
 		}
 
 		if (this.$store.getters.isSignedIn && (this.$store.state.i.isAdmin || this.$store.state.i.isModerator)) {
@@ -57,17 +47,17 @@ export default Vue.extend({
 
 			if (this.user.host != null) {
 				menu = menu.concat({
-					icon: faSync,
+					icon: 'sync',
 					text: this.$t("update-remote-user"),
 					action: this.updateRemoteUser,
 				});
 			}
 			menu = menu.concat([{
-				icon: faMicrophoneSlash,
+				icon: 'microphone-slash',
 				text: this.user.isSilenced ? this.$t('unsilence') : this.$t('silence'),
 				action: this.toggleSilence
 			}, {
-				icon: faSnowflake,
+				icon: 'snowflake',
 				text: this.user.isSuspended ? this.$t('unsuspend') : this.$t('suspend'),
 				action: this.toggleSuspend
 			}]);
@@ -190,10 +180,6 @@ export default Vue.extend({
 					text: e
 				});
 			});
-		},
-
-		goToTheRoom() {
-			this.$router.push(Vue.filter('userPage')(this.user, 'room'));
 		},
 
 		async toggleSilence() {
