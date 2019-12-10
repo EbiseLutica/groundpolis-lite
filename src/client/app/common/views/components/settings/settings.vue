@@ -15,6 +15,7 @@
 				<ui-switch v-model="reduceMotion">{{ $t('@._settings.reduce-motion') }}</ui-switch>
 				<ui-switch v-model="showVia">{{ $t('@._settings.show-via') }}</ui-switch>
 				<ui-switch v-model="useOsDefaultEmojis">{{ $t('@._settings.use-os-default-emojis') }}</ui-switch>
+				<ui-switch v-model="useBigCustomEmoji">{{ $t('@._settings.use-big-custom-emoji') }}</ui-switch>
 				<ui-switch v-model="suggestRecentHashtags">{{ $t('@._settings.suggest-recent-hashtags') }}</ui-switch>
 				<ui-switch v-model="alwaysShowNsfw">{{ $t('@._settings.always-show-nsfw') }}</ui-switch>
 				<ui-switch v-model="showReplyTarget">{{ $t('@._settings.show-reply-target') }}</ui-switch>
@@ -241,6 +242,11 @@ export default Vue.extend({
 		useOsDefaultEmojis: {
 			get() { return this.$store.state.device.useOsDefaultEmojis; },
 			set(value) { this.$store.commit('device/set', { key: 'useOsDefaultEmojis', value }); }
+		},
+
+		useBigCustomEmoji: {
+			get() { return this.$store.state.device.useBigCustomEmoji; },
+			set(value) { this.$store.commit('device/set', { key: 'useBigCustomEmoji', value }); }
 		},
 
 		reduceMotion: {

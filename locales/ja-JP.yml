@@ -224,6 +224,7 @@ common:
     keep-cw: "CW保持"
     keep-cw-desc: "投稿にリプライする際、リプライ元の投稿にCWが設定されていたとき、デフォルトで同じCWを設定するようにします。"
     i-like-sushi: "私は(プリンよりむしろ)寿司が好き"
+    use-big-custom-emoji: "カスタム絵文字を大きく表示する"
     disable-animated-mfm: "投稿内の動きのあるテキストを無効にする"
     disable-showing-animated-images: "アニメーション画像を再生しない"
     enable-quick-notification-view: "通知のクイックビューを有効にする"

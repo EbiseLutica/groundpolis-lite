@@ -69,6 +69,7 @@ const defaultDeviceSettings = {
 	navbar: 'top',
 	mobileNotificationPosition: 'bottom',
 	useOsDefaultEmojis: false,
+	useBigCustomEmoji: true,
 	disableShowingAnimatedImages: false,
 	expandUsersPhotos: true,
 	expandUsersActivity: true,

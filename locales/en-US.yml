@@ -233,6 +233,7 @@ common:
     reduce-motion: "Reduce motion in UI"
     this-setting-is-this-device-only: "Only for this device"
     use-os-default-emojis: "Use the OS default Emojis"
+    use-big-custom-emoji: "Use big custom emojis"
     line-width: "Line thickness"
     line-width-thin: "Thin"
     line-width-normal: "Regular"
