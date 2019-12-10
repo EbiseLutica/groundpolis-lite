@@ -46,7 +46,15 @@ common:
     renote: "リノート"
     mention: "言及"
     reaction: "リアクション"
-
+  timeline: "タイムライン"
+  back-to-top: "トップに戻る"
+  explore: "みつける"
+  notifications: "通知"
+  favorites: "お気に入り"
+  lists: "リスト"
+  follow-requests: "フォロー申請"
+  profile: "プロフィール"
+  admin: "管理"
   got-it: "OK"
   customization-tips:
     title: "カスタマイズのヒント"
@@ -73,12 +81,8 @@ common:
   trash: "ゴミ箱"
   drive: "ドライブ"
   home: "クラシック"
-  timeline: "タイムライン"
-  back-to-top: "トップへ戻る"
-  explore: "みつける"
   following: "フォロー中"
   followers: "フォロワー"
-  favorites: "お気に入り"
 
   permissions:
     "read:account": "アカウントの情報を見る"

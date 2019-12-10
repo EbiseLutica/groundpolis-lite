@@ -1,6 +1,5 @@
 import Vue from 'vue';
 
-import dummy from './dummy.vue';
 import userName from './user-name.vue';
 import followButton from './follow-button.vue';
 import error from './error.vue';
@@ -51,7 +50,6 @@ import formButton from './ui/form/button.vue';
 import formRadio from './ui/form/radio.vue';
 
 Vue.component('mfm', misskeyFlavoredMarkdown);
-Vue.component('mk-dummy', dummy);
 Vue.component('mk-user-name', userName);
 Vue.component('mk-follow-button', followButton);
 Vue.component('mk-error', error);

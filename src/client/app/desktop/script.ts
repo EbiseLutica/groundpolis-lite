@@ -157,7 +157,7 @@ init(async (launch, os) => {
 				{ path: '/i/drive', name: 'drive', component: MkDrive },
 				{ path: '/i/drive/folder/:folder', component: MkDrive },
 				{ path: '/i/settings', name: 'settings', redirect: '/i/settings/profile' },
-				{ path: '/notifications', name: 'notifications', component: () => import('./views/home/notifications.vue').then(m => m.default) },
+				{ path: '/i/notifications', name: 'notifications', component: () => import('./views/home/notifications.vue').then(m => m.default) },
 				{ path: '/i/settings/:page', name: 'settings', component: MkSettings },
 			]},
 			{ path: '/selectdrive', component: MkSelectDrive },

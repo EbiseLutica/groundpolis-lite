@@ -1,7 +1,7 @@
 <template>
 <mk-ui v-hotkey.global="keymap" v-if="$store.getters.isSignedIn || $route.name != 'index'">
 	<div class="wqsofvpm">
-		<div class="main" :class="{ side: widgets.left.length == 0 || widgets.right.length == 0 }">
+		<div class="main">
 			<div class="left">
 				<div class="icon" @click="goToTop">
 					<img svg-inline src="../../assets/header-icon.svg"/>
@@ -10,71 +10,71 @@
 					<li>
 						<router-link to="/" :class="{ active: $route.name == 'index' }">
 							<fa :icon="$store.state.i ? 'home' : 'arrow-left'" fixed-width/>
-							<span>{{ $store.state.i ? "タイムライン" : "トップに戻る" }}</span>
+							<span>{{ $t($store.state.i ? '@.timeline' : '@.back-to-top') }}</span>
 						</router-link>
 					</li>
 					<li>
 						<router-link to="/explore" :class="{ active: $route.name == 'explore' }">
 							<fa icon="hashtag" fixed-width/>
-							<span>見つける</span>
+							<span>{{ $t('@.explore') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i">
-						<router-link to="/notifications" :class="{ active: $route.name == 'notifications' }">
+						<router-link to="/i/notifications" :class="{ active: $route.name == 'notifications' }">
 							<fa :icon="['far', 'bell']" fixed-width/>
-							<span>通知</span>
+							<span>{{ $t('@.notifications') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i">
 						<router-link to="/i/favorites" :class="{ active: $route.name == 'favorites' }">
 							<fa icon="star" fixed-width/>
-							<span>お気に入り</span>
+							<span>{{ $t('@.favorites') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i">
 						<router-link to="/i/lists" :class="{ active: $route.name == 'lists' }">
 							<fa icon="list" fixed-width/>
-							<span>リスト</span>
+							<span>{{ $t('@.lists') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i">
 						<router-link to="/i/drive" :class="{ active: $route.name == 'drive' }">
 							<fa icon="cloud" fixed-width/>
-							<span>ドライブ</span>
+							<span>{{ $t('@.drive') }}</span>
 						</router-link>
 					</li>
 					<li v-if="($store.state.i && ($store.state.i.isLocked || $store.state.i.carefulBot))">
 						<router-link to="/i/follow-requests" :class="{ active: $route.name == 'follow-requests' }">
 							<fa icon="user-check" fixed-width/>
-							<span>フォロー申請</span>
+							<span>{{ $t('@.follow-requests') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i">
 						<router-link :to="`/@${ $store.state.i.username }`" :class="{ active: $route.name == 'user' }">
 							<mk-avatar class="avatar" :user="$store.state.i"/>
-							<span>プロフィール</span>
+							<span>{{ $t('@.profile') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i">
 						<router-link to="/i/settings" :class="{ active: $route.name == 'settings' }">
 							<fa icon="cog" fixed-width/>
-							<span>設定</span>
+							<span>{{ $t('@.settings') }}</span>
 						</router-link>
 					</li>
 					<li v-if="$store.state.i && ($store.state.i.isAdmin || $store.state.i.isModerator)">
 						<a href="/admin">
 							<fa icon="terminal" fixed-width/>
-							<span>管理</span>
+							<span>{{ $t('@.admin') }}</span>
 						</a>
 					</li>
 				</ul>
 				<ui-button primary class="post-button" v-if="$store.state.i && !$store.state.settings.showPostFormOnTopOfTl">
 					<fa icon="pencil-alt" />
-					<span>投稿</span>
+					<span>{{ $t('@.post') }}</span>
 				</ui-button>
 			</div>
 			<div class="right">
-				<component v-for="widget in widgets['right']" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="desktop"/>
+				<component v-for="widget in home" :is="`mkw-${widget.name}`" :key="widget.id" :ref="widget.id" :widget="widget" platform="desktop"/>
 			</div>
 			<div class="main">
 				<router-view ref="content"></router-view>
@@ -88,7 +88,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import { v4 as uuid } from 'uuid';
 import XWelcome from '../pages/welcome.vue';
 
 export default Vue.extend({
@@ -131,18 +130,6 @@ export default Vue.extend({
 					data: {}
 				}];
 		},
-		left(): any[] {
-			return this.home.filter(w => w.place == 'left');
-		},
-		right(): any[] {
-			return this.home.filter(w => w.place == 'right');
-		},
-		widgets(): any {
-			return {
-				left: this.left,
-				right: this.right
-			};
-		},
 		keymap(): any {
 			return {
 				't': this.focus
@@ -152,54 +139,6 @@ export default Vue.extend({
 
 	created() {
 		if (!this.$store.getters.isSignedIn) return;
-
-		if (this.$store.getters.home == null) {
-			const defaultDesktopHomeWidgets = {
-				left: [
-					'profile',
-					'calendar',
-					'activity',
-					'rss',
-					'hashtags',
-					'photo-stream',
-					'version'
-				],
-				right: [
-					'customize',
-					'broadcast',
-					'notifications',
-					'users',
-					'polls',
-					'server',
-					'nav',
-					'tips'
-				]
-			};
-
-			//#region Construct home data
-			const _defaultDesktopHomeWidgets = [];
-
-			for (const widget of defaultDesktopHomeWidgets.left) {
-				_defaultDesktopHomeWidgets.push({
-					name: widget,
-					id: uuid(),
-					place: 'left',
-					data: {}
-				});
-			}
-
-			for (const widget of defaultDesktopHomeWidgets.right) {
-				_defaultDesktopHomeWidgets.push({
-					name: widget,
-					id: uuid(),
-					place: 'right',
-					data: {}
-				});
-			}
-			//#endregion
-
-			this.$store.commit('setHome', _defaultDesktopHomeWidgets);
-		}
 	},
 
 	mounted() {
@@ -211,55 +150,8 @@ export default Vue.extend({
 	},
 
 	methods: {
-		hint() {
-			this.$root.dialog({
-				title: this.$t('@.customization-tips.title'),
-				text: this.$t('@.customization-tips.paragraph')
-			});
-		},
-
 		onTlLoaded() {
 			this.$emit('loaded');
-		},
-
-		onWidgetContextmenu(widgetId) {
-			const w = (this.$refs[widgetId] as any)[0];
-			if (w.func) w.func();
-		},
-
-		onWidgetSort() {
-			this.saveHome();
-		},
-
-		onTrash(evt) {
-			this.saveHome();
-		},
-
-		addWidget() {
-			if(this.widgetAdderSelected == null) return;
-
-			this.$store.commit('addHomeWidget', {
-				name: this.widgetAdderSelected,
-				id: uuid(),
-				place: 'left',
-				data: {}
-			});
-		},
-
-		saveHome() {
-			const left = this.widgets.left;
-			const right = this.widgets.right;
-			this.$store.commit('setHome', left.concat(right));
-			for (const w of left) w.place = 'left';
-			for (const w of right) w.place = 'right';
-		},
-
-		done() {
-			location.href = '/';
-		},
-
-		focus() {
-			(this.$refs.content as any).focus();
 		},
 		
 		goToTop() {

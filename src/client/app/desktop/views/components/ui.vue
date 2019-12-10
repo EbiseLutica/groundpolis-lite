@@ -1,7 +1,7 @@
 <template>
 <div class="mk-ui" v-hotkey.global="keymap">
 	<div class="bg" v-if="$store.getters.isSignedIn && $store.state.settings.wallpaper" :style="style"></div>
-	<div class="content" :class="[{ sidebar: navbar != 'top', zen: zenMode }, navbar]">
+	<div class="content" :class="navbar">
 		<slot></slot>
 	</div>
 	<mk-stream-indicator v-if="$store.getters.isSignedIn"/>
@@ -11,17 +11,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import XHeader from './ui.header.vue';
-import XSidebar from './ui.sidebar.vue';
 
 export default Vue.extend({
 	components: {
 		XHeader,
-		XSidebar
 	},
 
 	data() {
 		return {
-			zenMode: false
 		};
 	},
 
@@ -41,7 +38,6 @@ export default Vue.extend({
 			return {
 				'p': this.post,
 				'n': this.post,
-				'z': this.toggleZenMode
 			};
 		}
 	},
@@ -66,15 +62,6 @@ export default Vue.extend({
 		post() {
 			this.$post();
 		},
-
-		toggleZenMode() {
-			this.zenMode = !this.zenMode;
-			this.$nextTick(() => {
-				if (this.$refs.header) {
-					this.$store.commit('setUiHeaderHeight', this.$refs.header.$el.offsetHeight);
-				}
-			});
-		}
 	}
 });
 </script>
@@ -93,14 +80,5 @@ export default Vue.extend({
 		background-size cover
 		background-position center
 		background-attachment fixed
-
-	> .content.sidebar.left
-		padding-left 68px
-
-	> .content.sidebar.right
-		padding-right 68px
-
-	> .content.zen
-		padding 0 !important
 
 </style>

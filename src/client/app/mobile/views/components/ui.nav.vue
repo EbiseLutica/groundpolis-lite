@@ -32,15 +32,12 @@
 							<li v-if="$store.getters.isSignedIn && ($store.state.i.isLocked || $store.state.i.carefulBot)"><router-link to="/i/follow-requests" :data-active="$route.name == 'follow-requests'"><i><fa :icon="['far', 'envelope']" fixed-width/></i>{{ $t('follow-requests') }}<i v-if="$store.getters.isSignedIn && $store.state.i.pendingReceivedFollowRequestsCount" class="circle"><fa icon="circle"/></i><i><fa icon="angle-right"/></i></router-link></li>
 							<li><router-link to="/i/lists" :data-active="$route.name == 'user-lists'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="list" fixed-width/></i>{{ $t('user-lists') }}<i><fa icon="angle-right"/></i></router-link></li>
 							<li><router-link to="/i/favorites" :data-active="$route.name == 'favorites'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="star" fixed-width/></i>{{ $t('@.favorites') }}<i><fa icon="angle-right"/></i></router-link></li>
-						</ul>
-						<ul>
 							<li><router-link to="/i/drive" :data-active="$route.name == 'drive'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="cloud" fixed-width/></i>{{ $t('@.drive') }}<i><fa icon="angle-right"/></i></router-link></li>
-							<li><router-link to="/i/widgets" :data-active="$route.name == 'widgets'" @click.native="$parent.isDrawerOpening = false"><i><fa :icon="['far', 'calendar-alt']" fixed-width/></i>{{ $t('widgets') }}<i><fa icon="angle-right"/></i></router-link></li>
 						</ul>
 						<ul>
 							<li><router-link to="/i/settings" :data-active="$route.name == 'settings'" @click.native="$parent.isDrawerOpening = false"><i><fa icon="cog" fixed-width/></i>{{ $t('@.settings') }}<i><fa icon="angle-right"/></i></router-link></li>
-							<li v-if="$store.getters.isSignedIn && ($store.state.i.isAdmin || $store.state.i.isModerator)"><a href="/admin" @click="$parent.isDrawerOpening = false" @touchstart="$parent.isDrawerOpening = false"><i><fa icon="terminal" fixed-width/></i><span>{{ $t('admin') }}</span><i><fa icon="angle-right"/></i></a></li>
-							<li><a :href="aboutUrl" target=”_blank” rel=”noopener” @click="$parent.isDrawerOpening = false" @touchstart="$parent.isDrawerOpening = false"><i><fa icon="question-circle" fixed-width/></i><span>{{ $t('about') }}</span><i><fa icon="angle-right"/></i></a></li>
+							<li v-if="$store.getters.isSignedIn && ($store.state.i.isAdmin || $store.state.i.isModerator)"><a href="/admin" @click.native="$parent.isDrawerOpening = false" @touchstart="$parent.isDrawerOpening = false"><i><fa icon="terminal" fixed-width/></i><span>{{ $t('admin') }}</span><i><fa icon="angle-right"/></i></a></li>
+							<li><a :href="aboutUrl" target=”_blank” rel=”noopener” @click.native="$parent.isDrawerOpening = false" @touchstart="$parent.isDrawerOpening = false"><i><fa icon="question-circle" fixed-width/></i><span>{{ $t('about') }}</span><i><fa icon="angle-right"/></i></a></li>
 						</ul>
 					</div>
 					<div class="announcements" v-if="announcements && announcements.length > 0">
@@ -157,7 +154,7 @@ export default Vue.extend({
 		top 0
 		left 0
 		z-index 1026
-		width 330px
+		width 80%
 		height 100%
 		overflow auto
 		-webkit-overflow-scrolling touch
@@ -165,7 +162,7 @@ export default Vue.extend({
 		font-size 15px
 
 		&.notifications
-			width 330px
+			width 80%
 
 		> .notifications
 			padding-top 42px
@@ -175,7 +172,7 @@ export default Vue.extend({
 				top 0
 				left 0
 				z-index 1000
-				width 330px
+				width 80%
 				line-height 42px
 				background var(--secondary)
 
@@ -202,7 +199,7 @@ export default Vue.extend({
 				background var(--face)
 				left 0
 				top 0
-				width 330px
+				width 80%
 				height 150px
 				margin 0
 				padding 16px

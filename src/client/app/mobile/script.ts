@@ -111,7 +111,6 @@ init((launch, os) => {
 
 	// Register components
 	require('./views/components');
-	require('./views/widgets');
 
 	// http://qiita.com/junya/items/3ff380878f26ca447f85
 	document.body.setAttribute('ontouchstart', '');
@@ -128,7 +127,6 @@ init((launch, os) => {
 			{ path: '/i/lists', name: 'user-lists', component: UI, props: route => ({ component: () => import('../common/views/pages/user-lists.vue').then(m => m.default) }) },
 			{ path: '/i/lists/:list', component: UI, props: route => ({ component: () => import('../common/views/pages/user-list-editor.vue').then(m => m.default), listId: route.params.list }) },
 			{ path: '/i/follow-requests', name: 'follow-requests', component: UI, props: route => ({ component: () => import('../common/views/pages/follow-requests.vue').then(m => m.default) }) },
-			{ path: '/i/widgets', name: 'widgets', component: () => import('./views/pages/widgets.vue').then(m => m.default) },
 			{ path: '/i/notifications', name: 'notifications', component: MkNotifications },
 			{ path: '/i/drive', name: 'drive', component: MkDrive },
 			{ path: '/i/drive/folder/:folder', component: MkDrive },
