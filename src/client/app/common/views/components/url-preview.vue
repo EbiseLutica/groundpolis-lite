@@ -30,6 +30,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
+import API from '../../../fetch-async';
 import { url as local, lang } from '../../../config';
 
 export default Vue.extend({
@@ -122,17 +123,16 @@ export default Vue.extend({
 
 		requestUrl.hash = '';
 
-		fetch(`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`).then(res => {
-			res.json().then(info => {
-				if (info.url == null) return;
-				this.title = info.title;
-				this.description = info.description;
-				this.thumbnail = info.thumbnail;
-				this.icon = info.icon;
-				this.sitename = info.sitename;
-				this.fetching = false;
-				this.player = info.player;
-			})
+		API.fetch(`/url?url=${encodeURIComponent(requestUrl.href)}&lang=${requestLang}`).then((res: { json: any }) => {
+			const info = res.json;
+			if (info.url == null) return;
+			this.title = info.title;
+			this.description = info.description;
+			this.thumbnail = info.thumbnail;
+			this.icon = info.icon;
+			this.sitename = info.sitename;
+			this.fetching = false;
+			this.player = info.player;
 		});
 	}
 });
