@@ -2,7 +2,7 @@
 <div class="ecsvsegy" v-if="!fetching">
 	<sequential-entrance animation="entranceFromTop" delay="25">
 		<template v-for="note in notes">
-			<mk-note-detail class="post" :note="note" :key="note.id"/>
+			<mk-note-detail class="post" :compact="true" :note="note" :key="note.id"/>
 		</template>
 	</sequential-entrance>
 	<div class="more" v-if="more">

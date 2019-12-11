@@ -16,8 +16,8 @@
 			</ul>
 		</form>
 		<div style="margin-top: 24px">
-			<x-explore v-show="mode === 'explore'" />
-			<x-featured platform="mobile" v-show="mode === 'featured'" />
+			<x-explore v-if="mode === 'explore'" />
+			<x-featured platform="mobile" v-else />
 		</div>
 	</main>
 </mk-ui>
