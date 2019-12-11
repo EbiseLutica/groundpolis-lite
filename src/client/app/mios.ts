@@ -2,6 +2,7 @@ import autobind from 'autobind-decorator';
 import Vue from 'vue';
 import { EventEmitter } from 'eventemitter3';
 import { v4 as uuid } from 'uuid';
+import API from './fetch-async';
 
 import initStore from './store';
 import { apiUrl, version, locale, env } from './config';
@@ -405,15 +406,15 @@ export default class MiOS extends EventEmitter {
 			}
 
 			console.debug(`${apiUrl}/${endpoint}`);
-
 			// Send request
-			fetch(endpoint.indexOf('://') > -1 ? endpoint : `${apiUrl}/${endpoint}`, {
+			API.fetch(endpoint.indexOf('://') > -1 ? endpoint : `${apiUrl}/${endpoint}`, {
 				method: 'POST',
 				body: JSON.stringify(data),
 				credentials: endpoint === 'signin' ? 'include' : 'omit',
 				cache: 'no-cache'
 			}).then(async (res) => {
-				const body = res.status === 204 ? null : await res.json();
+				console.log(res);
+				const body = res.json;
 
 				if (this.debug) {
 					req.status = res.status;
