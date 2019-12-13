@@ -20,7 +20,6 @@ class WebpackOnBuildPlugin {
 }
 
 const isProduction = process.env.NODE_ENV == 'production';
-const useHardSource = process.env.MISSKEY_USE_HARD_SOURCE;
 
 const constants = require('./src/const.json');
 
@@ -43,9 +42,9 @@ module.exports = {
 	entry: {
 		desktop: './src/client/app/desktop/script.ts',
 		mobile: './src/client/app/mobile/script.ts',
-		// dev: './src/client/app/dev/script.ts',
-		// auth: './src/client/app/auth/script.ts',
-		// admin: './src/client/app/admin/script.ts',
+		dev: './src/client/app/dev/script.ts',
+		auth: './src/client/app/auth/script.ts',
+		admin: './src/client/app/admin/script.ts',
 		sw: './src/client/app/sw.js'
 	},
 	module: {
@@ -114,9 +113,9 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		...(useHardSource ? [new HardSourceWebpackPlugin()] : []),
+		new HardSourceWebpackPlugin(),
 		new ProgressBarPlugin({
-			format: chalk`  {cyan.bold がんばってます} {bold [}:bar{bold ]} {green.bold :percent} {gray (:current/:total)} :elapseds`,
+			format: chalk`  {cyan.bold :percent} {bold [}:bar{bold ]} :elapseds`,
 			clear: false
 		}),
 		new webpack.DefinePlugin({
