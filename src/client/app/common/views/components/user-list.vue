@@ -14,9 +14,7 @@
 				<div class="name">
 					<router-link class="name" :to="user | userPage" v-user-preview="user.id"><mk-user-name :user="user"/></router-link>
 					<p class="username">@{{ user | acct }}</p>
-				</div>
-				<div class="description" v-if="user.description" :title="user.description">
-					<mfm :text="user.description" :is-note="false" :author="user" :i="$store.state.i" :custom-emojis="user.emojis" :plain="true" :nowrap="true"/>
+					<p class="followed" v-if="user.isFollowed">{{$t('follows-you')}}</p>
 				</div>
 				<mk-follow-button class="koudoku-button" v-if="$store.getters.isSignedIn && user.id != $store.state.i.id" :user="user" mini/>
 			</div>
@@ -111,7 +109,6 @@ export default Vue.extend({
 			width calc(100% - 54px)
 
 			> .name
-				width 45%
 
 				> .name
 					margin 0
@@ -127,16 +124,12 @@ export default Vue.extend({
 					color var(--text)
 					opacity 0.7
 
-			> .description
-				width 55%
-				color var(--text)
-				line-height 42px
-				white-space nowrap
-				overflow hidden
-				text-overflow ellipsis
-				opacity 0.7
-				font-size 14px
-				padding-right 40px
+				> .followed
+					display inline-block
+					padding 4px
+					color #fff
+					background rgba(0, 0, 0, 0.7)
+					font-size 12px
 
 			> .koudoku-button
 				position absolute

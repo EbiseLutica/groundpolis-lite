@@ -408,6 +408,7 @@ common/views/components/url-preview.vue:
 
 common/views/components/user-list.vue:
   no-users: "ユーザーがいません"
+  follows-you: "フォローされています"
 
 common/views/components/connect-failed.vue:
   title: "サーバーに接続できません"
