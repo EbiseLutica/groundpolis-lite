@@ -6,7 +6,7 @@
 			{{ $t('received-follow-requests') }}
 		</template>
 		<div v-if="!fetching">
-			<sequential-entrance animation="entranceFromTop" delay="25" tag="div">
+			<sequential-entrance v-if="requests.length > 0" animation="entranceFromTop" delay="25" tag="div">
 				<div v-for="req in requests" :key="req.id" class="mcbzkkaw">
 					<router-link :key="req.id" :to="req.follower | userPage">
 						<mk-user-name :user="req.follower"/>
@@ -15,10 +15,10 @@
 						<a @click="accept(req.follower)">{{ $t('accept') }}</a> | <a @click="reject(req.follower)">{{ $t('reject') }}</a>
 					</span>
 				</div>
-				<ui-info v-if="requests.length === 0">
-					{{ $t('nobody') }}
-				</ui-info>
 			</sequential-entrance>
+			<ui-info v-else>
+				{{ $t('nobody') }}
+			</ui-info>
 		</div>
 	</ui-container>
 </div>
