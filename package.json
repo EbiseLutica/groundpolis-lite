@@ -4,11 +4,11 @@
 	"contributors": [
 		"syuilo <i@syuilo.com>"
 	],
-	"version": "11.36.0-gp-2.1.0",
+	"version": "1.0.0-beta.1",
 	"codename": "alpaca",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/xeltica/groundpolis.git"
+		"url": "https://github.com/xeltica/groundpolis-lite.git"
 	},
 	"main": "./index.js",
 	"private": true,
