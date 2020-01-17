@@ -1,3 +1,8 @@
+**このリポジトリは古いです。新たなリポジトリは https://github.com/Groundpolis/Groundpolis です。今後、こちらのリポジトリはメンテナンスされません。**
+
+----
+
+
 [![Groundpolis](/assets/title.svg)](https://social.xeltica.work/)
 ================================================================
 
